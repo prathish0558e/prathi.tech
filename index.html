@@ -132,7 +132,7 @@
   <a href="#" data-route="contact">Contact</a>
 </div>
 
-<div class="wrap" id="app">
+<main class="wrap" id="app">
 
   <!-- HOME -->
   <section id="home" class="reveal show" aria-labelledby="homeHeading">
@@ -232,7 +232,7 @@
   </section>
 
   <div class="footer">© <span id="year"></span> Prathi.Tech — Built for students</div>
-</div>
+</main>
 
 <div id="toast" class="toast" style="display:none"></div>
 
@@ -368,28 +368,30 @@ function showToast(msg, ok=true) {
 
 /* ---------- NAV / ROUTING ---------- */
 const menuToggle = $('#menuToggle'), mobileMenu = $('#mobileMenu');
-menuToggle.addEventListener('click', ()=> {
-  const open = mobileMenu.style.display === 'block';
-  mobileMenu.style.display = open ? 'none' : 'block';
-  mobileMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
-  menuToggle.textContent = open ? '☰' : '✕';
-});
-$$( '#mobileMenu a, .menu-desktop .btn-ghost' ).forEach(el=>{
-  el.addEventListener('click', (ev)=>{
-    ev.preventDefault();
-    const route = el.getAttribute('data-route') || el.getAttribute('data-route');
-    if(!route) {
-      // mobile menu anchors use data-route on click
-      const dr = el.getAttribute('data-route') || el.dataset.route;
-      if(dr) navigateTo(dr);
-      else {
-        const href = el.getAttribute('href'); if(href && href.startsWith('#')) {}
-      }
-    } else navigateTo(route);
-    mobileMenu.style.display='none'; menuToggle.textContent='☰';
+if (menuToggle && mobileMenu) {
+  menuToggle.addEventListener('click', ()=> {
+    const open = mobileMenu.style.display === 'block';
+    mobileMenu.style.display = open ? 'none' : 'block';
+    mobileMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
+    menuToggle.textContent = open ? '☰' : '✕';
   });
-});
-$$( '.menu-desktop .btn-ghost' ).forEach(b=> b.addEventListener('click', ()=> navigateTo(b.getAttribute('data-route')) ));
+  $$('#mobileMenu a, .menu-desktop .btn-ghost').forEach(el=>{
+    el.addEventListener('click', (ev)=>{
+      ev.preventDefault();
+      const route = el.getAttribute('data-route') || el.getAttribute('data-route');
+      if(!route) {
+        // mobile menu anchors use data-route on click
+        const dr = el.getAttribute('data-route') || el.dataset.route;
+        if(dr) navigateTo(dr);
+        else {
+          const href = el.getAttribute('href'); if(href && href.startsWith('#')) {}
+        }
+      } else navigateTo(route);
+      mobileMenu.style.display='none'; menuToggle.textContent='☰';
+    });
+  });
+  $$('.menu-desktop .btn-ghost').forEach(b=> b.addEventListener('click', ()=> navigateTo(b.getAttribute('data-route')) ));
+}
 
 function navigateTo(name){
   // hide all sections, show selected
@@ -559,23 +561,30 @@ function bootGrid(name, dataArray, mountSel){
 
 /* ---------- CONTACT FORM -> Google Sheets via Apps Script ---------- */
 /* IMPORTANT: Replace WEB_APP_URL with your deployed Apps Script Web App URL */
-let WEB_APP_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec'; // <- REPLACE
-
-$('#contactForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const f = e.target; const data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
-  if(!data.name || !data.message){ showToast('Please provide name and message', false); return; }
-  try{
-    // POST JSON to Apps Script (CORS depends on script deployment settings)
-    await fetch(WEB_APP_URL, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(data) });
-    showToast('Request sent ✅');
-    f.reset();
-  }catch(err){
-    showToast('Submit failed — set Apps Script URL in code', false);
+const WEB_APP_URL = ""; // <-- Set your Apps Script Web App URL here as a string, e.g. "https://script.google.com/macros/s/..."
+const contactForm = $('#contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const f = e.target; const data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
+    if(!data.name || !data.message){ showToast('Please provide name and message', false); return; }
+    try{
+      // POST JSON to Apps Script (CORS depends on script deployment settings)
+      await fetch(WEB_APP_URL, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(data) });
+      showToast('Request sent ✅');
+      f.reset();
+    }catch(err){
+      showToast('Submit failed — set Apps Script URL in code', false);
+    }
+  });
+}
+document.addEventListener('click', (e)=>{
+  if (typeof mobileMenu !== 'undefined' && typeof menuToggle !== 'undefined') {
+    if(!e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle')) {
+      mobileMenu.style.display='none'; menuToggle.textContent='☰';
+    }
   }
 });
-
-/* small accessibility: close mobile menu on outside click */
 document.addEventListener('click', (e)=>{
   if(!e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle')) {
     mobileMenu.style.display='none'; menuToggle.textContent='☰';

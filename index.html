@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HADES - Offline AI Assistant</title>
+  <style>
+    body {
+      background-color: black;
+      color: #00ffcc;
+      font-family: 'Courier New', monospace;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: cyan;
+      font-size: 3em;
+    }
+    #log {
+      border: 1px solid #00ffcc;
+      padding: 20px;
+      height: 300px;
+      overflow-y: auto;
+      background-color: #111;
+      text-align: left;
+      margin-top: 30px;
+      white-space: pre-line;
+    }
+    .user { color: #00ffff; }
+    .bot { color: #39ff14; }
+  </style>
+</head>
+<body>
+  <h1>🧠 HADES - Tamil + English Voice Assistant</h1>
+  <p>🎤 Always listening... Just speak</p>
+  <div id="log"></div>
+
+  <script>
+    // Load available voices
+    window.speechSynthesis.onvoiceschanged = () => {
+      console.log("✅ Voices loaded");
+    };
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'ta-IN';
+    recognition.continuous = true;
+    recognition.interimResults = false;
+
+    const synth = window.speechSynthesis;
+    const log = document.getElementById('log');
+
+    const responses = {
+      "hello": "Hello! I am HADES. How can I help you?",
+      "who are you": "I am your AI assistant, fully offline.",
+      "thank you": "You're welcome.",
+      "what is your name": "My name is HADES.",
+      "how are you": "I am doing well. Thank you for asking.",
+      "what is ai": "AI means artificial intelligence — I am one.",
+      "tell me a joke": "Why did the computer go to school? To improve its byte!",
+      "vanakkam": "வணக்கம்! நான் ஹேட்ஸ். உங்களை சந்திப்பதில் மகிழ்ச்சி.",
+      "nee yaar": "நான் ஹேட்ஸ். உங்கள் நண்பன்!",
+      "epdi iruka": "நான் நன்றாக இருக்கிறேன்! நீங்கள்?",
+      "nandri": "எப்போதும் வரவேற்கிறேன்!",
+      "un peru enna": "எனது பெயர் ஹேட்ஸ்.",
+      "yaar unakku appa": "நான் யாரும் இல்லாமல் உருவாக்கப்பட்ட AI.",
+      "hades": "Yes, I am here.",
+      "what is your job": "To assist and learn from you. I am always evolving.",
+    };
+
+    function speak(text) {
+      const utter = new SpeechSynthesisUtterance(text);
+      const voices = speechSynthesis.getVoices();
+
+      // Choose Tamil or English voice
+      if (/[அ-ஹ]/.test(text)) {
+        utter.lang = 'ta-IN';
+      } else {
+        utter.lang = 'en-US';
+      }
+
+      const voice = voices.find(v => v.lang === utter.lang);
+      if (voice) utter.voice = voice;
+
+      utter.rate = 1;
+      utter.pitch = 1;
+      utter.volume = 1;
+
+      synth.speak(utter);
+    }
+
+    function getReply(text) {
+      text = text.toLowerCase();
+      for (let key in responses) {
+        if (text.includes(key)) {
+          return responses[key];
+        }
+      }
+      return "I'm still learning. Try asking something else.";
+    }
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[event.results.length - 1][0].transcript.trim().toLowerCase();
+      log.innerHTML += `👤 <span class="user">You: ${transcript}</span>\n`;
+      const reply = getReply(transcript);
+      log.innerHTML += `🤖 <span class="bot">HADES: ${reply}</span>\n\n`;
+      speak(reply);
+    };
+
+    recognition.onerror = (event) => {
+      log.innerHTML += `⚠️ Error: ${event.error}\n`;
+    };
+
+    recognition.onend = () => {
+      recognition.start(); // Auto-restart
+    };
+
+    recognition.start();
+  </script>
+</body>
+</html>

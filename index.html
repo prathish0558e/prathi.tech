@@ -1,273 +1,304 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Prathi.Tech — Student Tech Hub</title>
-<meta name="description" content="Prathi.Tech — Free tools, student packs, coding & creative resources. Cinematic, interactive, mobile-ready." />
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
-<style>
-:root{
-  --bg:#05030a; --panel: rgba(255,255,255,0.03);
-  --accent1: #7b61ff; --accent2:#00e6a8; --glass: rgba(255,255,255,0.04);
-  --text:#eaf0ff; --muted:rgba(234,240,255,0.6);
-  --maxw:1100px;
-}
-*{box-sizing:border-box}
-html,body{height:100%; margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial; background:radial-gradient(800px 400px at 10% 10%, rgba(123,97,255,0.05), transparent), radial-gradient(700px 300px at 90% 90%, rgba(0,230,168,0.03), transparent), var(--bg); color:var(--text);}
-a{color:inherit}
-/* layout */
-.container{max-width:var(--maxw); margin:48px auto; padding:24px; position:relative; z-index:3}
-.nav{display:flex; align-items:center; justify-content:space-between; gap:16px}
-.brand{font-weight:800; font-size:20px; letter-spacing:0.6px; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent}
-.menu{display:flex; gap:12px}
-.menu a{padding:8px 12px; border-radius:10px; font-weight:600; text-decoration:none; color:var(--muted)}
-.menu a.active{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#041017}
-.hero{display:flex; gap:28px; align-items:center; margin-top:36px}
-.hero-left{flex:1}
-.h-title{font-size:clamp(28px,5vw,52px); line-height:1; font-weight:900; margin:0}
-.h-lead{color:var(--muted); margin-top:12px; font-size:16px}
-.cta{margin-top:20px; display:flex; gap:12px}
-.btn{padding:12px 16px; border-radius:12px; font-weight:700; text-decoration:none}
-.btn-primary{background:linear-gradient(90deg,var(--accent1),var(--accent2)); color:#041017}
-.btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.04)}
-.hero-right{width:320px; min-width:200px}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px; padding:18px; border:1px solid rgba(255,255,255,0.04); box-shadow:0 8px 40px rgba(0,0,0,0.6)}
-.section{padding:48px 0}
-.grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-.tile{background:var(--glass); padding:16px; border-radius:12px; border:1px solid rgba(255,255,255,0.03)}
-.tile h4{margin:0 0 8px}
-.small{font-size:14px; color:var(--muted)}
-.footer{margin-top:40px; display:flex; justify-content:space-between; color:var(--muted); font-size:13px}
-
-/* responsive */
-@media(max-width:920px){.grid{grid-template-columns:repeat(2,1fr)} .hero{flex-direction:column} .hero-right{width:100%}}
-@media(max-width:620px){.grid{grid-template-columns:1fr} .menu{display:none}}
-
-/* page transitions */
-.view{opacity:0; transform:translateY(18px); transition:all 600ms cubic-bezier(.2,.9,.3,1)}
-.view.active{opacity:1; transform:none}
-.nav-float{position:fixed; top:14px; left:50%; transform:translateX(-50%); width:calc(100% - 40px); max-width:var(--maxw); z-index:6}
-
-/* animated hero text */
-.h-animate{display:inline-block; background:linear-gradient(90deg,var(--accent1),var(--accent2)); -webkit-background-clip:text; color:transparent}
-
-/* reveal on scroll */
-.reveal{opacity:0; transform:translateY(14px); transition:all 700ms cubic-bezier(.2,.9,.3,1)}
-.reveal.show{opacity:1; transform:none}
-
-/* fancy underline */
-.underline{position:relative}
-.underline:after{content:''; position:absolute; left:0; bottom:-6px; height:4px; width:0; background:linear-gradient(90deg,var(--accent1),var(--accent2)); border-radius:6px; transition:width 450ms}
-.underline:hover:after{width:60%}
-
-/* search & filters */
-.search{display:flex; gap:8px; margin-bottom:12px}
-.search input{flex:1; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text)}
-
-/* micro animations */
-.fade-in{animation:fadein 900ms both}
-@keyframes fadein{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
-
-/* particles overlay */
-#bgCanvas{position:fixed; inset:0; z-index:0}
-
-/* contact form */
-.form-row{display:flex; gap:12px}
-.form-row input, textarea{flex:1; padding:10px; border-radius:8px; background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text)}
-
-/* small helper */
-.note{font-size:13px; color:var(--muted)}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prathi.Tech – Free Tools & Student Hub</title>
+  <!-- Tailwind + Alpine + ScrollReveal -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/scrollreveal"></script>
+  <style>
+    :root { --bg:#0f172a; --bg2:#0b1022; --fg:#f8fafc; --muted:#94a3b8; --card:#0b1226; }
+    .light :root, .light body { --bg:#f8fafc; --bg2:#ffffff; --fg:#0f172a; --muted:#334155; --card:#ffffff; }
+    body { background: radial-gradient(900px 400px at 10% 10%, rgba(124,58,237,.12), transparent), radial-gradient(700px 300px at 90% 90%, rgba(34,197,94,.10), transparent), var(--bg); color: var(--fg); font-family: 'Poppins', ui-sans-serif, system-ui; }
+    .page-section { min-height: 100vh; padding: 6rem 1.5rem 4rem; display: none; }
+    .page-section.active { display: block; animation: fadeIn 0.7s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(28px);} to{opacity:1;transform:translateY(0);} }
+    .glass { background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); }
+    .light .glass { background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.02)); border:1px solid rgba(0,0,0,.06); }
+    /* Starfield / Particles */
+    #bgCanvas{ position:fixed; inset:0; z-index:0 }
+    /* Toast */
+    .toast{ position:fixed; right:1rem; bottom:1rem; z-index:60; }
+  </style>
 </head>
-<body>
-<canvas id="bgCanvas"></canvas>
+<body x-data="prathiApp()" x-init="init()" :class="theme">
+  <!-- Background animation canvases -->
+  <canvas id="bgCanvas"></canvas>
 
-<!-- floating nav -->
-<div class="nav-float container">
-  <div class="nav">
-    <div class="brand">Prathi.Tech</div>
-    <nav class="menu" role="navigation" aria-label="Main">
-      <a href="#home" data-route="home" class="active">Home</a>
-      <a href="#tools" data-route="tools">Tools</a>
-      <a href="#coding" data-route="coding">Coding</a>
-      <a href="#editing" data-route="editing">Editing</a>
-      <a href="#packs" data-route="packs">Student Packs</a>
-      <a href="#learn" data-route="learn">Learning</a>
-      <a href="#contact" data-route="contact">Contact</a>
-    </nav>
-  </div>
-</div>
-
-<!-- main container -->
-<main class="container" id="app">
-  <!-- HOME -->
-  <section id="home" class="section view active" data-title="Home">
-    <div class="hero">
-      <div class="hero-left">
-        <h1 class="h-title">Welcome to <span class="h-animate">Prathi.Tech</span></h1>
-        <p class="h-lead">Student Tech Hub — free tools, study packs, interactive demos and cinematic tutorials. Save time. Build fast.</p>
-        <div class="cta">
-          <a class="btn btn-primary" data-route-link="tools">Explore Tools</a>
-          <a class="btn btn-ghost" data-route-link="learn">Start Learning</a>
-        </div>
-        <div style="margin-top:22px" class="note">Pro tip: press <strong>H</strong> to open quick help, <strong>/</strong> to search the tools.</div>
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-gray-900 bg-opacity-50 backdrop-filter backdrop-blur-sm shadow z-50 border-b border-gray-800 light:border-gray-200">
+    <div class="max-w-7xl mx-auto px-5 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-500 to-emerald-400"></div>
+        <h1 class="text-xl sm:text-2xl font-extrabold"><span class="text-purple-400">Prathi</span>.<span class="text-emerald-400">Tech</span></h1>
       </div>
-      <div class="hero-right">
-        <div class="card fade-in">
-          <h3 style="margin:0">Top Free Picks</h3>
-          <div style="margin-top:10px">
-            <div class="small">GitHub Student Pack — Free domains, hosting & tools</div>
-            <div class="small">Photopea — Browser image editor</div>
-            <div class="small">Colab — Free GPUs for ML experiments</div>
+      <div class="hidden md:flex items-center space-x-4 font-medium">
+        <a href="#" @click.prevent="go('home')" :class="linkClass('home')">Home</a>
+        <a href="#" @click.prevent="go('tools')" :class="linkClass('tools')">Tools</a>
+        <a href="#" @click.prevent="go('coding')" :class="linkClass('coding')">Coding</a>
+        <a href="#" @click.prevent="go('editing')" :class="linkClass('editing')">Editing</a>
+        <a href="#" @click.prevent="go('packs')" :class="linkClass('packs')">Student Packs</a>
+        <a href="#" @click.prevent="go('learning')" :class="linkClass('learning')">Learning</a>
+        <a href="#" @click.prevent="go('contact')" :class="linkClass('contact')">Contact</a>
+      </div>
+      <div class="flex items-center space-x-2">
+        <!-- Theme toggle -->
+        <button @click="toggleTheme()" class="px-3 py-2 rounded-lg bg-gray-800 light:bg-gray-100 text-sm font-semibold hover:opacity-90">
+          <span x-show="theme==='dark'">🌙 Dark</span>
+          <span x-show="theme==='light'">☀️ Light</span>
+        </button>
+        <button class="md:hidden px-3 py-2 rounded-lg bg-gray-800 light:bg-gray-100" @click="mobileOpen=!mobileOpen">☰</button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="md:hidden" x-show="mobileOpen" x-transition>
+      <div class="px-5 pb-4 space-y-2 font-medium">
+        <a href="#" @click.prevent="go('home'); mobileOpen=false" class="block">Home</a>
+        <a href="#" @click.prevent="go('tools'); mobileOpen=false" class="block">Tools</a>
+        <a href="#" @click.prevent="go('coding'); mobileOpen=false" class="block">Coding</a>
+        <a href="#" @click.prevent="go('editing'); mobileOpen=false" class="block">Editing</a>
+        <a href="#" @click.prevent="go('packs'); mobileOpen=false" class="block">Student Packs</a>
+        <a href="#" @click.prevent="go('learning'); mobileOpen=false" class="block">Learning</a>
+        <a href="#" @click.prevent="go('contact'); mobileOpen=false" class="block">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="relative z-10">
+    <!-- HOME -->
+    <section id="home" class="page-section active">
+      <div class="max-w-6xl mx-auto pt-16">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h2 class="text-4xl sm:text-5xl font-black leading-tight">Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-emerald-400">Prathi.Tech</span></h2>
+            <p class="mt-4 text-lg text-gray-300 light:text-gray-700">Student Tech Hub — free tools, study packs, interactive demos and cinematic tutorials. Save time. Build fast.</p>
+            <div class="mt-6 flex space-x-3">
+              <a @click.prevent="go('tools')" class="px-5 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-400 text-gray-900 font-bold">Explore Tools</a>
+              <a @click.prevent="go('learning')" class="px-5 py-3 rounded-xl glass font-semibold">Start Learning</a>
+            </div>
+          </div>
+          <div class="glass rounded-2xl p-6 border border-gray-800 light:border-gray-200">
+            <h3 class="text-xl font-bold">Top Free Picks</h3>
+            <ul class="mt-3 space-y-2 text-sm text-gray-300 light:text-gray-700">
+              <li>🎓 GitHub Student Pack — domains, hosting & tools</li>
+              <li>🖼 Photopea — Browser image editor</li>
+              <li>🧮 Colab — Free GPUs for ML</li>
+            </ul>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TOOLS -->
-  <section id="tools" class="section view" data-title="Tools">
-    <h2 class="underline">Free Tools & Resources</h2>
-    <p class="small">Search, filter & copy links. All student friendly.</p>
-    <div style="margin-top:14px" class="search">
-      <input id="searchInput" placeholder="Search tools (eg: code editor, hosting)..." />
-      <select id="catSelect">
-        <option value="all">All categories</option>
-        <option value="dev">Developer</option>
-        <option value="design">Design</option>
-        <option value="media">Media</option>
-        <option value="ml">ML / AI</option>
-      </select>
-    </div>
-    <div class="grid" id="toolsGrid">
-      <!-- tiles injected by JS -->
-    </div>
-  </section>
+    <!-- TOOLS -->
+    <section id="tools" class="page-section">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl font-black">Free Tools & Resources</h2>
+        <p class="text-sm text-gray-400 light:text-gray-600">Search, filter & open links. Student friendly.</p>
 
-  <!-- CODING -->
-  <section id="coding" class="section view" data-title="Coding">
-    <h2 class="underline">Coding Platforms & Projects</h2>
-    <p class="small">Practice problems, project ideas and starter repos.</p>
-    <div class="grid">
-      <div class="tile reveal"><h4>FreeCodeCamp</h4><div class="small">Comprehensive web dev curriculum with projects.</div></div>
-      <div class="tile reveal"><h4>LeetCode</h4><div class="small">Algorithm practice for interviews (free problems available).</div></div>
-      <div class="tile reveal"><h4>TryHackMe</h4><div class="small">Beginner-friendly cybersecurity labs (free tier).</div></div>
-    </div>
-  </section>
+        <!-- Search + Filters -->
+        <div class="mt-5 grid md:grid-cols-3 gap-3">
+          <input x-model="search" type="text" placeholder="Search tools (e.g., hosting, editor, ai)" class="md:col-span-2 px-4 py-3 rounded-xl bg-gray-900 light:bg-gray-100 border border-gray-800 light:border-gray-300" />
+          <select x-model="category" class="px-4 py-3 rounded-xl bg-gray-900 light:bg-gray-100 border border-gray-800 light:border-gray-300">
+            <option value="all">All categories</option>
+            <option value="dev">Developer</option>
+            <option value="design">Design</option>
+            <option value="media">Media</option>
+            <option value="ml">ML / AI</option>
+            <option value="cloud">Cloud</option>
+          </select>
+        </div>
 
-  <!-- EDITING -->
-  <section id="editing" class="section view" data-title="Editing">
-    <h2 class="underline">Editing & Creative Tools</h2>
-    <p class="small">Video, audio, image editors you can use for free.</p>
-    <div class="grid">
-      <div class="tile reveal"><h4>Photopea</h4><div class="small">Photoshop-like editor in the browser.</div></div>
-      <div class="tile reveal"><h4>Kapwing</h4><div class="small">Fast online video editor — free tier.</div></div>
-      <div class="tile reveal"><h4>Audacity</h4><div class="small">Free audio editor for podcasts & clips.</div></div>
-    </div>
-  </section>
-
-  <!-- PACKS -->
-  <section id="packs" class="section view" data-title="Student Packs">
-    <h2 class="underline">Student Packs & Offers</h2>
-    <p class="small">Claim these with your student email.</p>
-    <div class="grid">
-      <div class="tile reveal"><h4>GitHub Student Pack</h4><div class="small">Free domains, hosting, JetBrains, etc.</div></div>
-      <div class="tile reveal"><h4>Canva / Figma</h4><div class="small">Free pro plans for students (when verified).</div></div>
-      <div class="tile reveal"><h4>Cloud Credits</h4><div class="small">Microsoft / Google student credits sometimes available.</div></div>
-    </div>
-  </section>
-
-  <!-- LEARN -->
-  <section id="learn" class="section view" data-title="Learning">
-    <h2 class="underline">Learning Resources</h2>
-    <p class="small">Courses, tutorials and books — free options.</p>
-    <div class="grid">
-      <div class="tile reveal"><h4>FreeCodeCamp</h4><div class="small">Web dev, JS, projects.</div></div>
-      <div class="tile reveal"><h4>Khan Academy</h4><div class="small">Basics & algorithms.</div></div>
-      <div class="tile reveal"><h4>Coursera (audit)</h4><div class="small">Take courses free without certificate.</div></div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section view" data-title="Contact">
-    <h2 class="underline">Contact & Requests</h2>
-    <p class="small">Request a tool, report a link, or suggest content.</p>
-    <form id="contactForm" style="margin-top:14px" onsubmit="return false">
-      <div class="form-row">
-        <input id="name" placeholder="Your name" required />
-        <input id="email" placeholder="Email (optional)" />
+        <!-- Tools grid -->
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <template x-for="t in filteredTools()" :key="t.title">
+            <a :href="t.link" target="_blank" rel="noopener" class="block p-5 rounded-2xl glass hover:shadow-xl transform hover:-translate-y-0.5 transition">
+              <div class="flex items-center justify-between">
+                <h4 class="font-bold" x-text="t.title"></h4>
+                <span class="text-xs px-2 py-1 rounded bg-gray-800 light:bg-gray-200" x-text="t.cat.toUpperCase()"></span>
+              </div>
+              <p class="mt-1 text-sm text-gray-300 light:text-gray-700" x-text="t.desc"></p>
+            </a>
+          </template>
+        </div>
       </div>
-      <div style="margin-top:12px"><textarea id="message" rows="5" placeholder="Tell us what tool or resource you want..." required></textarea></div>
-      <div style="margin-top:12px; display:flex; gap:10px"><button id="sendBtn" class="btn btn-primary">Send Request</button><div class="note" id="sendNote">Requests are read weekly.</div></div>
-    </form>
-  </section>
+    </section>
 
-  <div class="footer">© Prathi.Tech — prathish0558e | <span class="note">Built for students</span> <div></div></div>
-</main>
+    <!-- CODING -->
+    <section id="coding" class="page-section">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black">Coding Platforms & Projects</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-4">
+          <a href="https://www.freecodecamp.org/" target="_blank" class="block p-6 rounded-2xl glass">FreeCodeCamp — Full web dev curriculum</a>
+          <a href="https://leetcode.com" target="_blank" class="block p-6 rounded-2xl glass">LeetCode — DSA & interviews</a>
+          <a href="https://tryhackme.com" target="_blank" class="block p-6 rounded-2xl glass">TryHackMe — Cybersecurity labs</a>
+          <a href="https://codewars.com" target="_blank" class="block p-6 rounded-2xl glass">CodeWars — Challenges</a>
+          <a href="https://projecteuler.net/" target="_blank" class="block p-6 rounded-2xl glass">Project Euler — Math problems</a>
+          <a href="https://github.com/prathish0558e" target="_blank" class="block p-6 rounded-2xl glass">Your GitHub — Showcase projects</a>
+        </div>
+      </div>
+    </section>
 
-<!-- audio control (optional) -->
-<button id="audioBtn" style="position:fixed; right:18px; bottom:18px; z-index:8; background:linear-gradient(90deg,var(--accent1),var(--accent2)); border:none; color:#041017; padding:10px 12px; border-radius:12px; font-weight:700">Play</button>
-<audio id="bgAudio" loop preload="auto"><source src="assets/music.mp3" type="audio/mpeg"></audio>
+    <!-- EDITING -->
+    <section id="editing" class="page-section">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black">Editing & Creative Tools</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-4">
+          <a href="https://photopea.com" target="_blank" class="block p-6 rounded-2xl glass">Photopea — Photoshop in browser</a>
+          <a href="https://kapwing.com" target="_blank" class="block p-6 rounded-2xl glass">Kapwing — Video editing</a>
+          <a href="https://www.blender.org/" target="_blank" class="block p-6 rounded-2xl glass">Blender — 3D & animation</a>
+          <a href="https://www.audacityteam.org/" target="_blank" class="block p-6 rounded-2xl glass">Audacity — Audio editor</a>
+          <a href="https://www.gimp.org/" target="_blank" class="block p-6 rounded-2xl glass">GIMP — Image editor</a>
+          <a href="https://www.canva.com/" target="_blank" class="block p-6 rounded-2xl glass">Canva — Design toolkit</a>
+        </div>
+      </div>
+    </section>
 
-<script>
-/* === Lightweight particle background === */
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-let w=canvas.width=innerWidth, h=canvas.height=innerHeight;
-window.addEventListener('resize', ()=>{w=canvas.width=innerWidth; h=canvas.height=innerHeight});
-const pts=[]; const N=Math.round((w*h)/60000)+24;
-for(let i=0;i<N;i++){pts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+0.4,vx:(Math.random()-0.5)*0.4,vy:(Math.random()-0.5)*0.2,h:Math.random()*360,a:Math.random()*0.2+0.03})}
-function frame(){ctx.clearRect(0,0,w,h); for(let p of pts){p.x+=p.vx; p.y+=p.vy; if(p.x> w+10)p.x=-10; if(p.x<-10)p.x=w+10; if(p.y>h+10)p.y=-10; if(p.y<-10)p.y=h+10; ctx.beginPath(); ctx.fillStyle=`hsla(${p.h},70%,65%,${p.a})`; ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill()} requestAnimationFrame(frame)}
-frame();
+    <!-- PACKS -->
+    <section id="packs" class="page-section">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black">Student Packs & Offers</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-4">
+          <a href="https://education.github.com/pack" target="_blank" class="block p-6 rounded-2xl glass">GitHub Student Pack</a>
+          <a href="https://education.github.com/discount_requests/student_application" target="_blank" class="block p-6 rounded-2xl glass">GitHub Education – Apply</a>
+          <a href="https://www.jetbrains.com/community/education/#students" target="_blank" class="block p-6 rounded-2xl glass">JetBrains IDEs (student)</a>
+          <a href="https://vercel.com/" target="_blank" class="block p-6 rounded-2xl glass">Vercel — Free deploy</a>
+          <a href="https://www.netlify.com/" target="_blank" class="block p-6 rounded-2xl glass">Netlify — Static hosting</a>
+          <a href="https://www.mongodb.com/atlas/student" target="_blank" class="block p-6 rounded-2xl glass">MongoDB Atlas (student)</a>
+        </div>
+      </div>
+    </section>
 
-/* === Simple client-side routing (SPA) === */
-const views=document.querySelectorAll('.view');
-const links=document.querySelectorAll('[data-route]');
-const menuLinks=document.querySelectorAll('.menu a');
-function show(route){views.forEach(v=>{ if(v.id===route){ v.classList.add('active'); history.replaceState(null,'',`#${route}`); document.title = `Prathi.Tech — ${v.dataset.title}`; } else { v.classList.remove('active'); }}); menuLinks.forEach(a=>a.classList.toggle('active', a.dataset.route===route)); window.scrollTo({top:0,behavior:'smooth'});}
-// initialize
-const initial = location.hash ? location.hash.replace('#','') : 'home'; show(initial);
-// bind menu click
-document.querySelectorAll('[data-route-link]').forEach(btn=>btn.addEventListener('click', ()=> show(btn.getAttribute('data-route-link'))));
-document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click', e=>{ e.preventDefault(); show(a.dataset.route); }));
+    <!-- LEARNING -->
+    <section id="learning" class="page-section">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-black">Learning Resources</h2>
+        <div class="mt-6 grid md:grid-cols-3 gap-4">
+          <a href="https://freecodecamp.org" target="_blank" class="block p-6 rounded-2xl glass">FreeCodeCamp</a>
+          <a href="https://ocw.mit.edu" target="_blank" class="block p-6 rounded-2xl glass">MIT OpenCourseWare</a>
+          <a href="https://nptel.ac.in" target="_blank" class="block p-6 rounded-2xl glass">NPTEL</a>
+          <a href="https://www.coursera.org/" target="_blank" class="block p-6 rounded-2xl glass">Coursera (audit)</a>
+          <a href="https://www.khanacademy.org/" target="_blank" class="block p-6 rounded-2xl glass">Khan Academy</a>
+          <a href="https://www.edx.org/" target="_blank" class="block p-6 rounded-2xl glass">edX</a>
+        </div>
+      </div>
+    </section>
 
-/* === Reveal on scroll for tiles === */
-const io = new IntersectionObserver(entries=>{ entries.forEach(en=>{ if(en.isIntersecting) en.target.classList.add('show'); }); }, {threshold:0.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    <!-- CONTACT -->
+    <section id="contact" class="page-section">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-4xl font-black">Contact & Requests</h2>
+        <p class="text-sm text-gray-400 light:text-gray-600">Submit tools or resource requests. This posts to Google Sheets via Apps Script.</p>
+        <form @submit.prevent="submitForm" class="mt-6 space-y-4 p-6 rounded-2xl glass">
+          <div class="grid md:grid-cols-2 gap-4">
+            <input x-model="form.name" type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-xl bg-gray-900 light:bg-gray-100 border border-gray-800 light:border-gray-300" required>
+            <input x-model="form.email" type="email" placeholder="Email (optional)" class="w-full px-4 py-3 rounded-xl bg-gray-900 light:bg-gray-100 border border-gray-800 light:border-gray-300">
+          </div>
+          <textarea x-model="form.message" rows="5" placeholder="Message / Request" class="w-full px-4 py-3 rounded-xl bg-gray-900 light:bg-gray-100 border border-gray-800 light:border-gray-300" required></textarea>
+          <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-emerald-400 text-gray-900 font-bold" :disabled="loading">
+            <span x-show="!loading">Send</span>
+            <span x-show="loading">Sending…</span>
+          </button>
+          <p class="text-xs text-gray-400 light:text-gray-600">Note: Requires Apps Script Web App URL set in code.</p>
+        </form>
+      </div>
+    </section>
 
-/* === Tools data + search filter === */
-const tools = [
-  {title:'GitHub Student Pack',cat:'dev',desc:'Free domains, hosting, JetBrains, and more',link:'https://education.github.com/pack'},
-  {title:'Photopea',cat:'design',desc:'Browser Photoshop alternative',link:'https://www.photopea.com/'},
-  {title:'Google Colab',cat:'ml',desc:'Free GPU for experiments',link:'https://colab.research.google.com'},
-  {title:'Netlify',cat:'dev',desc:'Free hosting for static sites',link:'https://www.netlify.com'},
-  {title:'TryHackMe',cat:'dev',desc:'Beginner-friendly cybersecurity labs',link:'https://tryhackme.com'},
-  {title:'Figma (Education)',cat:'design',desc:'Free pro features for students',link:'https://www.figma.com/education'},
-  {title:'Kapwing',cat:'media',desc:'Online video editor free tier',link:'https://www.kapwing.com'},
-];
-function renderTools(list){ const grid=document.getElementById('toolsGrid'); grid.innerHTML=''; list.forEach(t=>{ const div=document.createElement('div'); div.className='tile reveal'; div.innerHTML=`<h4>${t.title}</h4><div class="small">${t.desc}</div><div style="margin-top:10px"><a class="btn btn-ghost" href="${t.link}" target="_blank" rel="noopener">Open</a></div>`; grid.appendChild(div); io.observe(div); }); }
-renderTools(tools);
+    <footer class="py-10 text-center text-xs text-gray-400 light:text-gray-600">© Prathi.Tech — Built for students</footer>
+  </main>
 
-// search
-const input=document.getElementById('searchInput'); const select=document.getElementById('catSelect');
-input.addEventListener('input', ()=>filter()); select.addEventListener('change', ()=>filter());
-function filter(){ const q=input.value.trim().toLowerCase(); const cat=select.value; const filtered = tools.filter(t=> (t.title.toLowerCase().includes(q) || t.desc.toLowerCase().includes(q)) && (cat==='all' || t.cat===cat)); renderTools(filtered); }
+  <!-- Toast container -->
+  <div class="toast" x-show="toast.show" x-transition>
+    <div class="px-4 py-3 rounded-xl bg-gray-900 light:bg-white border border-gray-800 light:border-gray-200 shadow">
+      <p class="font-semibold" x-text="toast.title"></p>
+      <p class="text-sm" x-text="toast.body"></p>
+    </div>
+  </div>
 
-/* === contact form (simple copy to clipboard as placeholder) === */
-document.getElementById('sendBtn').addEventListener('click', ()=>{ const name=document.getElementById('name').value||'Anonymous'; const msg=document.getElementById('message').value||''; if(!msg){ alert('Please write a short request.'); return;} navigator.clipboard.writeText(`Request from ${name}: ${msg}`).then(()=>{ document.getElementById('sendNote').textContent='Request copied — paste into your email to send.'; setTimeout(()=>document.getElementById('sendNote').textContent='Requests are read weekly.',3000);}); });
+  <script>
+    // ======= Starfield / Particle Background =======
+    const C=document.getElementById('bgCanvas'); const X=C.getContext('2d');
+    let W= C.width = innerWidth, H = C.height = innerHeight;
+    addEventListener('resize',()=>{ W=C.width=innerWidth; H=C.height=innerHeight; initStars(); });
+    let stars=[]; function initStars(){ stars=[]; const N = Math.min(240, Math.round(W*H/6000));
+      for(let i=0;i<N;i++){ stars.push({x:Math.random()*W, y:Math.random()*H, z:Math.random()*1+0.2, vx:(Math.random()-.5)*0.2, vy:(Math.random()-.5)*0.2, r:Math.random()*1.8+0.3, a:Math.random()*0.4+0.05}); }
+    }
+    function loop(){ X.clearRect(0,0,W,H); for(const s of stars){ s.x+=s.vx; s.y+=s.vy; if(s.x< -10) s.x=W+10; if(s.x>W+10) s.x=-10; if(s.y< -10) s.y=H+10; if(s.y>H+10) s.y=-10; X.beginPath(); X.fillStyle=`hsla(${(s.x+s.y)%360},70%,70%,${s.a})`; X.arc(s.x,s.y,s.r,0,Math.PI*2); X.fill(); } requestAnimationFrame(loop); }
+    initStars(); loop();
 
-/* === audio control === */
-const audio=document.getElementById('bgAudio'); const audioBtn=document.getElementById('audioBtn'); let playing=false; audioBtn.addEventListener('click', ()=>{ if(!playing){ audio.muted=false; audio.play().catch(()=>{}); audioBtn.textContent='Pause'; playing=true; } else { audio.pause(); audioBtn.textContent='Play'; playing=false; }});
+    // ======= ScrollReveal Animations =======
+    ScrollReveal().reveal('h2', { delay: 150, distance: '32px', origin: 'bottom' });
+    ScrollReveal().reveal('.glass, a.block', { delay: 200, distance: '24px', origin: 'bottom' });
 
-/* === keyboard helpers === */
-window.addEventListener('keydown', e=>{ if(e.key==='/' && document.activeElement!==input){ e.preventDefault(); input.focus(); } if(e.key==='h' || e.key==='H'){ alert('Quick help:\n- Use the menu to switch sections\n- Search tools with /\n- Press Play to enable background music (optional)'); } });
+    // ======= Alpine App (Routing, Theme, Tools, Form) =======
+    function prathiApp(){
+      return {
+        // Routing
+        page:'home', mobileOpen:false,
+        go(id){ this.page=id; document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); scrollTo({top:0,behavior:'smooth'}); history.replaceState(null,'',`#${id}`); },
+        linkClass(id){ return `px-3 py-2 rounded-lg ${this.page===id? 'bg-gray-800 light:bg-gray-200 font-semibold' : ''}`; },
+        // Theme
+        theme: (localStorage.getItem('prathi-theme')||'dark'),
+        toggleTheme(){ this.theme = (this.theme==='dark'?'light':'dark'); localStorage.setItem('prathi-theme', this.theme); document.documentElement.className=this.theme; },
+        // Tools
+        search:'', category:'all',
+        tools:[
+          {title:'GitHub Student Pack',cat:'dev',desc:'Free domains, hosting, JetBrains and more',link:'https://education.github.com/pack'},
+          {title:'Vercel',cat:'cloud',desc:'Deploy React/Next apps free',link:'https://vercel.com/'},
+          {title:'Netlify',cat:'cloud',desc:'Static hosting & forms',link:'https://www.netlify.com/'},
+          {title:'Google Colab',cat:'ml',desc:'Free GPU notebooks',link:'https://colab.research.google.com'},
+          {title:'Kaggle',cat:'ml',desc:'Datasets & notebooks',link:'https://www.kaggle.com/'},
+          {title:'Figma Education',cat:'design',desc:'Pro design for students',link:'https://www.figma.com/education'},
+          {title:'Photopea',cat:'design',desc:'Photoshop alternative',link:'https://www.photopea.com/'},
+          {title:'Kapwing',cat:'media',desc:'Online video editor',link:'https://www.kapwing.com'},
+          {title:'Audacity',cat:'media',desc:'Audio editor',link:'https://www.audacityteam.org/'},
+          {title:'Canva',cat:'design',desc:'Fast design toolkit',link:'https://www.canva.com/'},
+          {title:'JetBrains IDE (Student)',cat:'dev',desc:'Professional IDEs free',link:'https://www.jetbrains.com/community/education/#students'},
+          {title:'MongoDB Atlas (Student)',cat:'cloud',desc:'Database credits',link:'https://www.mongodb.com/atlas/student'}
+        ],
+        filteredTools(){ const q=this.search.toLowerCase(); const cat=this.category; return this.tools.filter(t=> (cat==='all'||t.cat===cat) && (t.title.toLowerCase().includes(q)||t.desc.toLowerCase().includes(q))); },
+        // Contact form
+        form:{name:'',email:'',message:''}, loading:false,
+        toast:{show:false,title:'',body:''},
+        showToast(title, body){ this.toast={show:true,title,body}; setTimeout(()=>this.toast.show=false, 3000); },
+        async submitForm(){
+          if(!this.form.name || !this.form.message){ this.showToast('Form','Please fill name & message'); return; }
+          this.loading=true;
+          try{
+            // === IMPORTANT ===
+            // Replace with your deployed Google Apps Script Web App URL
+            const WEB_APP_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+            const res = await fetch(WEB_APP_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(this.form)});
+            if(!res.ok) throw new Error('Network');
+            this.showToast('Sent ✅','Thanks! We received your request.');
+            this.form={name:'',email:'',message:''};
+          }catch(err){
+            this.showToast('Failed ❌','Set your Google Sheets Web App URL in code.');
+          }finally{ this.loading=false; }
+        },
+        // Init
+        init(){ document.documentElement.className=this.theme; const start=location.hash? location.hash.substring(1) : 'home'; this.go(start); }
+      }
+    }
+  </script>
 
-/* === tiny UX polish: animate hero gradient text on load === */
-setTimeout(()=>{ document.querySelector('.h-animate').style.transition='transform 800ms'; document.querySelector('.h-animate').style.transform='translateY(-4px)'; },200);
+  <!-- ====== APPS SCRIPT (for Google Sheets) — COPY to Apps Script and Deploy as Web App ======
+  1) Create a new Google Sheet (name it: Prathi Requests). Note the sheet tab name (default: Sheet1)
+  2) Extensions → Apps Script → paste the code below → Deploy → New deployment → type: Web app
+     - Execute as: Me
+     - Who has access: Anyone
+  3) Copy the Web App URL and paste into WEB_APP_URL above.
 
-</script>
+  // Apps Script code:
+  function doPost(e){
+    const sheet = SpreadsheetApp.openByUrl('PUT_SHEET_URL_HERE').getSheetByName('Sheet1');
+    const data = JSON.parse(e.postData.contents);
+    const time = new Date();
+    sheet.appendRow([time, data.name||'', data.email||'', data.message||'']);
+    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+  }
+  -->
 </body>
 </html>
-

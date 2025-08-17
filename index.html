@@ -680,7 +680,21 @@ async function initApp() {
 
   } catch (error) {
     console.error("Failed to load tool data:", error);
-    toast("Could not load tool data. Please try again later.", false);
+    // Show custom error and Retry button
+    const app = document.getElementById('app');
+    if (app) {
+      app.innerHTML = `
+        <div style="color:#ff6b6b;background:#231a20;padding:30px;border-radius:12px;text-align:center;margin:40px 0;">
+          <h2>Could not load user/tool data</h2>
+          <p>Something went wrong while loading the data.<br>
+          Please check your internet connection or try again.</p>
+          <button id="retryLoad" style="padding:8px 20px;border-radius:8px;background:linear-gradient(90deg,#7b61ff,#06d6a0);color:#fff;border:none;font-size:1.08em;cursor:pointer;">Retry</button>
+        </div>
+      `;
+      document.getElementById('retryLoad').onclick = () => location.reload();
+    } else {
+      toast("Could not load tool data. Please try again later.", false);
+    }
   } finally {
     $('#year').textContent = new Date().getFullYear();
     document.body.setAttribute('aria-busy', 'false');
@@ -965,6 +979,7 @@ function startAnimatedBg() {
 </script>
 </body>
 </html>
+
 
 
 

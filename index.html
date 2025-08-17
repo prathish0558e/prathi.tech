@@ -223,20 +223,37 @@
 
   <!-- CONTACT -->
   <section id="contact" class="reveal" style="display:none">
-    <div class="section-head">
-      <h2><i data-feather="mail"></i> Contact & Requests</h2><div class="muted">Send a tool request — goes to your Google Sheet</div>
-    </div>
-    <form id="contactForm" style="margin-top:12px" aria-label="Contact form">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <input name="name" class="input" placeholder="Your name" required>
-        <input name="email" class="input" placeholder="Email (optional)">
-      </div>
-      <textarea name="message" rows="6" class="input" placeholder="Describe the tool or resource you'd like..." required style="margin-top:10px"></textarea>
-      <div style="display:flex;gap:10px;margin-top:10px;align-items:center">
-        <button type="submit" class="btn primary"><i data-feather="send"></i> Send Request</button>
-        <div id="formNote" class="muted" style="font-size:13px">Requires Apps Script Web App URL in code</div>
-      </div>
-    </form>
+    <form id="contactForm">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send</button>
+</form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let formData = {
+    name: e.target.name.value,
+    email: e.target.email.value,
+    message: e.target.message.value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl6ymDJ0mzHDik8a6R5KMINMYP9yMJEi4PgjUuPtNgRNLu460/exec", {
+    method: "POST",
+    body: JSON.stringify(formData)
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("✅ Message sent successfully!");
+    e.target.reset();
+  })
+  .catch(err => {
+    alert("❌ Something went wrong: " + err);
+  });
+});
+</script>
   </section>
 
   <div class="footer">© <span id="year"></span> Prathi.Tech — Built for students</div>
@@ -517,21 +534,7 @@ function bootGrid(name, dataArray, mountSel){
 }
 
 /* ---------- CONTACT FORM -> Google Sheets (Apps Script) ---------- */
-/* IMPORTANT: Replace WEB_APP_URL with your deployed Apps Script Web App URL */
-let WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl6ymDJ0mzHDik8a6R5KMINMYP9yMJEi4PgjUuPtNgRNLu460/exec'; // <- REPLACE
 
-$('#contactForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const f = e.target; const data = { name: f.name.value.trim(), email: f.email.value.trim(), message: f.message.value.trim() };
-  if(!data.name || !data.message){ showToast('Please provide name and message', false); return; }
-  try{
-    await fetch(WEB_APP_URL, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify(data) });
-    showToast('Request sent ✅');
-    f.reset();
-  }catch(err){
-    showToast('Submit failed — set Apps Script URL in code', false);
-  }
-});
 
 /* accessibility: close mobile menu on outside click */
 document.addEventListener('click', (e)=>{
@@ -544,5 +547,6 @@ document.addEventListener('click', (e)=>{
 
 </body>
 </html>
+
 
 

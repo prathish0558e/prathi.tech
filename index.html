@@ -4,893 +4,540 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Prathi Tech — Free Tools Hub</title>
-  <meta name="description" content="Prathi Tech — curated free tools & student packs. Search, filter and request tools." />
-  <meta property="og:title" content="Prathi Tech — Free Tools Hub" />
-  <meta property="og:description" content="Curated, verified and student-friendly free tools. Search, filter and request new tools." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://prathi.tech/" />
+  <meta name="description" content="A curated hub of free tools, student packs, and resources for developers and designers." />
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZDIiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojN2I2MWZmOyIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDZkNmEwOyIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iUG9wcGlucywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNncmFkMikiPlBLPC90ZXh0Pgo8L3N2Zz4=">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/feather-icons" defer></script>
   <style>
     :root {
-      --accent1: #7b61ff;
-      --accent2: #06d6a0;
-      --bg-dark: #181a20;
-      --bg-light: #fff;
-      --text-dark: #222;
-      --text-light: #eee;
-      --card-bg-dark: #23243a;
-      --card-bg-light: #f7f7fa;
-      --header-height: 64px;
+      --accent1: #8a78ff;
+      --accent2: #00e0b8;
+      --bg-dark: #12141D;
+      --bg-light: #F5F7FA;
+      --text-dark: #12141D;
+      --text-light: #E2E8F0;
+      --card-bg-dark: #1A1D29;
+      --card-bg-light: #FFFFFF;
+      --border-dark: #2A2F42;
+      --border-light: #E2E8F0;
+      --sidebar-width: 260px;
+      --header-height: 65px;
     }
-    html, body {
-      min-height: 100%;
-      scroll-behavior: smooth;
-    }
-    [data-theme="dark"] {
-      background: var(--bg-dark);
-      color: var(--text-light);
-    }
-    [data-theme="light"] {
-      background: var(--bg-light);
-      color: var(--text-dark);
-    }
-    [data-theme="dark"] body {
-      background: linear-gradient(-45deg, #181a20, #23243a, #7b61ff, #06d6a0);
-      background-size: 400% 400%;
-      animation: animated-gradient 15s ease infinite;
-    }
-    [data-theme="light"] body {
-      background: linear-gradient(-45deg, #ffffff, #f7f7fa, #e8e4ff, #d4f9ee);
-      background-size: 400% 400%;
-      animation: animated-gradient 15s ease infinite;
-    }
-    @keyframes animated-gradient {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
-      min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
-      line-height: 1.7;
+      color: var(--text-light);
+      background-color: var(--bg-dark);
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
     }
-    #bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    [data-theme="light"] body {
+      color: var(--text-dark);
+      background-color: var(--bg-light);
     }
-    .navbar {
-      background: rgba(24,26,32,0.85);
-      box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: var(--header-height);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      animation: slideDownNav 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      margin: 0;
+      letter-spacing: -0.02em;
     }
-    @keyframes slideDownNav {
-      from { transform: translateY(-100%); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    a { color: var(--accent1); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent2); }
+    .app-layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) 1fr;
+      grid-template-rows: var(--header-height) 1fr;
+      height: 100vh;
     }
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 18px;
+    .sidebar {
+      grid-row: 1 / 3;
+      background-color: var(--card-bg-dark);
+      border-right: 1px solid var(--border-dark);
+      padding: 1.5rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
+      flex-direction: column;
+      gap: 2rem;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    [data-theme="light"] .sidebar {
+      background-color: var(--card-bg-light);
+      border-right-color: var(--border-light);
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 8px;
-      font-size: 1.6em;
-      font-weight: bold;
-      letter-spacing: 1px;
-      color: var(--accent1);
-      text-decoration: none;
-      user-select: none;
-    }
-    .logo span {
-      display: block;
-      margin-left: 4px;
-      font-size: 0.8em;
-      font-weight: 600;
+      gap: 0.75rem;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--text-light);
     }
+    [data-theme="light"] .logo { color: var(--text-dark); }
     .logo-pk {
       background: linear-gradient(45deg, var(--accent1), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      font-weight: 700;
-      font-size: 1em;
-      letter-spacing: -1.5px;
-      line-height: 1;
+      font-size: 1.5rem;
     }
-    .menu-desktop {
+    .main-nav {
       display: flex;
-      gap: 16px;
-      align-items: center;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    .btn-ghost {
+    .main-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      color: #94A3B8;
+      font-weight: 500;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .main-nav a:hover {
+      background-color: rgba(138, 120, 255, 0.1);
+      color: var(--accent1);
+    }
+    .main-nav a.active {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: white;
+      box-shadow: 0 4px 15px -5px rgba(138, 120, 255, 0.4);
+    }
+    .sidebar-footer {
+      margin-top: auto;
+      font-size: 0.875rem;
+      color: #64748B;
+    }
+    .header {
+      grid-column: 2 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      border-bottom: 1px solid var(--border-dark);
+      transition: border-color 0.3s;
+    }
+    [data-theme="light"] .header { border-bottom-color: var(--border-light); }
+    .search-bar {
+      position: relative;
+      flex-grow: 1;
+      max-width: 400px;
+    }
+    .search-bar i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #64748B;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.6rem 1rem 0.6rem 2.75rem;
+      border-radius: 8px;
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 3px rgba(138, 120, 255, 0.3);
+    }
+    [data-theme="light"] .search-bar input {
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+      color: var(--text-dark);
+    }
+    .header-actions { display: flex; align-items: center; gap: 1rem; }
+    .theme-toggle {
       background: none;
       border: none;
-      color: inherit;
-      font: inherit;
       cursor: pointer;
-      padding: 8px 16px;
-      border-radius: 6px;
-      transition: background 0.2s;
-      text-decoration: none;
-      outline: none;
-      font-weight: 500;
-      font-size: 1em;
+      color: #94A3B8;
+      padding: 0.5rem;
+      border-radius: 50%;
+      display: flex;
+      transition: background-color 0.2s, color 0.2s;
     }
-    .btn-ghost.active, .btn-ghost:focus, .btn-ghost:hover {
-      background: rgba(123,97,255,0.08);
+    .theme-toggle:hover {
+      background-color: rgba(138, 120, 255, 0.1);
       color: var(--accent1);
     }
-    .btn.primary {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      color: #fff;
-      border: none;
-      padding: 10px 22px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.08);
-      font-size: 1.08em;
+    .main-content {
+      grid-column: 2 / 3;
+      overflow-y: auto;
+      padding: 2.5rem;
     }
-    .btn.primary:hover, .btn.primary:focus {
-      box-shadow: 0 6px 20px 0 rgba(123,97,255,0.2), 0 0 10px rgba(6,214,160,0.2);
-      transform: translateY(-2px);
-      opacity: 1;
-    }
-    .mobile-menu {
-      display: flex;
-      flex-direction: column;
-      background: var(--card-bg-dark);
-      position: fixed;
-      top: var(--header-height); left: 0; right: 0;
-      padding: 12px 0;
-      z-index: 120;
-      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
-      border-radius: 0 0 18px 18px;
-      gap: 8px;
-      visibility: hidden;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-    }
-    .mobile-menu.is-open {
-      visibility: visible;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .mobile-menu a {
-      color: inherit;
-      text-decoration: none;
-      padding: 12px 24px;
-      font-size: 1.1em;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-    .mobile-menu a.active, .mobile-menu a:focus, .mobile-menu a:hover {
-      background: rgba(123,97,255,0.12);
-      color: var(--accent1);
-    }
-    @media (max-width: 800px) {
-      .menu-desktop { display: none; }
-      #menuToggle { display: inline-block !important; }
-      .container { flex-wrap: wrap; }
-    }
-    #menuToggle { display: none; }
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px 24px 0 24px;
-    }
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      margin-top: 0;
-      letter-spacing: 0.01em;
-    }
-    h1 { font-size: 2.2em; margin-bottom: 0.2em; }
-    h2 { font-size: 1.5em; margin-bottom: 0.6em; }
-    h3 { font-size: 1.15em; }
-    .card {
-      background: rgba(35, 36, 58, 0.5);
-      backdrop-filter: blur(12px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 22px 18px 18px 18px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-height: 140px;
-      position: relative;
-      overflow: hidden; /* For hover effect */
-      transform-style: preserve-3d;
-    }
-
-    [data-theme="light"] .card {
-      background: rgba(247, 247, 250, 0.7);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(123, 97, 255, 0.2), transparent 40%);
-      opacity: 0;
-      transition: opacity 0.4s;
-      z-index: 0;
-      transform: translateZ(-1px);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .card:hover {
-      transform: translateY(-8px) rotateX(6deg) rotateY(3deg) scale(1.04);
-      box-shadow: 0 18px 40px 0 rgba(123,97,255,0.18), 0 0 20px rgba(123,97,255,0.25);
-    }
-    .card h3 {
-      margin: 0 0 6px 0;
-      font-size: 1.15em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transform: translateZ(25px);
-      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
-    }
-    .card p {
-      transform: translateZ(20px);
-      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
-    }
-    .card .actions {
-      margin-top: auto;
-      padding-top: 10px;
-      display: flex;
-      gap: 10px;
-      transform: translateZ(30px);
-      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
-    }
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: auto;
-      padding-bottom: 10px;
-      transform: translateZ(15px);
-      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
-    }
-    .card-tag {
-      background: rgba(123,97,255,0.1);
-      color: var(--accent1);
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 0.85em;
-      font-weight: 500;
-    }
-    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(.2,.9,.3,1); }
-    .reveal.show { opacity: 1; transform: none; }
-
     main section {
       display: none;
-      animation: fadeIn 0.5s cubic-bezier(.25,.8,.25,1);
+      animation: fadeIn 0.5s ease-out;
     }
-
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(15px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    .tag {
-      background: rgba(123,97,255,0.08);
-      color: var(--accent1);
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 0.98em;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.2s;
-    }
-    .tag.active, .tag:hover {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      color: #fff;
-      transform: scale(1.05);
-    }
-    .spinner {
-      display: none;
-      position: fixed;
-      z-index: 200;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      width: 48px; height: 48px;
-      border: 5px solid #eee;
-      border-top: 5px solid var(--accent1);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin { 100% { transform: rotate(360deg); } }
-    .toast-animate {
-      animation: toastIn 0.4s cubic-bezier(.2,.9,.3,1);
-    }
-    @keyframes toastIn {
-      from { opacity: 0; transform: translateY(20px);}
-      to { opacity: 1; transform: none;}
-    }
-    input, select, textarea {
-      background: none;
-      border: 1px solid #444;
-      color: inherit;
-      border-radius: 6px;
-      padding: 8px 12px;
-      font-size: 1em;
-      margin-bottom: 10px;
-      width: 100%;
-      box-sizing: border-box;
-      transition: all 0.2s;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--accent1);
-      outline: none;
-      box-shadow: 0 0 12px rgba(123,97,255,0.3);
-    }
-
-    .tool-filters {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 1em;
-    }
-
-    .tool-filters input[type="search"],
-    .tool-filters select {
-        width: auto;
-        flex: 1 1 180px;
-    }
-    
-    .tool-filters select {
-        -webkit-appearance: none;
-        appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23aaa' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 12px center;
-        background-size: 16px;
-        padding-right: 36px; /* make space for arrow */
-    }
-
-    label {
-      font-size: 1em;
-      font-weight: 500;
-      margin-bottom: 4px;
-      display: block;
-    }
-    .section-desc {
-      color: #aaa;
-      font-size: 1.08em;
-      margin-bottom: 1.5em;
-    }
-    .feature-list {
+    .section-header { margin-bottom: 2rem; }
+    .section-header h1 { font-size: 2.25rem; color: var(--text-light); }
+    [data-theme="light"] .section-header h1 { color: var(--text-dark); }
+    .section-header p { font-size: 1.1rem; color: #94A3B8; margin-top: 0.5rem; max-width: 600px; }
+    .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin: 2em 0;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-    .feature {
-      background: var(--card-bg-dark);
-      border-radius: 10px;
-      padding: 18px 14px;
+    .card {
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 12px;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.04);
+      transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s;
     }
-    [data-theme="light"] .feature {
-      background: var(--card-bg-light);
+    [data-theme="light"] .card {
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
     }
-    .feature, .testimonial {
-      transition: transform 0.3s, box-shadow 0.3s;
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent1);
+      box-shadow: 0 10px 25px -5px rgba(138, 120, 255, 0.2);
     }
-    .feature:hover, .testimonial:hover {
-      transform: translateY(-6px) scale(1.03);
-      box-shadow: 0 10px 25px 0 rgba(123,97,255,0.12);
+    .card-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, var(--accent1), var(--accent2));
+      color: white;
+      flex-shrink: 0;
     }
-    .feature i {
-      color: var(--accent2);
-    }
-    .testimonial-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      margin: 2em 0;
-    }
-    .testimonial {
-      background: var(--card-bg-dark);
-      border-radius: 10px;
-      padding: 18px 14px;
-      color: #eee;
-      font-size: 1em;
-      font-style: italic;
-      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.04);
-      position: relative;
-    }
-    [data-theme="light"] .testimonial {
-      background: var(--card-bg-light);
-      color: #333;
-    }
-    .testimonial .author {
-      font-weight: 600;
-      margin-top: 1em;
-      font-style: normal;
+    .card-title { font-size: 1.125rem; font-weight: 600; }
+    .card-desc { color: #94A3B8; font-size: 0.95rem; flex-grow: 1; margin-bottom: 1rem; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .card-tag {
+      background-color: rgba(138, 120, 255, 0.1);
       color: var(--accent1);
-      font-size: 0.98em;
+      padding: 0.25rem 0.6rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
-    .faq-list {
-      margin: 2em 0;
-      max-width: 700px;
-    }
-    .faq {
-      margin-bottom: 1.2em;
-    }
-    .faq-question {
+    .card-footer { margin-top: auto; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
       font-weight: 600;
+      transition: all 0.2s;
+      border: none;
       cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--accent1);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: #7664e0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px -5px rgba(138, 120, 255, 0.4);
+    }
+    .tag-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .tag-filter {
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
+      color: var(--text-light);
+      padding: 0.5rem 1rem;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    [data-theme="light"] .tag-filter {
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+      color: var(--text-dark);
+    }
+    .tag-filter:hover {
+      border-color: var(--accent1);
       color: var(--accent1);
-      margin-bottom: 0.2em;
     }
-    .faq-answer {
-      display: none;
-      color: #aaa;
-      font-size: 1em;
-      margin-left: 1em;
+    .tag-filter.active {
+      background: var(--accent1);
+      border-color: var(--accent1);
+      color: white;
     }
-    .faq.open .faq-answer {
-      display: block;
-    }
-
     .pager {
       display: flex;
-      gap: 8px;
+      gap: 0.5rem;
       justify-content: center;
-      margin: 2em 0 0 0;
-      flex-wrap: wrap;
-      align-items: center;
+      margin-top: 2.5rem;
     }
-
     .pager button {
-      background: var(--card-bg-dark);
-      border: 1px solid #444;
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
       color: var(--text-light);
-      padding: 8px 14px;
-      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
-      font-weight: 600;
-      font-size: 1em;
+      transition: all 0.2s;
     }
-
-    .pager button:hover {
-      background: var(--accent1);
-      color: #fff;
-      border-color: var(--accent1);
-      transform: translateY(-2px);
-    }
-
-    .pager button.active {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      color: #fff;
-      border-color: var(--accent2);
-      box-shadow: 0 4px 12px rgba(123, 97, 255, 0.2);
-      transform: translateY(-2px);
-    }
-    
-    .pager span {
-      padding: 8px 0;
-      color: #888;
-      font-weight: 600;
-    }
-
     [data-theme="light"] .pager button {
-        background: var(--card-bg-light);
-        color: var(--text-dark);
-        border-color: #ddd;
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+      color: var(--text-dark);
     }
-
-    footer {
-      text-align: center;
-      margin: 3em 0 1.5em 0;
-      color: #888;
-      font-size: 1em;
-      position: relative;
-      padding-top: 2em;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      background: rgba(24, 26, 32, 0.5);
-      backdrop-filter: blur(10px) saturate(150%);
-    }
-    [data-theme="light"] footer {
-      border-top: 1px solid rgba(0, 0, 0, 0.05);
-      background: rgba(255, 255, 255, 0.5);
-    }
-    .footer-social {
-      margin-top: 1em;
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-    }
-    .footer-social a {
+    .pager button:hover {
+      border-color: var(--accent1);
       color: var(--accent1);
-      background: rgba(123,97,255,0.08);
-      border-radius: 50%;
-      width: 38px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3em;
-      transition: background 0.2s, color 0.2s, transform 0.2s;
-      text-decoration: none;
     }
-    .footer-social a:hover {
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      color: #fff;
-      transform: scale(1.12) rotate(-8deg);
-    }
-    ::selection {
+    .pager button.active {
       background: var(--accent1);
-      color: #fff;
+      border-color: var(--accent1);
+      color: white;
     }
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      border: 0;
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-weight: 500; margin-bottom: 0.5rem; }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
+      color: var(--text-light);
+      font-size: 1rem;
+      transition: all 0.2s;
     }
-
-    /* New Hero Animation */
-    .hero-animated {
-      text-align: center;
-      padding: 1em 0;
-      position: relative;
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 3px rgba(138, 120, 255, 0.3);
     }
-
-    .hero-animated h1 {
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
-      font-weight: 800;
-      background: linear-gradient(45deg, var(--accent1), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 0.5em;
+    [data-theme="light"] .form-group input, [data-theme="light"] .form-group textarea {
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+      color: var(--text-dark);
     }
-
-    .hero-animated .subtitle {
-      font-size: 1.2rem;
-      color: #aaa;
-      margin-bottom: 2em;
-      display: inline-block;
-      border-right: .15em solid var(--accent2);
-      white-space: nowrap;
-      overflow: hidden;
-      letter-spacing: .1em;
-      animation: 
-        typing 3.5s steps(30, end),
-        blink-caret .75s step-end infinite;
+    .toast {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      color: white;
+      z-index: 1000;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.3s, transform 0.3s;
     }
-
-    /* Animation Keyframes */
-    @keyframes animated-text-gradient {
-      from { background-position: 0% center; }
-      to { background-position: -200% center; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    .spinner {
+      position: fixed;
+      top: 50%;
+      left: calc(var(--sidebar-width) + (100vw - var(--sidebar-width)) / 2);
+      transform: translate(-50%, -50%);
+      width: 48px; height: 48px;
+      border: 5px solid var(--border-dark);
+      border-top-color: var(--accent1);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: none;
     }
-
-    @keyframes shine {
-      0% {
-        transform: translateX(-150%) skewX(-25deg);
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 1024px) {
+      .app-layout { grid-template-columns: 1fr; }
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 100;
       }
-      50% {
-        transform: translateX(150%) skewX(-25deg);
+      .sidebar.is-open { transform: translateX(0); }
+      .header, .main-content { grid-column: 1 / 2; }
+      .header {
+        position: sticky;
+        top: 0;
+        background-color: var(--bg-dark);
+        z-index: 50;
       }
-      100% {
-        transform: translateX(150%) skewX(-25deg);
-      }
-    }
-
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-
-    @keyframes blink-caret {
-      from, to { border-color: transparent }
-      50% { border-color: var(--accent2); }
-    }
-
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
+      [data-theme="light"] .header { background-color: var(--bg-light); }
+      #menuToggle { display: block !important; }
     }
   </style>
 </head>
-<body data-theme="dark" aria-busy="true"></body>
+<body data-theme="dark">
 
-<noscript>
-  <div style="background:#ffefc1;color:#222;padding:16px;text-align:center;font-weight:bold;">
-    JavaScript is required for the best experience on this site.
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <a href="#home" class="logo" data-route="home">
+        <div class="logo-pk">PK</div>
+        <span>Prathi Tech</span>
+      </a>
+      <nav class="main-nav" id="mainNav">
+        <a href="#home" data-route="home" class="active"><i data-feather="home"></i>Home</a>
+        <a href="#tools" data-route="tools"><i data-feather="tool"></i>Tools</a>
+        <a href="#packs" data-route="packs"><i data-feather="package"></i>Student Packs</a>
+        <a href="#learning" data-route="learning"><i data-feather="book-open"></i>Learning</a>
+        <a href="#hacking" data-route="hacking"><i data-feather="shield"></i>Hacking</a>
+        <a href="#projects" data-route="projects"><i data-feather="code"></i>Projects</a>
+        <a href="#contact" data-route="contact"><i data-feather="send"></i>Request</a>
+      </nav>
+      <div class="sidebar-footer">
+        &copy; <span id="year"></span> Prathi Tech
+      </div>
+    </aside>
+
+    <!-- HEADER -->
+    <header class="header">
+      <button id="menuToggle" class="theme-toggle" style="display: none;" aria-label="Open menu">
+        <i data-feather="menu"></i>
+      </button>
+      <div class="search-bar">
+        <i data-feather="search"></i>
+        <input id="search" type="search" placeholder="Search for tools...">
+      </div>
+      <div class="header-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i data-feather="moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="app">
+      <!-- HOME -->
+      <section id="home">
+        <div class="section-header">
+          <h1>Welcome to Prathi Tech Hub</h1>
+          <p>Your new dashboard for discovering the best free tools, student packs, and learning resources. Everything you need, all in one place.</p>
+        </div>
+        <div id="topPicks" class="card-grid"></div>
+      </section>
+
+      <!-- TOOLS -->
+      <section id="tools">
+        <div class="section-header">
+          <h1>All Tools</h1>
+          <p>Browse through a comprehensive list of handpicked tools for every need.</p>
+        </div>
+        <div id="tagWrap" class="tag-filters"></div>
+        <div id="cards" class="card-grid"></div>
+        <div id="pager" class="pager"></div>
+      </section>
+
+      <!-- PACKS -->
+      <section id="packs">
+        <div class="section-header">
+          <h1>Student Packs</h1>
+          <p>Unlock premium tools and services for free or at a huge discount with these student packs.</p>
+        </div>
+        <div id="packsGrid" class="card-grid"></div>
+      </section>
+
+      <!-- LEARNING -->
+      <section id="learning">
+        <div class="section-header">
+          <h1>Learning Resources</h1>
+          <p>Free courses, guides, and tutorials to help you learn coding, design, AI, and more.</p>
+        </div>
+        <div id="learnGrid" class="card-grid"></div>
+      </section>
+
+      <!-- HACKING -->
+      <section id="hacking">
+        <div class="section-header">
+          <h1>Ethical Hacking</h1>
+          <p>A collection of free, legal tools for learning and practicing cybersecurity.</p>
+        </div>
+        <div id="hackingGrid" class="card-grid"></div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-header">
+          <h1>My Projects</h1>
+          <p>A showcase of my personal and professional work.</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon"><i data-feather="globe"></i></div>
+              <h3 class="card-title">Prathi Tech Hub</h3>
+            </div>
+            <p class="card-desc">This very website! A curated hub of free tools and resources for students and developers.</p>
+            <div class="card-tags">
+              <span class="card-tag">JavaScript</span><span class="card-tag">Community</span><span class="card-tag">Open Source</span>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://github.com/prathish0558e/prathi.tech"><i data-feather="github"></i>View Source</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon"><i data-feather="user"></i></div>
+              <h3 class="card-title">Personal Portfolio</h3>
+            </div>
+            <p class="card-desc">My personal portfolio website showcasing my skills, projects, and thoughts on web development.</p>
+            <div class="card-tags">
+              <span class="card-tag">Portfolio</span><span class="card-tag">Blog</span><span class="card-tag">Web</span>
+            </div>
+            <div class="card-footer">
+              <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="https://www.prathihades.me"><i data-feather="external-link"></i>Visit Site</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-header">
+          <h1>Request a Tool</h1>
+          <p>Missing something? Suggest a new tool and we’ll consider adding it.</p>
+        </div>
+        <form id="contactForm" style="max-width: 600px;">
+          <div class="form-group">
+            <label for="form-name">Your Name*</label>
+            <input id="form-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="form-email">Your Email</label>
+            <input id="form-email" name="email" type="email">
+          </div>
+          <div class="form-group">
+            <label for="form-tool">Tool Name*</label>
+            <input id="form-tool" name="tool" required>
+          </div>
+          <div class="form-group">
+            <label for="form-message">Why should we add it?</label>
+            <textarea id="form-message" name="message" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
+        </form>
+      </section>
+    </main>
   </div>
-</noscript>
 
-<div class="spinner" id="spinner" aria-label="Loading" role="status"></div>
-<canvas id="bg" aria-hidden="true"></canvas>
-
-<!-- NAV BAR -->
-<header class="navbar" role="banner" aria-label="Main navigation">
-  <div class="container">
-    <a href="#home" class="logo" data-route="home">
-      <div class="logo-pk">PK</div>
-    </a>
-    <nav class="menu-desktop" aria-label="Primary">
-      <a href="#home" class="btn-ghost" data-route="home">Home</a>
-      <a href="#tools" class="btn-ghost" data-route="tools">Tools</a>
-      <a href="#packs" class="btn-ghost" data-route="packs">Student Packs</a>
-      <a href="#learning" class="btn-ghost" data-route="learning">Learning</a>
-      <a href="#hacking" class="btn-ghost" data-route="hacking">Hacking</a>
-      <a href="#about" class="btn-ghost" data-route="about">About</a>
-      <a href="#projects" class="btn-ghost" data-route="projects">Projects</a>
-      <a href="#faq" class="btn-ghost" data-route="faq">FAQ</a>
-      <a href="#contact" class="btn-ghost" data-route="contact">Request</a>
-    </nav>
-    <button id="menuToggle" class="btn-ghost" aria-label="Open menu" style="display:none;">
-      <i data-feather="menu"></i>
-    </button>
-    <button id="themeToggle" class="btn-ghost" aria-label="Toggle theme">
-      <i data-feather="moon"></i>
-    </button>
-  </div>
-</header>
-
-<!-- MOBILE MENU -->
-<nav id="mobileMenu" class="mobile-menu" role="menu" aria-hidden="true">
-  <a href="#home" data-route="home">Home</a>
-  <a href="#tools" data-route="tools">Tools</a>
-  <a href="#packs" data-route="packs">Student Packs</a>
-  <a href="#learning" data-route="learning">Learning</a>
-  <a href="#hacking" data-route="hacking">Hacking</a>
-  <a href="#about" data-route="about">About</a>
-  <a href="#projects" data-route="projects">Projects</a>
-  <a href="#faq" data-route="faq">FAQ</a>
-  <a href="#contact" data-route="contact">Request</a>
-</nav>
-
-<main class="wrap" id="app" tabindex="-1">
-  <!-- HOME SECTION -->
-  <section id="home" style="display:block;">
-    <div class="hero-animated">
-      <h1>Prathi Tech</h1>
-      <div class="subtitle">Your Hub for Student Resources</div>
-    </div>
-    
-    <p class="section-desc" style="text-align: center; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 1.1em;">
-      Curated, verified and student-friendly free tools. Search, filter and request new tools. Empower your learning, productivity, and creativity with the best resources for students and professionals.
-    </p>
-    <div style="text-align:center; margin-bottom: 2em;">
-        <a href="#tools" class="btn primary" data-route="tools"><i data-feather="search"></i>Browse All Tools</a>
-    </div>
-    <h2 style="text-align:center; margin-top: 3em;">Top Picks</h2>
-    <ul id="topPicks" style="margin:1em 0 2em 0;list-style:none;padding:0;"></ul>
-    <a href="#tools" class="btn primary" data-route="tools" style="margin-bottom:2em; display:none;"><i data-feather="search"></i>Browse Tools</a>
-    <div class="feature-list">
-      <div class="feature">
-        <i data-feather="zap"></i>
-        <div><strong>Lightning Fast Search</strong></div>
-        <div>Find the right tool instantly with smart search and filters.</div>
-      </div>
-      <div class="feature">
-        <i data-feather="shield"></i>
-        <div><strong>Verified & Safe</strong></div>
-        <div>All tools are handpicked and checked for reliability and privacy.</div>
-      </div>
-      <div class="feature">
-        <i data-feather="users"></i>
-        <div><strong>Student Packs</strong></div>
-        <div>Unlock exclusive offers and bundles for students and educators.</div>
-      </div>
-      <div class="feature">
-        <i data-feather="book-open"></i>
-        <div><strong>Learning Resources</strong></div>
-        <div>Access free courses, guides, and tutorials to boost your skills.</div>
-      </div>
-      <div class="feature">
-        <i data-feather="gift"></i>
-        <div><strong>Request a Tool</strong></div>
-        <div>Missing something? Suggest a new tool and we’ll add it for you.</div>
-      </div>
-    </div>
-    <div style="margin:2em 0;">
-      <h2>What users say</h2>
-      <div class="testimonial-list">
-        <div class="testimonial">
-          “Prathi Tech helped me discover tools I never knew existed. The student packs are a game changer!”
-          <div class="author">— Aditi, Engineering Student</div>
-        </div>
-        <div class="testimonial">
-          “The curated list saves me hours of searching. I recommend it to all my classmates.”
-          <div class="author">— Rahul, Designer</div>
-        </div>
-        <div class="testimonial">
-          “I requested a tool and it was added within a week. Amazing community and support!”
-          <div class="author">— Priya, Developer</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOOLS SECTION -->
-  <section id="tools" style="display:none;">
-    <h2>All Tools</h2>
-    <div class="tool-filters">
-      <input id="search" type="search" placeholder="Search tools...">
-      <span id="itemsCount" style="margin-left:auto;font-size:0.95em;color:#aaa;">0</span>
-    </div>
-    <div id="tagWrap" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1em;"></div>
-    <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;perspective:1000px;"></div>
-    <div id="pager" class="pager"></div>
-  </section>
-
-  <!-- PACKS SECTION -->
-  <section id="packs" style="display:none;">
-    <h2>Student Packs</h2>
-    <div class="section-desc">Unlock premium tools and services for free or at a huge discount with these student packs. <br> <strong>Tip:</strong> Most require a valid student email or ID.</div>
-    <div id="packsGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
-  </section>
-
-  <!-- LEARNING SECTION -->
-  <section id="learning" style="display:none;">
-    <h2>Learning Resources</h2>
-    <div class="section-desc">Free courses, guides, and tutorials to help you learn coding, design, AI, and more. Curated for students and self-learners.</div>
-    <div id="learnGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
-  </section>
-
-  <!-- HACKING SECTION -->
-  <section id="hacking" style="display:none;">
-    <h2>Ethical Hacking Tools</h2>
-    <div class="section-desc">A collection of free, legal tools for learning and practicing ethical hacking, penetration testing, and cybersecurity. For educational purposes only.</div>
-    <div id="hackingGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
-  </section>
-
-  <!-- ABOUT SECTION -->
-  <section id="about" style="display:none;">
-    <h2>About Prathi Tech</h2>
-    <div class="section-desc">
-      Prathi Tech is a community-driven hub for discovering the best free tools, student packs, and learning resources. Our mission is to empower students, educators, and professionals by making high-quality digital resources accessible to everyone.<br><br>
-      <strong>Why Prathi Tech?</strong>
-      <ul>
-        <li>Handpicked, regularly updated collection</li>
-        <li>No ads, no spam, just useful tools</li>
-        <li>Open to suggestions and community contributions</li>
-        <li>Built by students, for students</li>
-      </ul>
-      <br>
-      <strong>Contact:</strong> <a href="#contact" data-route="contact">Request a tool or send feedback</a>
-    </div>
-  </section>
-
-  <!-- PROJECTS SECTION -->
-  <section id="projects" style="display:none;">
-    <h2>My Projects</h2>
-    <div class="section-desc">A showcase of my personal and professional work.</div>
-    <div class="project-grid">
-      <div class="card reveal">
-        <h3><i data-feather="globe"></i>Prathi Tech Hub</h3>
-        <p>A curated hub of free tools and resources for students and developers. Built with vanilla JS and a JSON backend.</p>
-        <div class="card-tags"><span class="card-tag">JavaScript</span><span class="card-tag">Community</span><span class="card-tag">Open Source</span></div>
-        <div class="actions">
-          <a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://github.com/prathish0558e/prathi.tech"><i data-feather="github"></i>View Source</a>
-        </div>
-      </div>
-      <div class="card reveal">
-        <h3><i data-feather="user"></i>Personal Portfolio</h3>
-        <p>My personal portfolio website showcasing my skills, projects, and thoughts on web development and design.</p>
-        <div class="card-tags"><span class="card-tag">Portfolio</span><span class="card-tag">Blog</span><span class="card-tag">Web</span></div>
-        <div class="actions">
-          <a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://www.prathihades.me"><i data-feather="external-link"></i>Visit Site</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ SECTION -->
-  <section id="faq" style="display:none;">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq">
-        <div class="faq-question">Is Prathi Tech free to use?</div>
-        <div class="faq-answer">Yes! All features and resources are free to access. Some tools may have premium upgrades, but we only list free tiers.</div>
-      </div>
-      <div class="faq"></div>
-        <div class="faq-question">How often is the tool list updated?</div>
-        <div class="faq-answer">We update the list every week and add new tools based on user requests and community feedback.</div>
-      </div>
-      <div class="faq">
-        <div class="faq-question">Can I suggest a tool or resource?</div>
-        <div class="faq-answer">Absolutely! Use the Request form to suggest new tools, packs, or learning resources.</div>
-      </div>
-      <div class="faq">
-        <div class="faq-question">Are these tools safe?</div>
-        <div class="faq-answer">We review every tool before listing. However, always use your own judgment and never share sensitive information on untrusted sites.</div>
-      </div>
-      <div class="faq">
-        <div class="faq-question">How can I contact the team?</div>
-        <div class="faq-answer">Use the Request/Contact form or email us at <a href="mailto:hello@prathi.tech">hello@prathi.tech</a>.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT/REQUEST SECTION -->
-  <section id="contact" style="display:none;">
-    <h2>Request a Tool / Contact</h2>
-    <form id="contactForm" style="max-width:400px;margin:0 auto;">
-      <label>Name*<br><input name="name" required></label>
-      <label>Email<br><input name="email" type="email"></label>
-      <label>Tool Name*<br><input name="tool" required></label>
-      <label>Message<br><textarea name="message" rows="3"></textarea></label>
-      <button type="submit" class="btn primary" style="width:100%;">Send Request</button>
-    </form>
-    <div style="margin-top:2em;color:#aaa;font-size:0.98em;text-align:center;">
-      We respect your privacy. Your email is only used for follow-up if needed.
-    </div>
-  </section>
-</main>
-
-<!-- toast -->
-<div id="toast" style="display:none;position:fixed;right:18px;bottom:18px;background:rgba(0,0,0,0.7);color:#fff;padding:10px 12px;border-radius:10px;z-index:150"></div>
-
-<footer>
-  &copy; <span id="year"></span> Prathi Tech. Made with <span aria-label="love">💜</span>.
-  <div class="footer-social">
-    <a href="https://github.com/prathish0558e/prathi.tech" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
-    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i data-feather="twitter"></i></a>
-    <a href="mailto:hello@prathi.tech" aria-label="Email"><i data-feather="mail"></i></a>
-  </div>
-</footer>
+  <div id="toast" class="toast"></div>
+  <div id="spinner" class="spinner" aria-label="Loading" role="status"></div>
 
 <script defer>
 'use strict';
@@ -899,20 +546,15 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl
 const PAGE_SIZE = 12;
 const DATA_URL = 'https://raw.githubusercontent.com/prathish0558e/prathi.tech/main/tools.json';
 
-
 // --- App State ---
-let DATA = { tools: [], packs: [], learning: [] };
+let DATA = { tools: [], packs: [], learning: [], hacking: [], all: [] };
 let currentPage = 1;
 let currentRoute = 'home';
-let activeFilters = {
-  query: '',
-  category: 'all',
-  tag: 'all'
-};
+let activeFilters = { query: '', tag: 'all' };
 
 // --- DOM Elements ---
 const $ = (q, ctx = document) => ctx.querySelector(q);
-const $$ = (q, ctx = document) => Array.from((ctx || document).querySelectorAll(q));
+const $$ = (q, ctx = document) => Array.from(ctx.querySelectorAll(q));
 
 const DOM = {
   spinner: $('#spinner'),
@@ -920,21 +562,19 @@ const DOM = {
   year: $('#year'),
   body: document.body,
   app: $('#app'),
+  sidebar: $('#sidebar'),
+  mainNav: $('#mainNav'),
   menuToggle: $('#menuToggle'),
-  mobileMenu: $('#mobileMenu'),
   themeToggle: $('#themeToggle'),
   contactForm: $('#contactForm'),
   search: $('#search'),
-  category: $('#cat'),
   tagWrap: $('#tagWrap'),
-  itemsCount: $('#itemsCount'),
   cards: $('#cards'),
   pager: $('#pager'),
   topPicks: $('#topPicks'),
   packsGrid: $('#packsGrid'),
   learnGrid: $('#learnGrid'),
   hackingGrid: $('#hackingGrid'),
-  bgCanvas: $('#bg')
 };
 
 // --- Core App Logic ---
@@ -943,23 +583,20 @@ document.addEventListener('DOMContentLoaded', initApp);
 
 async function initApp() {
   showSpinner(true);
-  DOM.body.setAttribute('aria-busy', 'true');
   
   setupEventListeners();
   handleTheme();
-  startAnimatedBg();
 
   try {
     const response = await fetch(DATA_URL);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const rawData = await response.json();
     
-    // Process data into categories
+    DATA.all = rawData.tools;
     DATA.tools = rawData.tools.filter(t => t.category === 'tool' && !(t.tags || []).includes('ethical-hacking'));
     DATA.packs = rawData.tools.filter(t => t.category === 'pack');
     DATA.learning = rawData.tools.filter(t => t.category === 'learning');
     DATA.hacking = rawData.tools.filter(t => (t.tags || []).includes('ethical-hacking'));
-    DATA.all = rawData.tools; // Keep a copy of all tools for top picks
 
     const startRoute = location.hash ? location.hash.substring(1) : 'home';
     navigateTo(startRoute);
@@ -967,121 +604,99 @@ async function initApp() {
 
   } catch (error) {
     console.error("Failed to load tool data:", error);
-    toast("Could not load tool data. Please try again later.", false);
+    toast("Could not load tool data.", false);
   } finally {
     if (DOM.year) DOM.year.textContent = new Date().getFullYear();
-    DOM.body.setAttribute('aria-busy', 'false');
     showSpinner(false);
     renderIcons();
   }
 }
 
 function setupEventListeners() {
-  DOM.menuToggle?.addEventListener('click', toggleMobileMenu);
+  DOM.menuToggle?.addEventListener('click', () => DOM.sidebar.classList.toggle('is-open'));
 
   document.addEventListener('click', (e) => {
     const navLink = e.target.closest('[data-route]');
     if (navLink) {
       e.preventDefault();
       navigateTo(navLink.dataset.route);
-      if (isMobileMenuOpen()) closeMobileMenu();
-      DOM.app?.focus();
+      if (DOM.sidebar.classList.contains('is-open')) {
+        DOM.sidebar.classList.remove('is-open');
+      }
     }
-    if (isMobileMenuOpen() && !e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle')) {
-      closeMobileMenu();
+    if (DOM.sidebar.classList.contains('is-open') && !e.target.closest('.sidebar') && !e.target.closest('#menuToggle')) {
+      DOM.sidebar.classList.remove('is-open');
     }
   });
 
-  document.addEventListener('keydown', handleKeyboardShortcuts);
   DOM.contactForm?.addEventListener('submit', handleContactFormSubmit);
-  $$('.faq-question').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
   
-  // Debounce search input to improve performance with large datasets
   const debouncedRender = debounce(() => {
-    if (!DOM.search) return;
     activeFilters.query = DOM.search.value;
     currentPage = 1;
-    renderTools();
+    if (currentRoute === 'tools') {
+      renderTools();
+    } else {
+      navigateTo('tools');
+    }
   }, 300);
   DOM.search?.addEventListener('input', debouncedRender);
   
-  DOM.category?.addEventListener('change', () => {
-    activeFilters.category = DOM.category.value;
-    currentPage = 1;
-    renderTools();
-  });
-
   DOM.themeToggle?.addEventListener('click', () => {
-    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    const newTheme = DOM.body.dataset.theme === 'dark' ? 'light' : 'dark';
     applyTheme(newTheme);
   });
+}
 
-    // Card hover effect
-  document.addEventListener('mousemove', e => {
-    if (e.target.matches('.card, .card *')) {
-      const card = e.target.closest('.card');
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
-    }
-  });
-}// --- Navigation & Routing ---
+// --- Navigation & Routing ---
 
 function navigateTo(name) {
-  if (!name || currentRoute === name) return;
+  if (!name) return;
   currentRoute = name;
 
   $$('main section').forEach(s => {
-    const isTarget = s.id === name;
-    s.style.display = isTarget ? 'block' : 'none';
-    if (isTarget) {
-        s.querySelectorAll('.reveal').forEach((el, i) => {
-            el.classList.remove('show'); // Reset animation for re-visits
-            setTimeout(() => el.classList.add('show'), i * 100 + 50); // Stagger animation
-        });
-    }
+    s.style.display = s.id === name ? 'block' : 'none';
   });
   
-  $$('#mobileMenu a, .menu-desktop .btn-ghost').forEach(el => {
+  $$('#mainNav a').forEach(el => {
     el.classList.toggle('active', el.dataset.route === name);
   });
 
+  // Reset search when navigating away from the tools page
+  if (name !== 'tools' && DOM.search.value) {
+    DOM.search.value = '';
+    activeFilters.query = '';
+  }
+
   switch (name) {
     case 'tools': bootTools(); break;
-    case 'packs': bootGrid('packs', DATA.packs, DOM.packsGrid); break;
-    case 'learning': bootGrid('learning', DATA.learning, DOM.learnGrid); break;
-    case 'hacking': bootGrid('hacking', DATA.hacking, DOM.hackingGrid); break;
+    case 'packs': bootGrid(DATA.packs, DOM.packsGrid); break;
+    case 'learning': bootGrid(DATA.learning, DOM.learnGrid); break;
+    case 'hacking': bootGrid(DATA.hacking, DOM.hackingGrid); break;
   }
 
   history.replaceState(null, '', '#' + name);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  DOM.app.scrollTo({ top: 0, behavior: 'smooth' });
   renderIcons();
 }
 
 // --- UI Rendering & Bootstrapping ---
 
 function bootTools() {
-  const container = DOM.cards;
-  if (!container || container.dataset.inited) return;
-  container.dataset.inited = 'true';
-
   drawTags();
   renderTools();
 }
 
 function renderTools() {
-  const { query, category, tag } = activeFilters;
+  const { query, tag } = activeFilters;
   const q = query.trim().toLowerCase();
 
   const filtered = DATA.tools.filter(it => {
-    if (category !== 'all' && !(it.tags || []).includes(category)) return false;
     if (tag !== 'all' && !(it.tags || []).includes(tag)) return false;
     if (!q) return true;
     const txt = `${it.title} ${it.desc || ''} ${(it.tags || []).join(' ')}`.toLowerCase();
     return txt.includes(q);
   });
-
-  if (DOM.itemsCount) DOM.itemsCount.textContent = filtered.length.toLocaleString();
   
   const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   if (currentPage > pages) currentPage = 1;
@@ -1089,29 +704,31 @@ function renderTools() {
   const start = (currentPage - 1) * PAGE_SIZE;
   const pageItems = filtered.slice(start, start + PAGE_SIZE);
 
-  if (DOM.cards) DOM.cards.innerHTML = pageItems.map(createCardHTML).join('');
-  if (DOM.pager) DOM.pager.innerHTML = createPagerHTML(pages);
+  DOM.cards.innerHTML = pageItems.map(createCardHTML).join('');
+  DOM.pager.innerHTML = createPagerHTML(pages);
 
-  DOM.pager?.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+  DOM.pager.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
     currentPage = +b.dataset.page;
     renderTools();
-    DOM.cards?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    DOM.app.scrollTo({ top: 0, behavior: 'smooth' });
   }));
-
-  DOM.cards?.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
   renderIcons();
 }
 
-function drawTags(active = 'all') {
-  if (!DOM.tagWrap) return;
-  const getTags = () => Array.from(new Set(['all', ...DATA.tools.flatMap(t => t.tags || [])]));
+function drawTags() {
+  const getTags = () => {
+    const allTags = DATA.tools.flatMap(t => t.tags || []);
+    const popularTags = ['design', 'dev', 'utility', 'productivity', 'security', 'hosting', 'collaboration'];
+    const uniqueTags = [...new Set(allTags)];
+    return ['all', ...popularTags.filter(t => uniqueTags.includes(t))];
+  };
   
   DOM.tagWrap.innerHTML = getTags().map(t => 
-    `<div class="tag ${t === active ? 'active' : ''}" data-tag="${t}">${escapeHtml(t)}</div>`
+    `<button class="tag-filter ${t === activeFilters.tag ? 'active' : ''}" data-tag="${t}">${t}</button>`
   ).join('');
 
-  DOM.tagWrap.querySelectorAll('.tag').forEach(btn => btn.addEventListener('click', () => {
-    DOM.tagWrap.querySelector('.tag.active')?.classList.remove('active');
+  DOM.tagWrap.querySelectorAll('.tag-filter').forEach(btn => btn.addEventListener('click', () => {
+    DOM.tagWrap.querySelector('.tag-filter.active')?.classList.remove('active');
     btn.classList.add('active');
     activeFilters.tag = btn.dataset.tag;
     currentPage = 1;
@@ -1119,35 +736,35 @@ function drawTags(active = 'all') {
   }));
 }
 
-function bootGrid(name, dataArray, mountEl) {
-  if (!mountEl || mountEl.dataset.inited) return;
-  mountEl.dataset.inited = 'true';
+function bootGrid(dataArray, mountEl) {
+  if (!mountEl) return;
   mountEl.innerHTML = dataArray.map(createCardHTML).join('');
-  mountEl.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
   renderIcons();
 }
 
 function populateTopPicks() {
-  if (!DOM.topPicks) return;
-  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva for Education", "Notion for Students", "Figma for Education", "Visual Studio Code", "freeCodeCamp", "TryHackMe"];
-  const topPicksData = (DATA.all || [])
+  const picks = ["GitHub Student Developer Pack", "Figma for Education", "Visual Studio Code", "freeCodeCamp", "TryHackMe", "Canva for Education", "Notion for Students", "Postman", "Obsidian"];
+  const topPicksData = DATA.all
     .filter(t => picks.includes(t.title))
-    .sort((a, b) => picks.indexOf(a.title) - picks.indexOf(b.title)); // Sort based on the order in `picks` array
+    .sort((a, b) => picks.indexOf(a.title) - picks.indexOf(b.title));
 
-  DOM.topPicks.innerHTML = `<div class="project-grid">${topPicksData.map(createCardHTML).join('')}</div>`;
+  DOM.topPicks.innerHTML = topPicksData.map(createCardHTML).join('');
 }
 
 // --- HTML Generators ---
 
 function createCardHTML(it) {
-  const tagsHTML = (it.tags || []).map(tag => `<span class="card-tag">${escapeHtml(tag)}</span>`).join('');
+  const tagsHTML = (it.tags || []).slice(0, 3).map(tag => `<span class="card-tag">${escapeHtml(tag)}</span>`).join('');
   return `
-    <article class="card reveal" role="article" aria-label="${escapeHtml(it.title)}">
-      <h3><i data-feather="${it.icon || 'box'}"></i>${escapeHtml(it.title)}</h3>
-      <p>${escapeHtml(it.desc || '')}</p>
+    <article class="card" role="article" aria-label="${escapeHtml(it.title)}">
+      <div class="card-header">
+        <div class="card-icon"><i data-feather="${it.icon || 'box'}"></i></div>
+        <h3 class="card-title">${escapeHtml(it.title)}</h3>
+      </div>
+      <p class="card-desc">${escapeHtml(it.desc || '')}</p>
       <div class="card-tags">${tagsHTML}</div>
-      <div class="actions">
-        <a class="btn primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
+      <div class="card-footer">
+        <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
       </div>
     </article>
   `;
@@ -1155,84 +772,21 @@ function createCardHTML(it) {
 
 function createPagerHTML(pages) {
   if (pages <= 1) return '';
-
-  const maxVisibleButtons = 7;
-  let buttons = [];
-
-  if (pages <= maxVisibleButtons) {
-    for (let i = 1; i <= pages; i++) {
-      buttons.push(`<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`);
-    }
-  } else {
-    let startPage, endPage;
-    if (currentPage <= 4) {
-      startPage = 1;
-      endPage = 5;
-      buttons.push(createButtonRange(startPage, endPage, currentPage));
-      buttons.push('<span>...</span>');
-      buttons.push(createButton(pages, currentPage));
-    } else if (currentPage > pages - 4) {
-      startPage = pages - 4;
-      endPage = pages;
-      buttons.push(createButton(1, currentPage));
-      buttons.push('<span>...</span>');
-      buttons.push(createButtonRange(startPage, endPage, currentPage));
-    } else {
-      startPage = currentPage - 1;
-      endPage = currentPage + 1;
-      buttons.push(createButton(1, currentPage));
-      buttons.push('<span>...</span>');
-      buttons.push(createButtonRange(startPage, endPage, currentPage));
-      buttons.push('<span>...</span>');
-      buttons.push(createButton(pages, currentPage));
-    }
+  let buttons = '';
+  for (let i = 1; i <= pages; i++) {
+    buttons += `<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
   }
-  return buttons.join('');
+  return buttons;
 }
-
-function createButton(page, currentPage) {
-    return `<button class="${page === currentPage ? 'active' : ''}" data-page="${page}">${page}</button>`;
-}
-
-function createButtonRange(start, end, currentPage) {
-    let html = '';
-    for (let i = start; i <= end; i++) {
-        html += createButton(i, currentPage);
-    }
-    return html;
-}
-
 
 // --- Event Handlers & Helpers ---
 
 function debounce(func, delay) {
   let timeout;
   return function(...args) {
-    const context = this;
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(context, args), delay);
+    timeout = setTimeout(() => func.apply(this, args), delay);
   };
-}
-
-function handleKeyboardShortcuts(e) {
-  if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-    e.preventDefault();
-    navigateTo('tools');
-    DOM.search?.focus();
-    DOM.search?.select();
-  }
-  if (e.key.toLowerCase() === 'h') {
-    alert('Help:\n- Press / to focus search\n- Use menu to switch pages\n- Use Request form to add new tools.');
-  }
-  if (e.key === 'Escape' && isMobileMenuOpen()) {
-    closeMobileMenu();
-    DOM.menuToggle?.focus();
-  }
-}
-
-function handleTheme() {
-  const savedTheme = localStorage.getItem('prathi_theme') || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
-  applyTheme(savedTheme);
 }
 
 async function handleContactFormSubmit(e) {
@@ -1240,148 +794,61 @@ async function handleContactFormSubmit(e) {
   const form = e.target;
   const payload = {
     name: form.name.value.trim(),
-    email: form.email.value.trim(),
     tool: form.tool.value.trim(),
-    message: form.message ? form.message.value.trim() : ''
+    message: form.message.value.trim()
   };
 
   if (!payload.name || !payload.tool) {
     return toast('Please include name and tool', false);
   }
-  if (!WEB_APP_URL) {
-    return toast('Contact form is not configured.', false);
-  }
 
   try {
-    await fetch(WEB_APP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    toast('Request sent ✅');
+    await fetch(WEB_APP_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
+    toast('Request sent successfully!', true);
     form.reset();
   } catch (err) {
     console.error("Form submission error:", err);
-    toast('Submit failed — check console for details', false);
+    toast('Submission failed. Please try again.', false);
   }
+}
+
+function handleTheme() {
+  const savedTheme = localStorage.getItem('prathi_theme') || 'dark';
+  applyTheme(savedTheme);
+}
+
+function applyTheme(theme) {
+  DOM.body.dataset.theme = theme;
+  localStorage.setItem('prathi_theme', theme);
+  DOM.themeToggle.innerHTML = `<i data-feather="${theme === 'dark' ? 'moon' : 'sun'}"></i>`;
+  renderIcons();
 }
 
 // --- UI Utility Functions ---
 
 function showSpinner(show = true) {
-  if (DOM.spinner) DOM.spinner.style.display = show ? 'block' : 'none';
+  DOM.spinner.style.display = show ? 'block' : 'none';
 }
 
-function toast(msg, ok = true) {
-  const t = DOM.toast;
-  if (!t) return;
-  t.textContent = msg;
-  t.style.display = 'block';
-  t.style.background = ok ? 'linear-gradient(90deg,#06d6a0,#00b3ff)' : 'linear-gradient(90deg,#ff6b6b,#d64545)';
-  t.classList.add('toast-animate');
-  clearTimeout(t._hid);
-  t._hid = setTimeout(() => {
-    t.style.display = 'none';
-    t.classList.remove('toast-animate');
-  }, 2800);
+function toast(msg, isSuccess = true) {
+  DOM.toast.textContent = msg;
+  DOM.toast.style.background = isSuccess ? 'linear-gradient(90deg, var(--accent1), var(--accent2))' : '#e53e3e';
+  DOM.toast.classList.add('show');
+  setTimeout(() => DOM.toast.classList.remove('show'), 3000);
 }
 
 function renderIcons() {
   try {
-    feather.replace({ 'stroke-width': 1.6, width: 18, height: 18 });
+    feather.replace({ 'stroke-width': 2, width: 20, height: 20 });
   } catch (e) {
     console.warn("Feather icons could not be rendered.", e);
   }
 }
 
 function escapeHtml(s) {
-  if (!s) return '';
   return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 }
 
-function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('prathi_theme', theme);
-  if (DOM.themeToggle) DOM.themeToggle.innerHTML = `<i data-feather="${theme === 'dark' ? 'moon' : 'sun'}"></i>`;
-  renderIcons();
-}
-
-function isMobileMenuOpen() {
-  return DOM.mobileMenu?.classList.contains('is-open');
-}
-
-function toggleMobileMenu() {
-  isMobileMenuOpen() ? closeMobileMenu() : openMobileMenu();
-}
-
-function openMobileMenu() {
-  if (!DOM.mobileMenu || !DOM.menuToggle) return;
-  DOM.mobileMenu.classList.add('is-open');
-  DOM.mobileMenu.setAttribute('aria-hidden', 'false');
-  DOM.menuToggle.innerHTML = '<i data-feather="x"></i>';
-  renderIcons();
-  DOM.mobileMenu.querySelector('a')?.focus();
-}
-
-function closeMobileMenu() {
-  if (!DOM.mobileMenu || !DOM.menuToggle) return;
-  DOM.mobileMenu.classList.remove('is-open');
-  DOM.mobileMenu.setAttribute('aria-hidden', 'true');
-  DOM.menuToggle.innerHTML = '<i data-feather="menu"></i>';
-  renderIcons();
-}
-
-// --- Animated Background ---
-
-function startAnimatedBg() {
-  const c = DOM.bgCanvas;
-  if (!c) return;
-  const ctx = c.getContext('2d');
-  let W = c.width = innerWidth, H = c.height = innerHeight;
-  let pts = [];
-
-  const init = () => {
-    pts = [];
-    const N = Math.min(260, Math.round(W * H / 9000));
-    for (let i = 0; i < N; i++) {
-      pts.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.6 + 0.2, vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.1, a: Math.random() * 0.6 + 0.03 });
-    }
-  };
-
-  const frame = () => {
-    if (!c) return;
-    ctx.clearRect(0, 0, W, H);
-    const theme = document.documentElement.getAttribute('data-theme');
-    const c1 = theme === 'light' ? 'rgba(85,48,214,0.03)' : 'rgba(123,97,255,0.02)';
-    const c2 = theme === 'light' ? 'rgba(17,150,136,0.02)' : 'rgba(0,230,168,0.01)';
-    const g = ctx.createLinearGradient(0, 0, W, H);
-    g.addColorStop(0, c1);
-    g.addColorStop(1, c2);
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, H);
-
-    for (const p of pts) {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
-      if (p.y < -10) p.y = H + 10; if (p.y > H + 10) p.y = -10;
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    requestAnimationFrame(frame);
-  };
-
-  window.addEventListener('resize', () => { 
-    if (!c) return;
-    W = c.width = innerWidth; 
-    H = c.height = innerHeight; 
-    init(); 
-  });
-  init();
-  frame();
-}
 </script>
 </body>
 </html>

@@ -666,7 +666,6 @@
   <div class="container">
     <a href="#home" class="logo" data-route="home">
       <div class="logo-pk">PK</div>
-      <span>Prathi Tech</span>
     </a>
     <nav class="menu-desktop" aria-label="Primary">
       <a href="#home" class="btn-ghost" data-route="home">Home</a>
@@ -705,14 +704,19 @@
   <!-- HOME SECTION -->
   <section id="home" style="display:block;">
     <div class="hero-animated">
-      <h1>Prathi - Technologies</h1>
+      <h1>Prathi Tech</h1>
       <div class="subtitle">Your Hub for Student Resources</div>
     </div>
     
-    <h1>Welcome to Prathi Tech</h1>
-    <p class="section-desc">Curated, verified and student-friendly free tools. Search, filter and request new tools. Empower your learning, productivity, and creativity with the best resources for students and professionals.</p>
+    <p class="section-desc" style="text-align: center; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 1.1em;">
+      Curated, verified and student-friendly free tools. Search, filter and request new tools. Empower your learning, productivity, and creativity with the best resources for students and professionals.
+    </p>
+    <div style="text-align:center; margin-bottom: 2em;">
+        <a href="#tools" class="btn primary" data-route="tools"><i data-feather="search"></i>Browse All Tools</a>
+    </div>
+    <h2 style="text-align:center; margin-top: 3em;">Top Picks</h2>
     <ul id="topPicks" style="margin:1em 0 2em 0;list-style:none;padding:0;"></ul>
-    <a href="#tools" class="btn primary" data-route="tools" style="margin-bottom:2em;"><i data-feather="search"></i>Browse Tools</a>
+    <a href="#tools" class="btn primary" data-route="tools" style="margin-bottom:2em; display:none;"><i data-feather="search"></i>Browse Tools</a>
     <div class="feature-list">
       <div class="feature">
         <i data-feather="zap"></i>
@@ -815,8 +819,16 @@
     <div class="section-desc">A showcase of my personal and professional work.</div>
     <div class="project-grid">
       <div class="card reveal">
-        <h3><i data-feather="globe"></i>Prathi Hades</h3>
-        <p>A personal portfolio and blog website showcasing my skills and thoughts on web development and design.</p>
+        <h3><i data-feather="globe"></i>Prathi Tech Hub</h3>
+        <p>A curated hub of free tools and resources for students and developers. Built with vanilla JS and a JSON backend.</p>
+        <div class="card-tags"><span class="card-tag">JavaScript</span><span class="card-tag">Community</span><span class="card-tag">Open Source</span></div>
+        <div class="actions">
+          <a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://github.com/prathish0558e/prathi.tech"><i data-feather="github"></i>View Source</a>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h3><i data-feather="user"></i>Personal Portfolio</h3>
+        <p>My personal portfolio website showcasing my skills, projects, and thoughts on web development and design.</p>
         <div class="card-tags"><span class="card-tag">Portfolio</span><span class="card-tag">Blog</span><span class="card-tag">Web</span></div>
         <div class="actions">
           <a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://www.prathihades.me"><i data-feather="external-link"></i>Visit Site</a>
@@ -1117,11 +1129,12 @@ function bootGrid(name, dataArray, mountEl) {
 
 function populateTopPicks() {
   if (!DOM.topPicks) return;
-  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva", "Notion", "Figma"];
-  DOM.topPicks.innerHTML = (DATA.all || [])
+  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva for Education", "Notion for Students", "Figma for Education", "Visual Studio Code", "freeCodeCamp", "TryHackMe"];
+  const topPicksData = (DATA.all || [])
     .filter(t => picks.includes(t.title))
-    .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> <strong>${escapeHtml(t.title)}</strong>: ${escapeHtml(t.desc)}</li>`)
-    .join('');
+    .sort((a, b) => picks.indexOf(a.title) - picks.indexOf(b.title)); // Sort based on the order in `picks` array
+
+  DOM.topPicks.innerHTML = `<div class="project-grid">${topPicksData.map(createCardHTML).join('')}</div>`;
 }
 
 // --- HTML Generators ---

@@ -36,6 +36,12 @@
       background: var(--bg-light);
       color: var(--text-dark);
     }
+    [data-theme="dark"] body {
+      background: linear-gradient(180deg, #20222c 0%, #181a20 100%);
+    }
+    [data-theme="light"] body {
+      background: linear-gradient(180deg, #fdfdff 0%, #f7f7fa 100%);
+    }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
@@ -79,6 +85,24 @@
       color: var(--accent1);
       text-decoration: none;
       user-select: none;
+    }
+    .logo span {
+      display: block;
+      margin-left: 8px;
+    }
+    .logo-pk {
+      background: linear-gradient(45deg, var(--accent1), var(--accent2));
+      color: #fff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.8em;
+      letter-spacing: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
     .menu-desktop {
       display: flex;
@@ -172,15 +196,43 @@
       border-radius: 14px;
       padding: 22px 18px 18px 18px;
       box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
-      transition: transform 0.15s, box-shadow 0.15s;
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
       display: flex;
       flex-direction: column;
       gap: 10px;
       min-height: 140px;
       position: relative;
+      overflow: hidden; /* For hover effect */
     }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(123, 97, 255, 0.15), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 0;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
     [data-theme="light"] .card {
       background: var(--card-bg-light);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px 0 rgba(123,97,255,0.12);
     }
     .card h3 {
       margin: 0 0 6px 0;
@@ -191,11 +243,38 @@
     }
     .card .actions {
       margin-top: auto;
+      padding-top: 10px;
       display: flex;
       gap: 10px;
     }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: auto;
+      padding-bottom: 10px;
+    }
+    .card-tag {
+      background: rgba(123,97,255,0.1);
+      color: var(--accent1);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.85em;
+      font-weight: 500;
+    }
     .reveal { opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(.2,.9,.3,1); }
     .reveal.show { opacity: 1; transform: none; }
+
+    main section {
+      display: none;
+      animation: fadeIn 0.5s cubic-bezier(.25,.8,.25,1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .tag {
       background: rgba(123,97,255,0.08);
       color: var(--accent1);
@@ -204,11 +283,12 @@
       font-size: 0.98em;
       cursor: pointer;
       user-select: none;
-      transition: background 0.2s, color 0.2s;
+      transition: all 0.2s;
     }
     .tag.active, .tag:hover {
       background: linear-gradient(90deg, var(--accent1), var(--accent2));
       color: #fff;
+      transform: scale(1.05);
     }
     .spinner {
       display: none;
@@ -246,6 +326,31 @@
       border-color: var(--accent1);
       outline: none;
     }
+
+    .tool-filters {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 1em;
+    }
+
+    .tool-filters input[type="search"],
+    .tool-filters select {
+        width: auto;
+        flex: 1 1 180px;
+    }
+    
+    .tool-filters select {
+        -webkit-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23aaa' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        background-size: 16px;
+        padding-right: 36px; /* make space for arrow */
+    }
+
     label {
       font-size: 1em;
       font-weight: 500;
@@ -328,6 +433,55 @@
     .faq.open .faq-answer {
       display: block;
     }
+
+    .pager {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin: 2em 0 0 0;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pager button {
+      background: var(--card-bg-dark);
+      border: 1px solid #444;
+      color: var(--text-light);
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      font-weight: 600;
+      font-size: 1em;
+    }
+
+    .pager button:hover {
+      background: var(--accent1);
+      color: #fff;
+      border-color: var(--accent1);
+      transform: translateY(-2px);
+    }
+
+    .pager button.active {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      border-color: var(--accent2);
+      box-shadow: 0 4px 12px rgba(123, 97, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .pager span {
+      padding: 8px 0;
+      color: #888;
+      font-weight: 600;
+    }
+
+    [data-theme="light"] .pager button {
+        background: var(--card-bg-light);
+        color: var(--text-dark);
+        border-color: #ddd;
+    }
+
     footer {
       text-align: center;
       margin: 2em 0 1em 0;
@@ -353,6 +507,7 @@
     .hero-animated {
       text-align: center;
       padding: 1em 0;
+      position: relative;
     }
 
     .hero-animated h1 {
@@ -418,7 +573,8 @@
 <header class="navbar" role="banner" aria-label="Main navigation">
   <div class="container">
     <a href="#" class="logo">
-      <i data-feather="box"></i> Prathi Tech
+      <div class="logo-pk">PK</div>
+      <span>Prathi Tech</span>
     </a>
     <nav class="menu-desktop" aria-label="Primary">
       <a href="#home" class="btn-ghost" data-route="home">Home</a>
@@ -510,26 +666,13 @@
   <!-- TOOLS SECTION -->
   <section id="tools" style="display:none;">
     <h2>All Tools</h2>
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:1em;">
+    <div class="tool-filters">
       <input id="search" type="search" placeholder="Search tools...">
-      <select id="cat"></select>
-        <option value="all">All Categories</option>
-        <option value="dev">Development</option>
-        <option value="design">Design</option>
-        <option value="productivity">Productivity</option>
-        <option value="ai">AI</option>
-        <option value="cloud">Cloud</option>
-        <option value="security">Security</option>
-        <option value="writing">Writing</option>
-        <option value="video">Video</option>
-        <option value="audio">Audio</option>
-        <option value="other">Other</option>
-      </select>
       <span id="itemsCount" style="margin-left:auto;font-size:0.95em;color:#aaa;">0</span>
     </div>
     <div id="tagWrap" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1em;"></div>
     <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
-    <div id="pager" style="margin:2em 0 0 0;display:flex;gap:8px;justify-content:center;"></div>
+    <div id="pager" class="pager"></div>
   </section>
 
   <!-- PACKS SECTION -->
@@ -620,20 +763,367 @@ const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl
 const PAGE_SIZE = 12;
 const DATA_URL = 'https://raw.githubusercontent.com/prathish0558e/prathi.tech/main/tools.json';
 
+
+// --- App State ---
 let DATA = { tools: [], packs: [], learning: [] };
 let currentPage = 1;
+let currentRoute = 'home';
+let activeFilters = {
+  query: '',
+  category: 'all',
+  tag: 'all'
+};
 
+// --- DOM Elements ---
 const $ = (q, ctx = document) => ctx.querySelector(q);
 const $$ = (q, ctx = document) => Array.from((ctx || document).querySelectorAll(q));
 
+const DOM = {
+  spinner: $('#spinner'),
+  toast: $('#toast'),
+  year: $('#year'),
+  body: document.body,
+  app: $('#app'),
+  menuToggle: $('#menuToggle'),
+  mobileMenu: $('#mobileMenu'),
+  themeToggle: $('#themeToggle'),
+  contactForm: $('#contactForm'),
+  search: $('#search'),
+  category: $('#cat'),
+  tagWrap: $('#tagWrap'),
+  itemsCount: $('#itemsCount'),
+  cards: $('#cards'),
+  pager: $('#pager'),
+  topPicks: $('#topPicks'),
+  packsGrid: $('#packsGrid'),
+  learnGrid: $('#learnGrid'),
+  bgCanvas: $('#bg')
+};
+
+// --- Core App Logic ---
+
+document.addEventListener('DOMContentLoaded', initApp);
+
+async function initApp() {
+  showSpinner(true);
+  DOM.body.setAttribute('aria-busy', 'true');
+  
+  setupEventListeners();
+  handleTheme();
+  startAnimatedBg();
+
+  try {
+    const response = await fetch(DATA_URL);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    DATA = await response.json();
+
+    const startRoute = location.hash ? location.hash.substring(1) : 'home';
+    navigateTo(startRoute);
+    populateTopPicks();
+
+  } catch (error) {
+    console.error("Failed to load tool data:", error);
+    toast("Could not load tool data. Please try again later.", false);
+  } finally {
+    if (DOM.year) DOM.year.textContent = new Date().getFullYear();
+    DOM.body.setAttribute('aria-busy', 'false');
+    showSpinner(false);
+    renderIcons();
+  }
+}
+
+function setupEventListeners() {
+  DOM.menuToggle?.addEventListener('click', toggleMobileMenu);
+
+  document.addEventListener('click', (e) => {
+    const navLink = e.target.closest('[data-route]');
+    if (navLink) {
+      e.preventDefault();
+      navigateTo(navLink.dataset.route);
+      if (isMobileMenuOpen()) closeMobileMenu();
+      DOM.app?.focus();
+    }
+    if (isMobileMenuOpen() && !e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle')) {
+      closeMobileMenu();
+    }
+  });
+
+  document.addEventListener('keydown', handleKeyboardShortcuts);
+  DOM.contactForm?.addEventListener('submit', handleContactFormSubmit);
+  $$('.faq-question').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+  
+  // Debounce search input to improve performance with large datasets
+  const debouncedRender = debounce(() => {
+    if (!DOM.search) return;
+    activeFilters.query = DOM.search.value;
+    currentPage = 1;
+    renderTools();
+  }, 300);
+  DOM.search?.addEventListener('input', debouncedRender);
+  
+  DOM.category?.addEventListener('change', () => {
+    activeFilters.category = DOM.category.value;
+    currentPage = 1;
+    renderTools();
+  });
+
+  DOM.themeToggle?.addEventListener('click', () => {
+    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+
+  // Card hover effect
+  document.addEventListener('mousemove', e => {
+    if (e.target.matches('.card, .card *')) {
+      const card = e.target.closest('.card');
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    }
+  });
+}
+
+// --- Navigation & Routing ---
+
+function navigateTo(name) {
+  if (!name || currentRoute === name) return;
+  currentRoute = name;
+
+  $$('main section').forEach(s => {
+    s.style.display = (s.id === name) ? 'block' : 'none';
+  });
+  
+  $$('#mobileMenu a, .menu-desktop .btn-ghost').forEach(el => {
+    el.classList.toggle('active', el.dataset.route === name);
+  });
+
+  switch (name) {
+    case 'tools': bootTools(); break;
+    case 'packs': bootGrid('packs', DATA.packs, DOM.packsGrid); break;
+    case 'learning': bootGrid('learning', DATA.learning, DOM.learnGrid); break;
+  }
+
+  history.replaceState(null, '', '#' + name);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderIcons();
+}
+
+// --- UI Rendering & Bootstrapping ---
+
+function bootTools() {
+  const container = DOM.cards;
+  if (!container || container.dataset.inited) return;
+  container.dataset.inited = 'true';
+
+  drawTags();
+  renderTools();
+}
+
+function renderTools() {
+  const { query, category, tag } = activeFilters;
+  const q = query.trim().toLowerCase();
+
+  const filtered = DATA.tools.filter(it => {
+    if (category !== 'all' && !(it.tags || []).includes(category)) return false;
+    if (tag !== 'all' && !(it.tags || []).includes(tag)) return false;
+    if (!q) return true;
+    const txt = `${it.title} ${it.desc || ''} ${(it.tags || []).join(' ')}`.toLowerCase();
+    return txt.includes(q);
+  });
+
+  if (DOM.itemsCount) DOM.itemsCount.textContent = filtered.length.toLocaleString();
+  
+  const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  if (currentPage > pages) currentPage = 1;
+
+  const start = (currentPage - 1) * PAGE_SIZE;
+  const pageItems = filtered.slice(start, start + PAGE_SIZE);
+
+  if (DOM.cards) DOM.cards.innerHTML = pageItems.map(createCardHTML).join('');
+  if (DOM.pager) DOM.pager.innerHTML = createPagerHTML(pages);
+
+  DOM.pager?.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    currentPage = +b.dataset.page;
+    renderTools();
+    DOM.cards?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+
+  DOM.cards?.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
+  renderIcons();
+}
+
+function drawTags(active = 'all') {
+  if (!DOM.tagWrap) return;
+  const getTags = () => Array.from(new Set(['all', ...DATA.tools.flatMap(t => t.tags || [])]));
+  
+  DOM.tagWrap.innerHTML = getTags().map(t => 
+    `<div class="tag ${t === active ? 'active' : ''}" data-tag="${t}">${escapeHtml(t)}</div>`
+  ).join('');
+
+  DOM.tagWrap.querySelectorAll('.tag').forEach(btn => btn.addEventListener('click', () => {
+    DOM.tagWrap.querySelector('.tag.active')?.classList.remove('active');
+    btn.classList.add('active');
+    activeFilters.tag = btn.dataset.tag;
+    currentPage = 1;
+    renderTools();
+  }));
+}
+
+function bootGrid(name, dataArray, mountEl) {
+  if (!mountEl || mountEl.dataset.inited) return;
+  mountEl.dataset.inited = 'true';
+  mountEl.innerHTML = dataArray.map(createCardHTML).join('');
+  mountEl.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
+  renderIcons();
+}
+
+function populateTopPicks() {
+  if (!DOM.topPicks) return;
+  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva", "Notion", "Figma"];
+  DOM.topPicks.innerHTML = DATA.tools
+    .filter(t => picks.includes(t.title))
+    .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> <strong>${escapeHtml(t.title)}</strong>: ${escapeHtml(t.desc)}</li>`)
+    .join('');
+}
+
+// --- HTML Generators ---
+
+function createCardHTML(it) {
+  const tagsHTML = (it.tags || []).map(tag => `<span class="card-tag">${escapeHtml(tag)}</span>`).join('');
+  return `
+    <article class="card reveal" role="article" aria-label="${escapeHtml(it.title)}">
+      <h3><i data-feather="${it.icon || 'box'}"></i>${escapeHtml(it.title)}</h3>
+      <p>${escapeHtml(it.desc || '')}</p>
+      <div class="card-tags">${tagsHTML}</div>
+      <div class="actions">
+        <a class="btn primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
+      </div>
+    </article>
+  `;
+}
+
+function createPagerHTML(pages) {
+  if (pages <= 1) return '';
+
+  const maxVisibleButtons = 7;
+  let buttons = [];
+
+  if (pages <= maxVisibleButtons) {
+    for (let i = 1; i <= pages; i++) {
+      buttons.push(`<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`);
+    }
+  } else {
+    let startPage, endPage;
+    if (currentPage <= 4) {
+      startPage = 1;
+      endPage = 5;
+      buttons.push(createButtonRange(startPage, endPage, currentPage));
+      buttons.push('<span>...</span>');
+      buttons.push(createButton(pages, currentPage));
+    } else if (currentPage > pages - 4) {
+      startPage = pages - 4;
+      endPage = pages;
+      buttons.push(createButton(1, currentPage));
+      buttons.push('<span>...</span>');
+      buttons.push(createButtonRange(startPage, endPage, currentPage));
+    } else {
+      startPage = currentPage - 1;
+      endPage = currentPage + 1;
+      buttons.push(createButton(1, currentPage));
+      buttons.push('<span>...</span>');
+      buttons.push(createButtonRange(startPage, endPage, currentPage));
+      buttons.push('<span>...</span>');
+      buttons.push(createButton(pages, currentPage));
+    }
+  }
+  return buttons.join('');
+}
+
+function createButton(page, currentPage) {
+    return `<button class="${page === currentPage ? 'active' : ''}" data-page="${page}">${page}</button>`;
+}
+
+function createButtonRange(start, end, currentPage) {
+    let html = '';
+    for (let i = start; i <= end; i++) {
+        html += createButton(i, currentPage);
+    }
+    return html;
+}
+
+
+// --- Event Handlers & Helpers ---
+
+function debounce(func, delay) {
+  let timeout;
+  return function(...args) {
+    const context = this;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), delay);
+  };
+}
+
+function handleKeyboardShortcuts(e) {
+  if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+    e.preventDefault();
+    navigateTo('tools');
+    DOM.search?.focus();
+    DOM.search?.select();
+  }
+  if (e.key.toLowerCase() === 'h') {
+    alert('Help:\n- Press / to focus search\n- Use menu to switch pages\n- Use Request form to add new tools.');
+  }
+  if (e.key === 'Escape' && isMobileMenuOpen()) {
+    closeMobileMenu();
+    DOM.menuToggle?.focus();
+  }
+}
+
+function handleTheme() {
+  const savedTheme = localStorage.getItem('prathi_theme') || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  applyTheme(savedTheme);
+}
+
+async function handleContactFormSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const payload = {
+    name: form.name.value.trim(),
+    email: form.email.value.trim(),
+    tool: form.tool.value.trim(),
+    message: form.message ? form.message.value.trim() : ''
+  };
+
+  if (!payload.name || !payload.tool) {
+    return toast('Please include name and tool', false);
+  }
+  if (!WEB_APP_URL) {
+    return toast('Contact form is not configured.', false);
+  }
+
+  try {
+    await fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    toast('Request sent ✅');
+    form.reset();
+  } catch (err) {
+    console.error("Form submission error:", err);
+    toast('Submit failed — check console for details', false);
+  }
+}
+
+// --- UI Utility Functions ---
+
 function showSpinner(show = true) {
-  const s = $('#spinner');
-  if (!s) return;
-  s.style.display = show ? 'block' : 'none';
+  if (DOM.spinner) DOM.spinner.style.display = show ? 'block' : 'none';
 }
 
 function toast(msg, ok = true) {
-  const t = $('#toast');
+  const t = DOM.toast;
   if (!t) return;
   t.textContent = msg;
   t.style.display = 'block';
@@ -659,268 +1149,42 @@ function escapeHtml(s) {
   return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 }
 
-document.addEventListener('DOMContentLoaded', initApp);
-
-async function initApp() {
-  showSpinner(true);
-  document.body.setAttribute('aria-busy', 'true');
-  setupEventListeners();
-  handleTheme();
-  startAnimatedBg();
-
-  try {
-    const response = await fetch(DATA_URL);
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    DATA = await response.json();
-
-    const startRoute = location.hash ? location.hash.substring(1) : 'home';
-    navigateTo(startRoute);
-    populateTopPicks();
-
-  } catch (error) {
-    console.error("Failed to load tool data:", error);
-    toast("Could not load tool data. Please try again later.", false);
-  } finally {
-    $('#year').textContent = new Date().getFullYear();
-    document.body.setAttribute('aria-busy', 'false');
-    showSpinner(false);
-    renderIcons();
-  }
-}
-
-function setupEventListeners() {
-  const menuToggle = $('#menuToggle');
-  const mobileMenu = $('#mobileMenu');
-
-  menuToggle?.addEventListener('click', () => {
-    const isOpen = mobileMenu.style.display === 'block';
-    mobileMenu.style.display = isOpen ? 'none' : 'block';
-    mobileMenu.setAttribute('aria-hidden', String(isOpen));
-    menuToggle.innerHTML = isOpen ? '<i data-feather="menu"></i>' : '<i data-feather="x"></i>';
-    renderIcons();
-    if (!isOpen) mobileMenu.querySelector('a')?.focus();
-  });
-
-  document.addEventListener('click', (e) => {
-    const navLink = e.target.closest('[data-route]');
-    if (navLink) {
-      e.preventDefault();
-      const route = navLink.dataset.route;
-      navigateTo(route);
-      if (mobileMenu.style.display === 'block') {
-        mobileMenu.style.display = 'none';
-        menuToggle.innerHTML = '<i data-feather="menu"></i>';
-        renderIcons();
-      }
-      $('#app').focus();
-    }
-    if (mobileMenu.style.display === 'block' && !e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle')) {
-      mobileMenu.style.display = 'none';
-      menuToggle.innerHTML = '<i data-feather="menu"></i>';
-      renderIcons();
-    }
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-      e.preventDefault();
-      navigateTo('tools');
-      const searchInput = $('#search');
-      if (searchInput) {
-        searchInput.focus();
-        searchInput.select();
-      }
-    }
-    if (e.key.toLowerCase() === 'h') {
-      alert('Help:\n- Press / to focus search\n- Use menu to switch pages\n- Use Request form to add new tools.');
-    }
-    if (e.key === 'Escape' && mobileMenu.style.display === 'block') {
-      mobileMenu.style.display = 'none';
-      menuToggle.innerHTML = '<i data-feather="menu"></i>';
-      renderIcons();
-      menuToggle.focus();
-    }
-  });
-
-  $('#contactForm')?.addEventListener('submit', handleContactFormSubmit);
-
-  // FAQ toggle
-  $$('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const faq = q.parentElement;
-      faq.classList.toggle('open');
-    });
-  });
-}
-
-function navigateTo(name) {
-  if (!name) name = 'home';
-  $$('main section').forEach(s => s.style.display = (s.id === name ? 'block' : 'none'));
-  $$('#mobileMenu a, .menu-desktop .btn-ghost').forEach(el => {
-    el.classList.toggle('active', el.dataset.route === name);
-  });
-
-  switch (name) {
-    case 'tools': bootTools(); break;
-    case 'packs': bootGrid('packs', DATA.packs, '#packsGrid'); break;
-    case 'learning': bootGrid('learning', DATA.learning, '#learnGrid'); break;
-  }
-
-  history.replaceState(null, '', '#' + name);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('prathi_theme', theme);
+  if (DOM.themeToggle) DOM.themeToggle.innerHTML = `<i data-feather="${theme === 'dark' ? 'moon' : 'sun'}"></i>`;
   renderIcons();
 }
 
-function populateTopPicks() {
-  const topPicksContainer = $('#topPicks');
-  if (!topPicksContainer) return;
-  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva", "Notion", "Figma"];
-  topPicksContainer.innerHTML = DATA.tools
-    .filter(t => picks.includes(t.title))
-    .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> <strong>${escapeHtml(t.title)}</strong>: ${escapeHtml(t.desc)}</li>`)
-    .join('');
+function isMobileMenuOpen() {
+  return DOM.mobileMenu?.style.display === 'block';
 }
 
-function bootTools() {
-  const container = $('#cards');
-  if (!container || container.dataset.inited) return;
-  container.dataset.inited = 'true';
-
-  const searchEl = $('#search'), catEl = $('#cat'), tagWrap = $('#tagWrap');
-
-  const getTags = () => Array.from(new Set(['all', ...DATA.tools.flatMap(t => t.tags || [])]));
-
-  function drawTags(active = 'all') {
-    tagWrap.innerHTML = getTags().map(t => `<div class="tag ${t === active ? 'active' : ''}" data-tag="${t}">${escapeHtml(t)}</div>`).join('');
-    tagWrap.querySelectorAll('.tag').forEach(btn => btn.addEventListener('click', () => {
-      tagWrap.querySelector('.tag.active')?.classList.remove('active');
-      btn.classList.add('active');
-      currentPage = 1;
-      render();
-    }));
-  }
-
-  function render() {
-    const q = (searchEl.value || '').trim().toLowerCase();
-    const cat = catEl.value || 'all';
-    const activeTag = tagWrap.querySelector('.tag.active')?.dataset.tag || 'all';
-
-    const filtered = DATA.tools.filter(it => {
-      if (cat !== 'all' && !(it.tags || []).includes(cat)) return false;
-      if (activeTag !== 'all' && !(it.tags || []).includes(activeTag)) return false;
-      if (!q) return true;
-      const txt = `${it.title} ${it.desc || ''} ${(it.tags || []).join(' ')}`.toLowerCase();
-      return txt.includes(q);
-    });
-
-    $('#itemsCount').textContent = filtered.length.toLocaleString();
-    const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-    if (currentPage > pages) currentPage = 1;
-
-    const start = (currentPage - 1) * PAGE_SIZE;
-    const pageItems = filtered.slice(start, start + PAGE_SIZE);
-
-    container.innerHTML = pageItems.map(it => `
-      <article class="card reveal" role="article" aria-label="${escapeHtml(it.title)}">
-        <h3><i data-feather="${it.icon || 'box'}"></i>${escapeHtml(it.title)}</h3>
-        <p>${escapeHtml(it.desc || '')}</p>
-        <div class="actions">
-          <a class="btn primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
-        </div>
-      </article>
-    `).join('');
-
-    const pager = $('#pager');
-    pager.innerHTML = Array.from({ length: pages }, (_, i) => `<button class="${i + 1 === currentPage ? 'active' : ''}" data-page="${i + 1}">${i + 1}</button>`).join('');
-    pager.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
-      currentPage = +b.dataset.page;
-      render();
-      container.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }));
-
-    container.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
-    renderIcons();
-  }
-
-  searchEl.addEventListener('input', () => { currentPage = 1; render(); });
-  catEl.addEventListener('change', () => { currentPage = 1; render(); });
-
-  drawTags();
-  render();
+function toggleMobileMenu() {
+  isMobileMenuOpen() ? closeMobileMenu() : openMobileMenu();
 }
 
-function bootGrid(name, dataArray, mountSel) {
-  const mount = $(mountSel);
-  if (!mount || mount.dataset.inited) return;
-  mount.dataset.inited = 'true';
-  mount.innerHTML = dataArray.map(it => `
-    <article class="card reveal">
-      <h3><i data-feather="${it.icon || 'box'}"></i>${escapeHtml(it.title)}</h3>
-      <p>${escapeHtml(it.desc || '')}</p>
-      <div class="actions">
-        <a class="btn primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
-      </div>
-    </article>
-  `).join('');
-  mount.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
+function openMobileMenu() {
+  if (!DOM.mobileMenu || !DOM.menuToggle) return;
+  DOM.mobileMenu.style.display = 'block';
+  DOM.mobileMenu.setAttribute('aria-hidden', 'false');
+  DOM.menuToggle.innerHTML = '<i data-feather="x"></i>';
+  renderIcons();
+  DOM.mobileMenu.querySelector('a')?.focus();
+}
+
+function closeMobileMenu() {
+  if (!DOM.mobileMenu || !DOM.menuToggle) return;
+  DOM.mobileMenu.style.display = 'none';
+  DOM.mobileMenu.setAttribute('aria-hidden', 'true');
+  DOM.menuToggle.innerHTML = '<i data-feather="menu"></i>';
   renderIcons();
 }
 
-function handleTheme() {
-  const themeToggle = $('#themeToggle');
-  const savedTheme = localStorage.getItem('prathi_theme') || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
-
-  const applyTheme = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('prathi_theme', theme);
-    themeToggle.innerHTML = `<i data-feather="${theme === 'dark' ? 'moon' : 'sun'}"></i>`;
-    renderIcons();
-  };
-
-  applyTheme(savedTheme);
-
-  themeToggle.addEventListener('click', () => {
-    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(newTheme);
-  });
-}
-
-async function handleContactFormSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const payload = {
-    name: form.name.value.trim(),
-    email: form.email.value.trim(),
-    tool: form.tool.value.trim(),
-    message: form.message ? form.message.value.trim() : ''
-  };
-
-  if (!payload.name || !payload.tool) {
-    toast('Please include name and tool', false);
-    return;
-  }
-  if (!WEB_APP_URL) {
-    toast('Contact form is not configured.', false);
-    return;
-  }
-
-  try {
-    const res = await fetch(WEB_APP_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    toast('Request sent ✅');
-    form.reset();
-  } catch (err) {
-    console.error("Form submission error:", err);
-    toast('Submit failed — check console for details', false);
-  }
-}
+// --- Animated Background ---
 
 function startAnimatedBg() {
-  const c = $('#bg');
+  const c = DOM.bgCanvas;
   if (!c) return;
   const ctx = c.getContext('2d');
   let W = c.width = innerWidth, H = c.height = innerHeight;
@@ -935,6 +1199,7 @@ function startAnimatedBg() {
   };
 
   const frame = () => {
+    if (!c) return;
     ctx.clearRect(0, 0, W, H);
     const theme = document.documentElement.getAttribute('data-theme');
     const c1 = theme === 'light' ? 'rgba(85,48,214,0.03)' : 'rgba(123,97,255,0.02)';
@@ -957,11 +1222,15 @@ function startAnimatedBg() {
     requestAnimationFrame(frame);
   };
 
-  window.addEventListener('resize', () => { W = c.width = innerWidth; H = c.height = innerHeight; init(); });
+  window.addEventListener('resize', () => { 
+    if (!c) return;
+    W = c.width = innerWidth; 
+    H = c.height = innerHeight; 
+    init(); 
+  });
   init();
   frame();
 }
 </script>
 </body>
 </html>
-

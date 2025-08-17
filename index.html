@@ -3,118 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prathi Tech - Student Free Tools Hub</title>
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-    body{
-      background:#111;color:#fff;overflow-x:hidden;transition:background 0.4s,color 0.4s;
-    }
-    nav{
-      display:flex;justify-content:space-between;align-items:center;
-      padding:15px 40px;position:fixed;width:100%;top:0;left:0;z-index:999;
-      background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
-    }
-    nav .logo{font-size:22px;font-weight:bold;color:#00ffe7;}
-    nav ul{display:flex;list-style:none;gap:20px;}
-    nav ul li a{color:#fff;text-decoration:none;transition:0.3s;}
-    nav ul li a:hover{color:#00ffe7;}
-    .toggle-btn{background:#00ffe7;color:#000;padding:6px 12px;border:none;border-radius:5px;cursor:pointer;}
-    section{padding:100px 20px;min-height:100vh;}
-    .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
-    .hero h1{font-size:2.5rem;color:#00ffe7;margin-bottom:15px;}
-    .search-box{margin-top:20px;max-width:500px;width:100%;display:flex;}
-    .search-box input{flex:1;padding:10px;border:none;border-radius:6px 0 0 6px;outline:none;}
-    .search-box button{padding:10px 20px;border:none;background:#00ffe7;color:#000;font-weight:bold;
-      border-radius:0 6px 6px 0;cursor:pointer;}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px;}
-    .card{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px;text-align:center;
-      transition:transform 0.3s,box-shadow 0.3s;}
-    .card:hover{transform:translateY(-8px);box-shadow:0 0 15px rgba(0,255,231,0.4);}
-    .card h3{color:#00ffe7;margin-bottom:10px;}
-    .card a{display:inline-block;margin-top:10px;padding:8px 16px;background:#00ffe7;color:#000;
-      border-radius:6px;text-decoration:none;font-weight:bold;}
-    .form-container{max-width:500px;margin:auto;background:rgba(255,255,255,0.05);
-      padding:25px;border-radius:10px;}
-    .form-container input,.form-container textarea,.form-container button{
-      width:100%;margin:8px 0;padding:12px;border:none;border-radius:6px;
-    }
-    .form-container button{background:#00ffe7;color:#000;font-weight:bold;cursor:pointer;}
-    body.light{background:#f4f4f4;color:#000;}
-    body.light nav{background:rgba(255,255,255,0.8);}
-    body.light nav ul li a{color:#000;}
-    body.light .card{background:rgba(0,0,0,0.05);}
-  </style>
+  <title>Prathi Tech | Free Tools Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
-    <div class="logo">FreeToolsHub</div>
+    <div class="logo">🚀 Prathi Tech</div>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#tools">Tools</a></li>
-      <li><a href="#request">Request</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tools.html">All Tools</a></li>
+      <li><a href="request.html">Request</a></li>
+      <li><a href="about.html">About</a></li>
     </ul>
     <button class="toggle-btn" onclick="toggleMode()">🌙</button>
   </nav>
 
-  <section class="hero" id="home">
-    <h1>🎓 Free Tools & Resources for Students</h1>
-    <p>All the best study, coding, editing & AI tools — in one place!</p>
+  <section class="hero">
+    <h1>🎓 Prathi Tech – 1 Lakh+ Free Tools & Resources</h1>
+    <p>The ultimate hub for students, developers, and creators.</p>
     <div class="search-box">
-      <input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()"/>
+      <input type="text" id="search" placeholder="Search 100,000+ tools..." onkeyup="searchTools()" />
       <button>🔍</button>
     </div>
   </section>
 
   <section id="tools">
-    <h2 style="text-align:center;color:#00ffe7;margin-bottom:20px;">Popular Tools</h2>
-    <div class="grid" id="tools-grid">
-      <div class="card"><h3>Canva</h3><p>Free Design & Editing Tool</p><a href="https://www.canva.com" target="_blank">Visit</a></div>
-      <div class="card"><h3>Overleaf</h3><p>LaTeX Document Writing Tool</p><a href="https://www.overleaf.com" target="_blank">Visit</a></div>
-      <div class="card"><h3>Geogebra</h3><p>Math Graphing & Geometry Tool</p><a href="https://www.geogebra.org" target="_blank">Visit</a></div>
-      <div class="card"><h3>Replit</h3><p>Online IDE & Coding Platform</p><a href="https://replit.com" target="_blank">Visit</a></div>
-    </div>
+    <h2>🔥 Featured Tools</h2>
+    <div class="grid" id="tools-grid"></div>
   </section>
 
-  <section id="request">
-    <h2 style="text-align:center;color:#00ffe7;margin-bottom:20px;">Request a Tool</h2>
-    <div class="form-container">
-      <form id="request-form">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="tool" placeholder="Which tool do you want?" required></textarea>
-        <button type="submit">Submit</button>
-      </form>
-      <p id="response"></p>
-    </div>
-  </section>
-
-  <script>
-    // Dark mode toggle
-    function toggleMode(){
-      document.body.classList.toggle("light");
-      localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
-    }
-    if(localStorage.getItem("theme")==="light"){document.body.classList.add("light");}
-
-    // Search filter
-    function searchTools(){
-      let input=document.getElementById("search").value.toLowerCase();
-      let cards=document.querySelectorAll(".card");
-      cards.forEach(card=>{
-        card.style.display=card.innerText.toLowerCase().includes(input)?"block":"none";
-      });
-    }
-
-    // Google Sheet form submission
-    const scriptURL="https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl6ymDJ0mzHDik8a6R5KMINMYP9yMJEi4PgjUuPtNgRNLu460/exec";
-    const form=document.getElementById("request-form");
-    const res=document.getElementById("response");
-    form.addEventListener("submit",e=>{
-      e.preventDefault();
-      fetch(scriptURL,{method:"POST",body:new FormData(form)})
-      .then(r=>{res.innerText="✅ Request Sent!";form.reset();})
-      .catch(e=>{res.innerText="❌ Error, try again!";});
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

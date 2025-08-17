@@ -121,37 +121,40 @@
     }
     [data-theme="light"] .header { border-bottom-color: var(--border-light); }
     .search-bar {
-      position: relative;
+      display: flex;
+      align-items: center;
       flex-grow: 1;
       max-width: 400px;
-    }
-    .search-bar i {
-      position: absolute;
-      left: 0.8rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #64748B;
-      font-size: 1.2rem;
-      pointer-events: none;
-    }
-    .search-bar input {
-      width: 100%;
-      padding: 0.6rem 1rem 0.6rem 2.75rem;
-      border-radius: 8px;
       background-color: var(--card-bg-dark);
       border: 1px solid var(--border-dark);
-      color: var(--text-light);
-      font-size: 1rem;
+      border-radius: 8px;
       transition: all 0.2s;
     }
-    .search-bar input:focus {
-      outline: none;
+    .search-bar:focus-within {
       border-color: var(--accent1);
       box-shadow: 0 0 0 3px rgba(138, 120, 255, 0.3);
     }
-    [data-theme="light"] .search-bar input {
+    [data-theme="light"] .search-bar {
       background-color: var(--card-bg-light);
       border-color: var(--border-light);
+    }
+    .search-bar i {
+      color: #64748B;
+      padding-left: 0.75rem;
+    }
+    .search-bar input {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: transparent;
+      border: none;
+      color: var(--text-light);
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-bar input:focus {
+      outline: none;
+    }
+    [data-theme="light"] .search-bar input {
       color: var(--text-dark);
     }
     .header-actions { display: flex; align-items: center; gap: 1rem; }
@@ -414,8 +417,8 @@
         <i data-feather="menu"></i>
       </button>
       <div class="search-bar">
-         <i class="fas fa-search"></i>
-          <input id="search" type="search" placeholder="Search for tools...">
+        <i data-feather="search"></i>
+        <input id="search" type="search" placeholder="Search for tools...">
       </div>
       <div class="header-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -854,8 +857,3 @@ function escapeHtml(s) {
 </script>
 </body>
 </html>
-
-
-
-
-

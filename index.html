@@ -10,6 +10,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://prathi.tech/" />
   <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/feather-icons" defer></script>
   <style>
     :root {
@@ -21,6 +22,11 @@
       --text-light: #eee;
       --card-bg-dark: #23243a;
       --card-bg-light: #f7f7fa;
+      --header-height: 64px;
+    }
+    html, body {
+      min-height: 100%;
+      scroll-behavior: smooth;
     }
     [data-theme="dark"] {
       background: var(--bg-dark);
@@ -35,32 +41,40 @@
       font-family: 'Inter', system-ui, sans-serif;
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
     }
     .navbar {
-      background: transparent;
-      box-shadow: none;
+      background: rgba(24,26,32,0.95);
+      box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
       position: sticky;
       top: 0;
       z-index: 100;
+      height: var(--header-height);
+      backdrop-filter: blur(8px);
     }
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
     }
     .logo {
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 1.5em;
+      font-size: 1.6em;
       font-weight: bold;
       letter-spacing: 1px;
       color: var(--accent1);
       text-decoration: none;
+      user-select: none;
     }
     .menu-desktop {
       display: flex;
-      gap: 10px;
+      gap: 16px;
       align-items: center;
     }
     .btn-ghost {
@@ -69,11 +83,13 @@
       color: inherit;
       font: inherit;
       cursor: pointer;
-      padding: 8px 14px;
+      padding: 8px 16px;
       border-radius: 6px;
       transition: background 0.2s;
       text-decoration: none;
       outline: none;
+      font-weight: 500;
+      font-size: 1em;
     }
     .btn-ghost.active, .btn-ghost:focus, .btn-ghost:hover {
       background: rgba(123,97,255,0.08);
@@ -91,8 +107,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: box-shadow 0.2s;
+      transition: box-shadow 0.2s, opacity 0.2s;
       box-shadow: 0 2px 8px 0 rgba(123,97,255,0.08);
+      font-size: 1.08em;
     }
     .btn.primary:hover, .btn.primary:focus {
       box-shadow: 0 4px 16px 0 rgba(123,97,255,0.16);
@@ -126,17 +143,22 @@
       .menu-desktop { display: none; }
       #menuToggle { display: inline-block !important; }
       .mobile-menu { display: flex; }
+      .container { flex-wrap: wrap; }
     }
+    #menuToggle { display: none; }
     .wrap {
       max-width: 900px;
       margin: 0 auto;
-      padding: 24px 18px 0 18px;
+      padding: 32px 18px 0 18px;
     }
     h1, h2, h3 {
       font-weight: 700;
       margin-top: 0;
       letter-spacing: 0.01em;
     }
+    h1 { font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    h3 { font-size: 1.15em; }
     .card {
       background: var(--card-bg-dark);
       border-radius: 14px;
@@ -147,6 +169,7 @@
       flex-direction: column;
       gap: 10px;
       min-height: 140px;
+      position: relative;
     }
     [data-theme="light"] .card {
       background: var(--card-bg-light);
@@ -221,6 +244,82 @@
       margin-bottom: 4px;
       display: block;
     }
+    .section-desc {
+      color: #aaa;
+      font-size: 1.08em;
+      margin-bottom: 1.5em;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin: 2em 0;
+    }
+    .feature {
+      background: var(--card-bg-dark);
+      border-radius: 10px;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.04);
+    }
+    [data-theme="light"] .feature {
+      background: var(--card-bg-light);
+    }
+    .feature i {
+      color: var(--accent2);
+    }
+    .testimonial-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin: 2em 0;
+    }
+    .testimonial {
+      background: var(--card-bg-dark);
+      border-radius: 10px;
+      padding: 18px 14px;
+      color: #eee;
+      font-size: 1em;
+      font-style: italic;
+      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.04);
+      position: relative;
+    }
+    [data-theme="light"] .testimonial {
+      background: var(--card-bg-light);
+      color: #333;
+    }
+    .testimonial .author {
+      font-weight: 600;
+      margin-top: 1em;
+      font-style: normal;
+      color: var(--accent1);
+      font-size: 0.98em;
+    }
+    .faq-list {
+      margin: 2em 0;
+      max-width: 700px;
+    }
+    .faq {
+      margin-bottom: 1.2em;
+    }
+    .faq-question {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--accent1);
+      margin-bottom: 0.2em;
+    }
+    .faq-answer {
+      display: none;
+      color: #aaa;
+      font-size: 1em;
+      margin-left: 1em;
+    }
+    .faq.open .faq-answer {
+      display: block;
+    }
     footer {
       text-align: center;
       margin: 2em 0 1em 0;
@@ -231,12 +330,22 @@
       background: var(--accent1);
       color: #fff;
     }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
   </style>
 </head>
 <body data-theme="dark" aria-busy="true"></body>
 
 <noscript>
-  <div style="background:#ffefc1;color:#222;padding:16px;text-align:center;font-weight:bold;"></div>
+  <div style="background:#ffefc1;color:#222;padding:16px;text-align:center;font-weight:bold;">
     JavaScript is required for the best experience on this site.
   </div>
 </noscript>
@@ -246,7 +355,7 @@
 
 <!-- NAV BAR -->
 <header class="navbar" role="banner" aria-label="Main navigation">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;">
+  <div class="container">
     <a href="#" class="logo">
       <i data-feather="box"></i> Prathi Tech
     </a>
@@ -255,6 +364,8 @@
       <a href="#tools" class="btn-ghost" data-route="tools">Tools</a>
       <a href="#packs" class="btn-ghost" data-route="packs">Student Packs</a>
       <a href="#learning" class="btn-ghost" data-route="learning">Learning</a>
+      <a href="#about" class="btn-ghost" data-route="about">About</a>
+      <a href="#faq" class="btn-ghost" data-route="faq">FAQ</a>
       <a href="#contact" class="btn-ghost" data-route="contact">Request</a>
     </nav>
     <button id="menuToggle" class="btn-ghost" aria-label="Open menu" style="display:none;">
@@ -272,6 +383,8 @@
   <a href="#tools" data-route="tools">Tools</a>
   <a href="#packs" data-route="packs">Student Packs</a>
   <a href="#learning" data-route="learning">Learning</a>
+  <a href="#about" data-route="about">About</a>
+  <a href="#faq" data-route="faq">FAQ</a>
   <a href="#contact" data-route="contact">Request</a>
 </nav>
 
@@ -279,22 +392,72 @@
   <!-- HOME SECTION -->
   <section id="home" style="display:block;">
     <h1>Prathi Tech — Free Tools Hub</h1>
-    <p>Curated, verified and student-friendly free tools. Search, filter and request new tools.</p>
+    <p class="section-desc">Curated, verified and student-friendly free tools. Search, filter and request new tools. Empower your learning, productivity, and creativity with the best resources for students and professionals.</p>
     <ul id="topPicks" style="margin:1em 0 2em 0;list-style:none;padding:0;"></ul>
     <a href="#tools" class="btn primary" data-route="tools" style="margin-bottom:2em;"><i data-feather="search"></i>Browse Tools</a>
+    <div class="feature-list">
+      <div class="feature">
+        <i data-feather="zap"></i>
+        <div><strong>Lightning Fast Search</strong></div>
+        <div>Find the right tool instantly with smart search and filters.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="shield"></i>
+        <div><strong>Verified & Safe</strong></div>
+        <div>All tools are handpicked and checked for reliability and privacy.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="users"></i>
+        <div><strong>Student Packs</strong></div>
+        <div>Unlock exclusive offers and bundles for students and educators.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="book-open"></i>
+        <div><strong>Learning Resources</strong></div>
+        <div>Access free courses, guides, and tutorials to boost your skills.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="gift"></i>
+        <div><strong>Request a Tool</strong></div>
+        <div>Missing something? Suggest a new tool and we’ll add it for you.</div>
+      </div>
+    </div>
+    <div style="margin:2em 0;">
+      <h2>What users say</h2>
+      <div class="testimonial-list">
+        <div class="testimonial">
+          “Prathi Tech helped me discover tools I never knew existed. The student packs are a game changer!”
+          <div class="author">— Aditi, Engineering Student</div>
+        </div>
+        <div class="testimonial">
+          “The curated list saves me hours of searching. I recommend it to all my classmates.”
+          <div class="author">— Rahul, Designer</div>
+        </div>
+        <div class="testimonial">
+          “I requested a tool and it was added within a week. Amazing community and support!”
+          <div class="author">— Priya, Developer</div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- TOOLS SECTION -->
   <section id="tools" style="display:none;">
     <h2>All Tools</h2>
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:1em;"></div>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:1em;">
       <input id="search" type="search" placeholder="Search tools...">
-      <select id="cat">
+      <select id="cat"></select>
         <option value="all">All Categories</option>
         <option value="dev">Development</option>
         <option value="design">Design</option>
         <option value="productivity">Productivity</option>
         <option value="ai">AI</option>
+        <option value="cloud">Cloud</option>
+        <option value="security">Security</option>
+        <option value="writing">Writing</option>
+        <option value="video">Video</option>
+        <option value="audio">Audio</option>
+        <option value="other">Other</option>
       </select>
       <span id="itemsCount" style="margin-left:auto;font-size:0.95em;color:#aaa;">0</span>
     </div>
@@ -304,27 +467,76 @@
   </section>
 
   <!-- PACKS SECTION -->
-  <section id="packs" style="display:none;"></section>
+  <section id="packs" style="display:none;">
     <h2>Student Packs</h2>
+    <div class="section-desc">Unlock premium tools and services for free or at a huge discount with these student packs. <br> <strong>Tip:</strong> Most require a valid student email or ID.</div>
     <div id="packsGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
   </section>
 
   <!-- LEARNING SECTION -->
   <section id="learning" style="display:none;">
     <h2>Learning Resources</h2>
+    <div class="section-desc">Free courses, guides, and tutorials to help you learn coding, design, AI, and more. Curated for students and self-learners.</div>
     <div id="learnGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
   </section>
 
+  <!-- ABOUT SECTION -->
+  <section id="about" style="display:none;">
+    <h2>About Prathi Tech</h2>
+    <div class="section-desc">
+      Prathi Tech is a community-driven hub for discovering the best free tools, student packs, and learning resources. Our mission is to empower students, educators, and professionals by making high-quality digital resources accessible to everyone.<br><br>
+      <strong>Why Prathi Tech?</strong>
+      <ul>
+        <li>Handpicked, regularly updated collection</li>
+        <li>No ads, no spam, just useful tools</li>
+        <li>Open to suggestions and community contributions</li>
+        <li>Built by students, for students</li>
+      </ul>
+      <br>
+      <strong>Contact:</strong> <a href="#contact" data-route="contact">Request a tool or send feedback</a>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" style="display:none;">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq">
+        <div class="faq-question">Is Prathi Tech free to use?</div>
+        <div class="faq-answer">Yes! All features and resources are free to access. Some tools may have premium upgrades, but we only list free tiers.</div>
+      </div>
+      <div class="faq"></div>
+        <div class="faq-question">How often is the tool list updated?</div>
+        <div class="faq-answer">We update the list every week and add new tools based on user requests and community feedback.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">Can I suggest a tool or resource?</div>
+        <div class="faq-answer">Absolutely! Use the Request form to suggest new tools, packs, or learning resources.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">Are these tools safe?</div>
+        <div class="faq-answer">We review every tool before listing. However, always use your own judgment and never share sensitive information on untrusted sites.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">How can I contact the team?</div>
+        <div class="faq-answer">Use the Request/Contact form or email us at <a href="mailto:hello@prathi.tech">hello@prathi.tech</a>.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT/REQUEST SECTION -->
-  <section id="contact" style="display:none;"></section>
+  <section id="contact" style="display:none;">
     <h2>Request a Tool / Contact</h2>
-    <form id="contactForm" style="max-width:400px;margin:0 auto;"></form>
+    <form id="contactForm" style="max-width:400px;margin:0 auto;">
       <label>Name*<br><input name="name" required></label>
       <label>Email<br><input name="email" type="email"></label>
       <label>Tool Name*<br><input name="tool" required></label>
       <label>Message<br><textarea name="message" rows="3"></textarea></label>
       <button type="submit" class="btn primary" style="width:100%;">Send Request</button>
     </form>
+    <div style="margin-top:2em;color:#aaa;font-size:0.98em;text-align:center;">
+      We respect your privacy. Your email is only used for follow-up if needed.
+    </div>
   </section>
 </main>
 
@@ -465,6 +677,14 @@ function setupEventListeners() {
   });
 
   $('#contactForm')?.addEventListener('submit', handleContactFormSubmit);
+
+  // FAQ toggle
+  $$('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const faq = q.parentElement;
+      faq.classList.toggle('open');
+    });
+  });
 }
 
 function navigateTo(name) {
@@ -488,10 +708,10 @@ function navigateTo(name) {
 function populateTopPicks() {
   const topPicksContainer = $('#topPicks');
   if (!topPicksContainer) return;
-  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea"];
+  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva", "Notion", "Figma"];
   topPicksContainer.innerHTML = DATA.tools
     .filter(t => picks.includes(t.title))
-    .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> ${escapeHtml(t.desc)}</li>`)
+    .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> <strong>${escapeHtml(t.title)}</strong>: ${escapeHtml(t.desc)}</li>`)
     .join('');
 }
 

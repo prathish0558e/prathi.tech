@@ -9,8 +9,8 @@
   <meta property="og:description" content="Curated, verified and student-friendly free tools. Search, filter and request new tools." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://prathi.tech/" />
-  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZDIiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjojN2I2MWZmOyIgLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDZkNmEwOyIgLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iUG9wcGlucywgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0idXJsKCNncmFkMikiPlBLPC90ZXh0Pgo8L3N2Zz4=">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/feather-icons" defer></script>
   <style>
     :root {
@@ -37,17 +37,26 @@
       color: var(--text-dark);
     }
     [data-theme="dark"] body {
-      background: linear-gradient(180deg, #20222c 0%, #181a20 100%);
+      background: linear-gradient(-45deg, #181a20, #23243a, #7b61ff, #06d6a0);
+      background-size: 400% 400%;
+      animation: animated-gradient 15s ease infinite;
     }
     [data-theme="light"] body {
-      background: linear-gradient(180deg, #fdfdff 0%, #f7f7fa 100%);
+      background: linear-gradient(-45deg, #ffffff, #f7f7fa, #e8e4ff, #d4f9ee);
+      background-size: 400% 400%;
+      animation: animated-gradient 15s ease infinite;
+    }
+    @keyframes animated-gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, sans-serif;
       min-height: 100vh;
       transition: background 0.3s, color 0.3s;
-      line-height: 1.6;
+      line-height: 1.7;
     }
     #bg {
       position: fixed;
@@ -58,13 +67,19 @@
       z-index: -1;
     }
     .navbar {
-      background: rgba(24,26,32,0.95);
+      background: rgba(24,26,32,0.85);
       box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
       position: sticky;
       top: 0;
       z-index: 100;
       height: var(--header-height);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      animation: slideDownNav 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    @keyframes slideDownNav {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
     .container {
       max-width: 1100px;
@@ -88,21 +103,20 @@
     }
     .logo span {
       display: block;
-      margin-left: 8px;
+      margin-left: 4px;
+      font-size: 0.8em;
+      font-weight: 600;
+      color: var(--text-light);
     }
     .logo-pk {
       background: linear-gradient(45deg, var(--accent1), var(--accent2));
-      color: #fff;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 0.8em;
-      letter-spacing: 0;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+      font-size: 1em;
+      letter-spacing: -1.5px;
+      line-height: 1;
     }
     .menu-desktop {
       display: flex;
@@ -139,25 +153,35 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      transition: box-shadow 0.2s, opacity 0.2s;
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       box-shadow: 0 2px 8px 0 rgba(123,97,255,0.08);
       font-size: 1.08em;
     }
     .btn.primary:hover, .btn.primary:focus {
-      box-shadow: 0 4px 16px 0 rgba(123,97,255,0.16);
-      opacity: 0.95;
+      box-shadow: 0 6px 20px 0 rgba(123,97,255,0.2), 0 0 10px rgba(6,214,160,0.2);
+      transform: translateY(-2px);
+      opacity: 1;
     }
     .mobile-menu {
-      display: none;
+      display: flex;
       flex-direction: column;
       background: var(--card-bg-dark);
       position: fixed;
       top: var(--header-height); left: 0; right: 0;
-      padding: 24px 0 12px 0;
+      padding: 12px 0;
       z-index: 120;
       box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
       border-radius: 0 0 18px 18px;
       gap: 8px;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    .mobile-menu.is-open {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
     }
     .mobile-menu a {
       color: inherit;
@@ -174,17 +198,17 @@
     @media (max-width: 800px) {
       .menu-desktop { display: none; }
       #menuToggle { display: inline-block !important; }
-      .mobile-menu { display: flex; }
       .container { flex-wrap: wrap; }
     }
     #menuToggle { display: none; }
     .wrap {
-      max-width: 900px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 18px 18px 0 18px;
+      padding: 24px 24px 0 24px;
     }
     h1, h2, h3 {
-      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
       margin-top: 0;
       letter-spacing: 0.01em;
     }
@@ -192,10 +216,12 @@
     h2 { font-size: 1.5em; margin-bottom: 0.6em; }
     h3 { font-size: 1.15em; }
     .card {
-      background: var(--card-bg-dark);
+      background: rgba(35, 36, 58, 0.5);
+      backdrop-filter: blur(12px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 22px 18px 18px 18px;
-      box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
       display: flex;
       flex-direction: column;
@@ -203,6 +229,12 @@
       min-height: 140px;
       position: relative;
       overflow: hidden; /* For hover effect */
+      transform-style: preserve-3d;
+    }
+
+    [data-theme="light"] .card {
+      background: rgba(247, 247, 250, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     .card::before {
@@ -212,10 +244,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(123, 97, 255, 0.15), transparent 40%);
+      background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(123, 97, 255, 0.2), transparent 40%);
       opacity: 0;
       transition: opacity 0.4s;
       z-index: 0;
+      transform: translateZ(-1px);
     }
 
     .card:hover::before {
@@ -227,12 +260,9 @@
       z-index: 1;
     }
 
-    [data-theme="light"] .card {
-      background: var(--card-bg-light);
-    }
     .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px 0 rgba(123,97,255,0.12);
+      transform: translateY(-8px) rotateX(6deg) rotateY(3deg) scale(1.04);
+      box-shadow: 0 18px 40px 0 rgba(123,97,255,0.18), 0 0 20px rgba(123,97,255,0.25);
     }
     .card h3 {
       margin: 0 0 6px 0;
@@ -240,12 +270,20 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      transform: translateZ(25px);
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
+    }
+    .card p {
+      transform: translateZ(20px);
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
     }
     .card .actions {
       margin-top: auto;
       padding-top: 10px;
       display: flex;
       gap: 10px;
+      transform: translateZ(30px);
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
     }
     .card-tags {
       display: flex;
@@ -253,6 +291,8 @@
       gap: 6px;
       margin-top: auto;
       padding-bottom: 10px;
+      transform: translateZ(15px);
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1);
     }
     .card-tag {
       background: rgba(123,97,255,0.1);
@@ -320,11 +360,12 @@
       margin-bottom: 10px;
       width: 100%;
       box-sizing: border-box;
-      transition: border 0.2s;
+      transition: all 0.2s;
     }
     input:focus, select:focus, textarea:focus {
       border-color: var(--accent1);
       outline: none;
+      box-shadow: 0 0 12px rgba(123,97,255,0.3);
     }
 
     .tool-filters {
@@ -380,6 +421,13 @@
     }
     [data-theme="light"] .feature {
       background: var(--card-bg-light);
+    }
+    .feature, .testimonial {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feature:hover, .testimonial:hover {
+      transform: translateY(-6px) scale(1.03);
+      box-shadow: 0 10px 25px 0 rgba(123,97,255,0.12);
     }
     .feature i {
       color: var(--accent2);
@@ -484,9 +532,42 @@
 
     footer {
       text-align: center;
-      margin: 2em 0 1em 0;
+      margin: 3em 0 1.5em 0;
       color: #888;
       font-size: 1em;
+      position: relative;
+      padding-top: 2em;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      background: rgba(24, 26, 32, 0.5);
+      backdrop-filter: blur(10px) saturate(150%);
+    }
+    [data-theme="light"] footer {
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .footer-social {
+      margin-top: 1em;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+    .footer-social a {
+      color: var(--accent1);
+      background: rgba(123,97,255,0.08);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3em;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      transform: scale(1.12) rotate(-8deg);
     }
     ::selection {
       background: var(--accent1);
@@ -513,12 +594,11 @@
     .hero-animated h1 {
       font-size: clamp(2.5rem, 8vw, 4.5rem);
       font-weight: 800;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      background: linear-gradient(45deg, var(--accent1), var(--accent2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       margin-bottom: 0.5em;
-      animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
     }
 
     .hero-animated .subtitle {
@@ -536,14 +616,20 @@
     }
 
     /* Animation Keyframes */
-    @keyframes text-focus-in {
+    @keyframes animated-text-gradient {
+      from { background-position: 0% center; }
+      to { background-position: -200% center; }
+    }
+
+    @keyframes shine {
       0% {
-        filter: blur(12px);
-        opacity: 0;
+        transform: translateX(-150%) skewX(-25deg);
+      }
+      50% {
+        transform: translateX(150%) skewX(-25deg);
       }
       100% {
-        filter: blur(0px);
-        opacity: 1;
+        transform: translateX(150%) skewX(-25deg);
       }
     }
 
@@ -555,6 +641,12 @@
     @keyframes blink-caret {
       from, to { border-color: transparent }
       50% { border-color: var(--accent2); }
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
     }
   </style>
 </head>
@@ -572,7 +664,7 @@
 <!-- NAV BAR -->
 <header class="navbar" role="banner" aria-label="Main navigation">
   <div class="container">
-    <a href="#" class="logo">
+    <a href="#home" class="logo" data-route="home">
       <div class="logo-pk">PK</div>
       <span>Prathi Tech</span>
     </a>
@@ -582,6 +674,7 @@
       <a href="#packs" class="btn-ghost" data-route="packs">Student Packs</a>
       <a href="#learning" class="btn-ghost" data-route="learning">Learning</a>
       <a href="#about" class="btn-ghost" data-route="about">About</a>
+      <a href="#projects" class="btn-ghost" data-route="projects">Projects</a>
       <a href="#faq" class="btn-ghost" data-route="faq">FAQ</a>
       <a href="#contact" class="btn-ghost" data-route="contact">Request</a>
     </nav>
@@ -595,12 +688,13 @@
 </header>
 
 <!-- MOBILE MENU -->
-<nav id="mobileMenu" class="mobile-menu" role="menu" aria-hidden="true" style="display:none">
+<nav id="mobileMenu" class="mobile-menu" role="menu" aria-hidden="true">
   <a href="#home" data-route="home">Home</a>
   <a href="#tools" data-route="tools">Tools</a>
   <a href="#packs" data-route="packs">Student Packs</a>
   <a href="#learning" data-route="learning">Learning</a>
   <a href="#about" data-route="about">About</a>
+  <a href="#projects" data-route="projects">Projects</a>
   <a href="#faq" data-route="faq">FAQ</a>
   <a href="#contact" data-route="contact">Request</a>
 </nav>
@@ -671,7 +765,7 @@
       <span id="itemsCount" style="margin-left:auto;font-size:0.95em;color:#aaa;">0</span>
     </div>
     <div id="tagWrap" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1em;"></div>
-    <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
+    <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;perspective:1000px;"></div>
     <div id="pager" class="pager"></div>
   </section>
 
@@ -703,6 +797,22 @@
       </ul>
       <br>
       <strong>Contact:</strong> <a href="#contact" data-route="contact">Request a tool or send feedback</a>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" style="display:none;">
+    <h2>My Projects</h2>
+    <div class="section-desc">A showcase of my personal and professional work.</div>
+    <div class="project-grid">
+      <div class="card reveal">
+        <h3><i data-feather="globe"></i>Prathi Hades</h3>
+        <p>A personal portfolio and blog website showcasing my skills and thoughts on web development and design.</p>
+        <div class="card-tags"><span class="card-tag">Portfolio</span><span class="card-tag">Blog</span><span class="card-tag">Web</span></div>
+        <div class="actions">
+          <a class="btn primary" target="_blank" rel="noopener noreferrer" href="https://www.prathihades.me"><i data-feather="external-link"></i>Visit Site</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -754,6 +864,11 @@
 
 <footer>
   &copy; <span id="year"></span> Prathi Tech. Made with <span aria-label="love">💜</span>.
+  <div class="footer-social">
+    <a href="https://github.com/prathish0558e/prathi.tech" target="_blank" aria-label="GitHub"><i data-feather="github"></i></a>
+    <a href="https://twitter.com/" target="_blank" aria-label="Twitter"><i data-feather="twitter"></i></a>
+    <a href="mailto:hello@prathi.tech" aria-label="Email"><i data-feather="mail"></i></a>
+  </div>
 </footer>
 
 <script defer>
@@ -872,7 +987,7 @@ function setupEventListeners() {
     applyTheme(newTheme);
   });
 
-  // Card hover effect
+    // Card hover effect
   document.addEventListener('mousemove', e => {
     if (e.target.matches('.card, .card *')) {
       const card = e.target.closest('.card');
@@ -881,16 +996,21 @@ function setupEventListeners() {
       card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
     }
   });
-}
-
-// --- Navigation & Routing ---
+}// --- Navigation & Routing ---
 
 function navigateTo(name) {
   if (!name || currentRoute === name) return;
   currentRoute = name;
 
   $$('main section').forEach(s => {
-    s.style.display = (s.id === name) ? 'block' : 'none';
+    const isTarget = s.id === name;
+    s.style.display = isTarget ? 'block' : 'none';
+    if (isTarget) {
+        s.querySelectorAll('.reveal').forEach((el, i) => {
+            el.classList.remove('show'); // Reset animation for re-visits
+            setTimeout(() => el.classList.add('show'), i * 100 + 50); // Stagger animation
+        });
+    }
   });
   
   $$('#mobileMenu a, .menu-desktop .btn-ghost').forEach(el => {
@@ -1157,7 +1277,7 @@ function applyTheme(theme) {
 }
 
 function isMobileMenuOpen() {
-  return DOM.mobileMenu?.style.display === 'block';
+  return DOM.mobileMenu?.classList.contains('is-open');
 }
 
 function toggleMobileMenu() {
@@ -1166,7 +1286,7 @@ function toggleMobileMenu() {
 
 function openMobileMenu() {
   if (!DOM.mobileMenu || !DOM.menuToggle) return;
-  DOM.mobileMenu.style.display = 'block';
+  DOM.mobileMenu.classList.add('is-open');
   DOM.mobileMenu.setAttribute('aria-hidden', 'false');
   DOM.menuToggle.innerHTML = '<i data-feather="x"></i>';
   renderIcons();
@@ -1175,7 +1295,7 @@ function openMobileMenu() {
 
 function closeMobileMenu() {
   if (!DOM.mobileMenu || !DOM.menuToggle) return;
-  DOM.mobileMenu.style.display = 'none';
+  DOM.mobileMenu.classList.remove('is-open');
   DOM.mobileMenu.setAttribute('aria-hidden', 'true');
   DOM.menuToggle.innerHTML = '<i data-feather="menu"></i>';
   renderIcons();

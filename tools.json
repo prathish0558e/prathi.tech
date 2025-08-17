@@ -567,6 +567,438 @@
       "tags": ["security", "ethical-hacking", "database", "pentesting", "free"],
       "icon": "database",
       "category": "tool"
+    },
+    {
+      "title": "Hugging Face",
+      "desc": "A platform for building, training, and deploying state-of-the-art machine learning models.",
+      "url": "https://huggingface.co/",
+      "tags": ["ai", "ml", "dev", "data-science"],
+      "icon": "cpu",
+      "category": "tool"
+    },
+    {
+      "title": "DaVinci Resolve",
+      "desc": "Professional video editing, color correction, visual effects, and audio post-production.",
+      "url": "https://www.blackmagicdesign.com/products/davinciresolve",
+      "tags": ["video-editing", "design", "audio", "free"],
+      "icon": "film",
+      "category": "tool"
+    },
+    {
+      "title": "Krita",
+      "desc": "A free and open-source professional painting program for artists.",
+      "url": "https://krita.org/",
+      "tags": ["design", "art", "painting", "open-source"],
+      "icon": "edit",
+      "category": "tool"
+    },
+    {
+      "title": "Todoist",
+      "desc": "A popular task manager and to-do list app with a feature-rich free plan.",
+      "url": "https://todoist.com/",
+      "tags": ["productivity", "task-management", "organization"],
+      "icon": "check-square",
+      "category": "tool"
+    },
+    {
+      "title": "Dropbox",
+      "desc": "A file hosting service offering cloud storage and file synchronization with a free tier.",
+      "url": "https://www.dropbox.com/",
+      "tags": ["utility", "storage", "cloud", "collaboration"],
+      "icon": "folder",
+      "category": "tool"
+    },
+    {
+      "title": "WeTransfer",
+      "desc": "A simple way to send large files around the world, free for up to 2GB.",
+      "url": "https://wetransfer.com/",
+      "tags": ["utility", "file-sharing", "free"],
+      "icon": "upload-cloud",
+      "category": "tool"
+    },
+    {
+      "title": "Prettier",
+      "desc": "An opinionated code formatter that enforces a consistent style.",
+      "url": "https://prettier.io/",
+      "tags": ["dev", "code-quality", "formatter", "frontend"],
+      "icon": "code",
+      "category": "tool"
+    },
+    {
+      "title": "ESLint",
+      "desc": "A pluggable linter tool for identifying and reporting on patterns in JavaScript.",
+      "url": "https://eslint.org/",
+      "tags": ["dev", "code-quality", "linter", "testing"],
+      "icon": "check-circle",
+      "category": "tool"
+    },
+    {
+      "title": "DBeaver",
+      "desc": "A free multi-platform database tool for developers and database administrators.",
+      "url": "https://dbeaver.io/",
+      "tags": ["dev", "database", "sql", "utility"],
+      "icon": "database",
+      "category": "tool"
+    },
+    {
+      "title": "Squoosh",
+      "desc": "An image compression web app to make images smaller with best-in-class codecs.",
+      "url": "https://squoosh.app/",
+      "tags": ["utility", "compression", "performance", "images"],
+      "icon": "minimize",
+      "category": "tool"
+    },
+    {
+      "title": "Regex101",
+      "desc": "An online regex tester, debugger, and helper with syntax highlighting.",
+      "url": "https://regex101.com/",
+      "tags": ["dev", "utility", "regex", "testing"],
+      "icon": "at-sign",
+      "category": "tool"
+    },
+    {
+      "title": "Stack Overflow",
+      "desc": "The definitive question and answer site for professional and enthusiast programmers.",
+      "url": "https://stackoverflow.com/",
+      "tags": ["learning", "dev", "community", "q&a"],
+      "icon": "help-circle",
+      "category": "learning"
+    },
+    {
+      "title": "DevDocs",
+      "desc": "Combines multiple API documentations in a fast, organized, and searchable interface.",
+      "url": "https://devdocs.io/",
+      "tags": ["learning", "dev", "docs", "utility"],
+      "icon": "book-open",
+      "category": "learning"
+    },
+    {
+      "title": "Shields.io",
+      "desc": "A service for creating quality, consistent, and legible badges for open source projects.",
+      "url": "https://shields.io/",
+      "tags": ["dev", "utility", "open-source", "docs"],
+      "icon": "shield",
+      "category": "tool"
+    },
+    {
+      "title": "IFTTT",
+      "desc": "A service that allows you to connect apps and devices to automate repetitive tasks.",
+      "url": "https://ifttt.com/",
+      "tags": ["productivity", "automation", "utility"],
+      "icon": "zap",
+      "category": "tool"
+    },
+    {
+      "title": "Pocket",
+      "desc": "Save articles, videos, and stories from any publication, page, or app.",
+      "url": "https://getpocket.com/",
+      "tags": ["productivity", "reading", "utility"],
+      "icon": "bookmark",
+      "category": "tool"
+    },
+    {
+      "title": "MindMeister",
+      "desc": "An online mind mapping tool that lets you capture, develop, and share ideas visually.",
+      "url": "https://www.mindmeister.com/",
+      "tags": ["productivity", "mind-mapping", "collaboration"],
+      "icon": "git-branch",
+      "category": "tool"
+    },
+    {
+      "title": "CanIUse",
+      "desc": "Provides up-to-date browser support tables for front-end web technologies.",
+      "url": "https://caniuse.com/",
+      "tags": ["dev", "frontend", "docs", "utility"],
+      "icon": "chrome",
+      "category": "tool"
+    },
+    {
+      "title": "CodeSandbox",
+      "desc": "An online code editor and prototyping tool for rapid web development.",
+      "url": "https://codesandbox.io/",
+      "tags": ["dev", "frontend", "prototyping", "testing"],
+      "icon": "codepen",
+      "category": "tool"
+    },
+    {
+      "title": "JSFiddle",
+      "desc": "An online code playground to test and showcase HTML, CSS and JavaScript code snippets.",
+      "url": "https://jsfiddle.net/",
+      "tags": ["dev", "frontend", "code-sharing", "testing"],
+      "icon": "codepen",
+      "category": "tool"
+    },
+    {
+      "title": "ngrok",
+      "desc": "Create secure tunnels to localhost, allowing you to expose a local server behind a NAT or firewall to the internet.",
+      "url": "https://ngrok.com/",
+      "tags": ["dev", "utility", "hosting", "testing"],
+      "icon": "globe",
+      "category": "tool"
+    },
+    {
+      "title": "FileZilla",
+      "desc": "A free, open-source, cross-platform FTP, SFTP, and FTPS client.",
+      "url": "https://filezilla-project.org/",
+      "tags": ["utility", "ftp", "dev", "open-source"],
+      "icon": "upload",
+      "category": "tool"
+    },
+    {
+      "title": "Godot Engine",
+      "desc": "A free and open-source 2D and 3D game engine with a huge feature set.",
+      "url": "https://godotengine.org/",
+      "tags": ["gamedev", "3d", "2d", "open-source"],
+      "icon": "box",
+      "category": "tool"
+    },
+    {
+      "title": "LMMS",
+      "desc": "A free, open-source, and cross-platform digital audio workstation for music production.",
+      "url": "https://lmms.io/",
+      "tags": ["audio", "music", "production", "open-source"],
+      "icon": "music",
+      "category": "tool"
+    },
+    {
+      "title": "Zotero",
+      "desc": "A free, easy-to-use tool to help you collect, organize, cite, and share research.",
+      "url": "https://www.zotero.org/",
+      "tags": ["productivity", "writing", "research", "students"],
+      "icon": "archive",
+      "category": "tool"
+    },
+    {
+      "title": "Hemingway App",
+      "desc": "An online editor that makes your writing bold and clear by highlighting common errors.",
+      "url": "https://hemingwayapp.com/",
+      "tags": ["writing", "productivity", "utility"],
+      "icon": "edit-2",
+      "category": "tool"
+    },
+    {
+      "title": "Tinkercad",
+      "desc": "A free, easy-to-use app for 3D design, electronics, and coding.",
+      "url": "https://www.tinkercad.com/",
+      "tags": ["design", "3d", "modeling", "students"],
+      "icon": "cpu",
+      "category": "tool"
+    },
+    {
+      "title": "Jupyter Notebook",
+      "desc": "A web-based interactive computing platform for creating and sharing documents with live code.",
+      "url": "https://jupyter.org/",
+      "tags": ["dev", "python", "data-science", "ml"],
+      "icon": "book-open",
+      "category": "tool"
+    },
+    {
+      "title": "YNAB for College Students",
+      "desc": "You Need A Budget offers a free year to college students to help manage their finances.",
+      "url": "https://www.youneedabudget.com/college/",
+      "tags": ["productivity", "finance", "students", "budgeting"],
+      "icon": "dollar-sign",
+      "category": "pack"
+    },
+    {
+      "title": "OpenToonz",
+      "desc": "Free and open-source 2D animation software used by professional studios.",
+      "url": "https://opentoonz.github.io/e/",
+      "tags": ["design", "animation", "2d", "open-source"],
+      "icon": "film",
+      "category": "tool"
+    },
+    {
+      "title": "WolframAlpha",
+      "desc": "A computational knowledge engine for computing answers to problems across a vast range of subjects.",
+      "url": "https://www.wolframalpha.com/",
+      "tags": ["learning", "students", "science", "math", "utility"],
+      "icon": "cpu",
+      "category": "tool"
+    },
+    {
+      "title": "Overleaf",
+      "desc": "An online collaborative LaTeX editor for writing, editing, and publishing scientific documents.",
+      "url": "https://www.overleaf.com/",
+      "tags": ["writing", "students", "research", "latex", "collaboration"],
+      "icon": "file-text",
+      "category": "tool"
+    },
+    {
+      "title": "Quizlet",
+      "desc": "A popular learning tool that helps students practice and master subjects through flashcards and games.",
+      "url": "https://quizlet.com/",
+      "tags": ["learning", "students", "flashcards", "studying"],
+      "icon": "copy",
+      "category": "tool"
+    },
+    {
+      "title": "Khan Academy",
+      "desc": "A non-profit offering free, world-class education for anyone, anywhere in many subjects.",
+      "url": "https://www.khanacademy.org/",
+      "tags": ["learning", "students", "free", "courses", "education"],
+      "icon": "award",
+      "category": "learning"
+    },
+    {
+      "title": "GeoGebra",
+      "desc": "A free dynamic mathematics software for all levels of education that brings together geometry, algebra, and calculus.",
+      "url": "https://www.geogebra.org/",
+      "tags": ["learning", "students", "math", "geometry", "free"],
+      "icon": "compass",
+      "category": "tool"
+    },
+    {
+      "title": "Lucidchart",
+      "desc": "An intelligent diagramming application for creating flowcharts, mind maps, and other visuals.",
+      "url": "https://www.lucidchart.com/",
+      "tags": ["diagrams", "students", "productivity", "collaboration"],
+      "icon": "git-merge",
+      "category": "tool"
+    },
+    {
+      "title": "EdX",
+      "desc": "Access 2000+ free online courses from 140 leading institutions worldwide.",
+      "url": "https://www.edx.org/",
+      "tags": ["learning", "courses", "university", "free", "students"],
+      "icon": "book",
+      "category": "learning"
+    },
+    {
+      "title": "Prezi",
+      "desc": "A presentation software that uses motion, zoom, and spatial relationships to bring your ideas to life.",
+      "url": "https://prezi.com/",
+      "tags": ["presentation", "students", "design", "productivity"],
+      "icon": "airplay",
+      "category": "tool"
+    },
+    {
+      "title": "Mendeley",
+      "desc": "A free reference manager and academic social network that can help you organize your research.",
+      "url": "https://www.mendeley.com/",
+      "tags": ["research", "students", "writing", "productivity", "utility"],
+      "icon": "archive",
+      "category": "tool"
+    },
+    {
+      "title": "Duolingo",
+      "desc": "Learn a new language for free with bite-sized lessons that feel like a game.",
+      "url": "https://www.duolingo.com/",
+      "tags": ["learning", "students", "language", "free", "education"],
+      "icon": "globe",
+      "category": "learning"
+    },
+    {
+      "title": "Google Scholar",
+      "desc": "A freely accessible web search engine that indexes the full text or metadata of scholarly literature.",
+      "url": "https://scholar.google.com/",
+      "tags": ["learning", "students", "research", "science", "utility"],
+      "icon": "book-open",
+      "category": "learning"
+    },
+    {
+      "title": "The Odin Project",
+      "desc": "A free and open-source curriculum for learning full-stack web development.",
+      "url": "https://www.theodinproject.com/",
+      "tags": ["learning", "dev", "full-stack", "free", "open-source"],
+      "icon": "award",
+      "category": "learning"
+    },
+    {
+      "title": "Smallpdf",
+      "desc": "A suite of 20+ free online tools to compress, convert, edit, and sign PDF files.",
+      "url": "https://smallpdf.com/",
+      "tags": ["utility", "pdf", "productivity", "free"],
+      "icon": "file",
+      "category": "tool"
+    },
+    {
+      "title": "MIT OpenCourseWare",
+      "desc": "A web-based publication of virtually all MIT course content, open and available to the world.",
+      "url": "https://ocw.mit.edu/",
+      "tags": ["learning", "courses", "university", "free", "students"],
+      "icon": "book",
+      "category": "learning"
+    },
+    {
+      "title": "Simplenote",
+      "desc": "A light, clean, and free note-taking app with cross-platform sync and markdown support.",
+      "url": "https://simplenote.com/",
+      "tags": ["productivity", "notes", "utility", "free"],
+      "icon": "edit-3",
+      "category": "tool"
+    },
+    {
+      "title": "Slido",
+      "desc": "An audience interaction tool for live Q&As, polls, and surveys, perfect for classes and events.",
+      "url": "https://www.sli.do/",
+      "tags": ["collaboration", "presentation", "students", "productivity"],
+      "icon": "message-square",
+      "category": "tool"
+    },
+    {
+      "title": "TryHackMe",
+      "desc": "A platform that helps you learn Ethical Hacking in a gamified way.",
+      "url": "https://tryhackme.com/",
+      "tags": ["learning", "ethical-hacking", "gamified", "security", "free"],
+      "icon": "award",
+      "category": "learning"
+    },
+    {
+      "title": "Hack The Box",
+      "desc": "A platform with real-world challenges to test your hacking skills.",
+      "url": "https://www.hackthebox.com/",
+      "tags": ["learning", "ethical-hacking", "pentesting", "labs", "free"],
+      "icon": "box",
+      "category": "learning"
+    },
+    {
+      "title": "Web Security Academy",
+      "desc": "Free, online web security training from the creators of Burp Suite.",
+      "url": "https://portswigger.net/web-security",
+      "tags": ["learning", "web-security", "ethical-hacking", "free", "portswigger"],
+      "icon": "book-open",
+      "category": "learning"
+    },
+    {
+      "title": "Cybrary",
+      "desc": "A collection of free courses on cybersecurity and IT.",
+      "url": "https://www.cybrary.it/",
+      "tags": ["learning", "cybersecurity", "courses", "free", "certification"],
+      "icon": "book",
+      "category": "learning"
+    },
+    {
+      "title": "John the Ripper",
+      "desc": "A powerful open-source tool for password security auditing and recovery.",
+      "url": "https://www.openwall.com/john/",
+      "tags": ["security", "ethical-hacking", "password-cracking", "tool", "open-source"],
+      "icon": "key",
+      "category": "tool"
+    },
+    {
+      "title": "Aircrack-ng",
+      "desc": "A complete suite of tools to assess Wi-Fi network security.",
+      "url": "https://www.aircrack-ng.org/",
+      "tags": ["security", "ethical-hacking", "wifi", "network", "tool"],
+      "icon": "wifi",
+      "category": "tool"
+    },
+    {
+      "title": "Termux",
+      "desc": "An Android terminal emulator and Linux environment app.",
+      "url": "https://termux.dev/en/",
+      "tags": ["dev", "android", "linux", "terminal", "tool"],
+      "icon": "terminal",
+      "category": "tool"
+    },
+    {
+      "title": "Ghidra",
+      "desc": "A software reverse engineering (SRE) framework developed by the NSA.",
+      "url": "https://ghidra-sre.org/",
+      "tags": ["security", "ethical-hacking", "reverse-engineering", "tool", "nsa"],
+      "icon": "cpu",
+      "category": "tool"
     }
   ]
 }

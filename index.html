@@ -1,552 +1,120 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Prathi.Tech — Student Tech Hub</title>
-<meta name="description" content="Prathi.Tech — curated free tools, student packs, coding & creative resources. Mobile-first, touch-friendly." />
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
-
-<!-- Feather Icons -->
-<script src="https://unpkg.com/feather-icons"></script>
-
-<style>
-  /* ---------- THEME / LAYOUT / MOBILE-FIRST ---------- */
-  :root{
-    --bg:#071224; --card:#0e1722; --muted:#98afc7; --text:#eaf4ff;
-    --accent1:#7b61ff; --accent2:#00e6a8; --glass:rgba(255,255,255,0.03);
-    --maxw:1100px; --radius:14px;
-    --shadow:0 8px 40px rgba(0,0,0,0.45);
-  }
-  [data-theme="light"]{
-    --bg:#f6fbff; --card:#ffffff; --muted:#42506a; --text:#061225;
-    --accent1:#5530d6; --accent2:#119688; --glass:rgba(0,0,0,0.04);
-  }
-
-  *{box-sizing:border-box}
-  html,body{height:100%; margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial; background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale}
-  a{color:inherit;text-decoration:none}
-  /* main container */
-  .wrap{max-width:var(--maxw); margin:84px auto 88px; padding:16px}
-  /* NAV - mobile first */
-  .navbar{position:fixed; left:12px; right:12px; top:12px; z-index:120; padding:10px; display:flex; gap:8px; align-items:center; justify-content:space-between; background:var(--glass); border-radius:12px; box-shadow:var(--shadow); border:1px solid rgba(255,255,255,0.03)}
-  .nav-brand{display:flex;gap:10px;align-items:center;font-weight:800}
-  .nav-brand .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(90deg,var(--accent1),var(--accent2));display:flex;align-items:center;justify-content:center;}
-  .nav-actions{display:flex;gap:8px;align-items:center}
-  .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 14px;border-radius:10px;color:var(--text);font-weight:700;display:flex;align-items:center;gap:7px;transition:background .18s; cursor:pointer;}
-  .btn-ghost:hover{background:color-mix(in oklab, var(--glass) 80%, transparent)}
-  .theme-toggle{padding:8px 10px;border-radius:10px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041017;font-weight:800;display:flex;align-items:center;gap:6px; cursor: pointer;}
-  .hamburger{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03); cursor: pointer;}
-  .hamburger svg{color:var(--text);width:20px;height:20px}
-  /* off-canvas menu */
-  .mobile-menu{position:fixed;left:12px;right:12px;top:80px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);backdrop-filter:blur(8px);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 10px 40px rgba(0,0,0,0.6);display:none;z-index:119}
-  .mobile-menu a{display:flex;align-items:center;gap:10px;padding:12px;border-radius:10px;font-weight:700;color:var(--muted);transition:background .14s;}
-  .mobile-menu a.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041017}
-  /* hero */
-  .hero{display:grid;grid-template-columns:1fr;gap:18px;align-items:center}
-  .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--radius); padding:16px; border:1px solid rgba(255,255,255,0.04); box-shadow:var(--shadow);}
-  h1{margin:0;font-size:clamp(22px,6vw,36px); display:flex; align-items:center; gap: 8px;}
-  .lead{margin-top:10px;color:var(--muted);font-size:15px}
-  .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:0;cursor:pointer;font-weight:800;transition:box-shadow .18s;}
-  .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041017;box-shadow:0 2px 20px rgba(123,97,255,0.08);}
-  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
-  .btn svg{vertical-align:middle}
-  /* sections */
-  section{margin-top:28px}
-  .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
-  .section-head h2{margin:0;font-size:18px;display:flex;align-items:center;gap:8px;}
-  .muted{color:var(--muted)}
-  /* toolbar */
-  .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}
-  .input{padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text);min-width:150px;flex:1}
-  .select{padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
-  .tag{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
-  .tag.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041017}
-  /* grid responsive */
-  .grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:14px}
-  .card{background:var(--card);padding:18px 16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;}
-  .card h3{margin:0 0 6px;font-size:16px;display:flex;align-items:center;gap:7px;}
-  .card p{margin:0;color:var(--muted);font-size:13px}
-  .card .actions{margin-top:10px;display:flex;gap:8px;flex-wrap:wrap}
-  .pager{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-  .pager button{padding:8px 10px;border-radius:8px;border:0;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800}
-  .pager button.active{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#041017}
-  /* contact form */
-  form .input, form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--text)}
-  form button{padding:12px 16px;border-radius:12px;border:0;background:linear-gradient(90deg,var(--accent1),var(--accent2));font-weight:800;color:#041017;display:flex;align-items:center;gap:7px;}
-  /* footer */
-  .footer{margin-top:26px;text-align:center;color:var(--muted);font-size:13px;padding-bottom:40px}
-  /* reveal helper */
-  .reveal{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.3,1)}
-  .reveal.show{opacity:1;transform:none}
-  /* desktop enhancements */
-  @media(min-width:720px){
-    .hero{grid-template-columns:1fr 380px}
-    .grid{grid-template-columns:repeat(2,1fr)}
-    .mobile-menu{display:none}
-    .menu-desktop{display:flex;gap:8px;align-items:center}
-    .menu-mobile-toggle{display:none}
-  }
-  @media(min-width:1024px){
-    .grid{grid-template-columns:repeat(3,1fr)}
-    .wrap{padding:28px}
-  }
-  /* canvas */
-  #bg{position:fixed;inset:0;z-index:-1}
-  /* toast */
-  .toast{position:fixed;right:16px;bottom:18px;z-index:100;background:rgba(0,0,0,0.6);padding:10px 12px;border-radius:10px;color:#fff}
-</style>
-</head>
-<body data-theme="dark" style="touch-action:manipulation;-webkit-tap-highlight-color:transparent;">
-
-<canvas id="bg" aria-hidden="true"></canvas>
-
-<!-- NAV -->
-<div class="navbar" role="navigation" aria-label="Main">
-  <div class="nav-brand" aria-hidden="false">
-    <div class="logo" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg></div>
-    <div style="line-height:1">
-      <div style="font-weight:800">Prathi.Tech</div>
-      <div style="font-size:12px;color:var(--muted)">Student Tech Hub</div>
-    </div>
-  </div>
-
-  <!-- desktop menu shown by CSS at >=720px -->
-  <div class="menu-desktop" style="display:none" aria-hidden="true">
-    <button class="btn-ghost" data-route="home"><i data-feather="home"></i>&nbsp;Home</button>
-    <button class="btn-ghost" data-route="tools"><i data-feather="tool"></i>&nbsp;Tools</button>
-    <button class="btn-ghost" data-route="coding"><i data-feather="code"></i>&nbsp;Coding</button>
-    <button class="btn-ghost" data-route="editing"><i data-feather="edit"></i>&nbsp;Editing</button>
-    <button class="btn-ghost" data-route="packs"><i data-feather="gift"></i>&nbsp;Packs</button>
-    <button class="btn-ghost" data-route="learning"><i data-feather="book-open"></i>&nbsp;Learning</button>
-    <button class="btn-ghost" data-route="contact"><i data-feather="mail"></i>&nbsp;Contact</button>
-  </div>
-
-  <div class="nav-actions">
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme"><i data-feather="moon"></i></button>
-    <button id="menuToggle" class="hamburger menu-mobile-toggle" aria-label="Open menu"><i data-feather="menu"></i></button>
-  </div>
-</div>
-
-<!-- off-canvas mobile menu -->
-<nav id="mobileMenu" class="mobile-menu" role="menu" aria-hidden="true" style="display:none">
-  <a href="#" data-route="home"><i data-feather="home"></i> Home</a>
-  <a href="#" data-route="tools"><i data-feather="tool"></i> Tools</a>
-  <a href="#" data-route="coding"><i data-feather="code"></i> Coding</a>
-  <a href="#" data-route="editing"><i data-feather="edit-3"></i> Editing</a>
-  <a href="#" data-route="packs"><i data-feather="gift"></i> Packs</a>
-  <a href="#" data-route="learning"><i data-feather="book-open"></i> Learning</a>
-  <a href="#" data-route="contact"><i data-feather="mail"></i> Contact</a>
-</nav>
-
-<main class="wrap" id="app">
-
-  <!-- HOME -->
-  <section id="home" class="reveal show" aria-labelledby="homeHeading">
-    <div class="hero">
-      <div>
-        <h1 id="homeHeading"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-6 5 2 8-8-5-8 5 2-8L2 9h7z"></path></svg>Prathi.Tech — Free tools & resources for students</h1>
-        <p class="lead">Curated tools, student packs, tutorials and interactive demos — built mobile-first and safe for students.</p>
-        <div class="cta">
-          <button class="btn primary" data-go="tools"><i data-feather="compass"></i> Explore Tools</button>
-          <button class="btn ghost" data-go="learning"><i data-feather="book"></i> Start Learning</button>
-        </div>
-        <div style="margin-top:12px;color:var(--muted); display:flex; align-items:center; gap: 8px;"><i data-feather="info"></i> Tip: Press <strong>/</strong> to focus search. Press <strong>H</strong> for quick help.</div>
-      </div>
-
-      <aside class="hero-card" aria-label="Top picks">
-        <h3 style="margin:0 0 8px"><i data-feather="thumbs-up"></i> Top Picks</h3>
-        <ul style="padding-left:18px;margin:0;color:var(--muted);font-size:14px; list-style:none;">
-          <li style="display:flex; align-items:center; gap: 8px;"><i data-feather="github"></i> GitHub Student Pack — domains, hosting & dev tools</li>
-          <li style="display:flex; align-items:center; gap: 8px;"><i data-feather="cpu"></i> Google Colab — free GPU notebooks</li>
-          <li style="display:flex; align-items:center; gap: 8px;"><i data-feather="image"></i> Photopea — browser image editor</li>
-          <li style="display:flex; align-items:center; gap: 8px;"><i data-feather="cloud"></i> Netlify / Vercel — fast static deploy</li>
-        </ul>
-      </aside>
-    </div>
-  </section>
-
-  <!-- TOOLS -->
-  <section id="tools" class="reveal" style="display:none" aria-labelledby="toolsHeading">
-    <div class="section-head">
-      <h2 id="toolsHeading"><i data-feather="tool"></i> Free Tools & Resources</h2>
-      <div class="muted">Safe, legal & student-friendly</div>
-    </div>
-
-    <div class="toolbar" style="margin-top:10px">
-      <input id="search" class="input" placeholder="Search tools (hosting, editor, ai) ...">
-      <select id="cat" class="select" aria-label="Category">
-        <option value="all">All</option><option value="dev">Developer</option><option value="design">Design</option>
-        <option value="media">Media</option><option value="ml">ML/AI</option><option value="cloud">Cloud</option><option value="students">Students</option>
-        <option value="security">Security</option>
-      </select>
-      <div id="tagWrap" style="display:flex;gap:8px;flex-wrap:wrap"></div>
-    </div>
-
-    <div id="cards" class="grid" style="margin-top:12px" aria-live="polite"></div>
-    <div id="pager" class="pager" role="navigation" aria-label="Pagination"></div>
-  </section>
-
-  <!-- CODING -->
-  <section id="coding" class="reveal" style="display:none">
-    <div class="section-head">
-      <h2><i data-feather="code"></i> Coding Platforms & Projects</h2>
-      <div class="muted">Practice & build portfolio</div>
-    </div>
-    <div id="codingGrid" class="grid" style="margin-top:12px"></div>
-  </section>
-
-  <!-- EDITING -->
-  <section id="editing" class="reveal" style="display:none">
-    <div class="section-head">
-      <h2><i data-feather="edit-3"></i> Editing & Creative Tools</h2><div class="muted">Design, video & audio</div>
-    </div>
-    <div id="editingGrid" class="grid" style="margin-top:12px"></div>
-  </section>
-
-  <!-- PACKS -->
-  <section id="packs" class="reveal" style="display:none">
-    <div class="section-head">
-      <h2><i data-feather="gift"></i> Student Packs</h2><div class="muted">Claim using your student email</div>
-    </div>
-    <div id="packsGrid" class="grid" style="margin-top:12px"></div>
-  </section>
-
-  <!-- LEARNING -->
-  <section id="learning" class="reveal" style="display:none">
-    <div class="section-head">
-      <h2><i data-feather="book-open"></i> Learning Resources</h2><div class="muted">Courses, books & tutorials</div>
-    </div>
-    <div id="learnGrid" class="grid" style="margin-top:12px"></div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="reveal" style="display:none">
-    <form id="contactForm">
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit">Send</button>
-</form>
-
-<script>
-document.getElementById("contactForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-
-  let formData = {
-    name: e.target.name.value,
-    email: e.target.email.value,
-    message: e.target.message.value
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl6ymDJ0mzHDik8a6R5KMINMYP9yMJEi4PgjUuPtNgRNLu460/exec", {
-    method: "POST",
-    body: JSON.stringify(formData)
-  })
-  .then(res => res.json())
-  .then(data => {
-    alert("✅ Message sent successfully!");
-    e.target.reset();
-  })
-  .catch(err => {
-    alert("❌ Something went wrong: " + err);
-  });
-});
-</script>
-  </section>
-
-  <div class="footer">© <span id="year"></span> Prathi.Tech — Built for students</div>
-</main>
-
-<div id="toast" class="toast" style="display:none"></div>
-
-<!-- ---------- DATA (expanded safe list) ---------- -->
-<script>
-const DATA = {
-  tools: [
-    {"title":"GitHub Student Developer Pack","desc":"100+ tools free for verified students (domains, hosting, IDEs).","url":"https://education.github.com/pack","tags":["students","dev"],"icon":"github"},
-    {"title":"Namecheap (Student offers)","desc":"Domain offers via student pack partners.","url":"https://www.namecheap.com","tags":["domain","students"],"icon":"globe"},
-    {"title":"GitHub Pages","desc":"Free static hosting from GitHub (custom domain support).","url":"https://pages.github.com","tags":["hosting","students"],"icon":"server"},
-    {"title":"Netlify","desc":"Deploy static sites, free tier, continuous deploy from Git.","url":"https://www.netlify.com","tags":["hosting","cloud"],"icon":"cloud-lightning"},
-    {"title":"Vercel","desc":"Deploy Next.js & static sites with serverless functions free tier.","url":"https://vercel.com","tags":["hosting","cloud"],"icon":"cloud"},
-    {"title":"Cloudflare Pages","desc":"Fast global static hosting with Cloudflare's CDN.","url":"https://pages.cloudflare.com","tags":["hosting","cloud"],"icon":"shield"},
-    {"title":"Replit","desc":"Online IDE and simple hosting for prototypes and small apps.","url":"https://replit.com","tags":["dev","hosting"],"icon":"code"},
-    {"title":"Glitch","desc":"Instant node apps, remix projects and host prototypes.","url":"https://glitch.com","tags":["dev","hosting"],"icon":"zap"},
-    {"title":"Figma Education","desc":"Free Figma Pro features for verified students & teachers.","url":"https://www.figma.com/education","tags":["design","students"],"icon":"layers"},
-    {"title":"Photopea","desc":"Free web-based Photoshop-like editor (works in browser).","url":"https://www.photopea.com","tags":["design","image"],"icon":"image"},
-    {"title":"Canva for Education","desc":"Canva Pro features for verified students and educators.","url":"https://www.canva.com/education","tags":["design","students"],"icon":"layout"},
-    {"title":"Google Colab","desc":"Free notebooks with optional GPU for ML experiments.","url":"https://colab.research.google.com","tags":["ml","ai"],"icon":"cpu"},
-    {"title":"Kaggle","desc":"Datasets, notebooks & competitions.","url":"https://www.kaggle.com","tags":["ml","data"],"icon":"database"},
-    {"title":"TryHackMe","desc":"Beginner-friendly cybersecurity labs (free rooms).","url":"https://tryhackme.com","tags":["security","labs"],"icon":"shield"},
-    {"title":"Hack The Box","desc":"Pentest labs for skill-building.","url":"https://www.hackthebox.com","tags":["security","labs"],"icon":"unlock"},
-    {"title":"VS Code","desc":"Powerful, free code editor with extensions.","url":"https://code.visualstudio.com","tags":["dev","ide"],"icon":"code"},
-    {"title":"JetBrains Student","desc":"IDE licenses for verified students.","url":"https://www.jetbrains.com/community/education/","tags":["dev","students"],"icon":"box"},
-    {"title":"MongoDB Atlas (Student)","desc":"Free DB credits & free tier clusters.","url":"https://www.mongodb.com/atlas","tags":["cloud","db"],"icon":"database"},
-    {"title":"Supabase","desc":"Open-source Firebase alternative — free tier.","url":"https://supabase.com","tags":["cloud","db"],"icon":"server"},
-    {"title":"Unsplash","desc":"Free high-quality photos for projects.","url":"https://unsplash.com","tags":["media","images"],"icon":"image"},
-    {"title":"Pexels","desc":"Free stock photos & videos.","url":"https://www.pexels.com","tags":["media","images"],"icon":"video"},
-    {"title":"TinyPNG","desc":"Compress PNG/JPG files for web.","url":"https://tinypng.com","tags":["tools","performance"],"icon":"image"},
-    {"title":"OBS Studio","desc":"Free streaming and recording software.","url":"https://obsproject.com","tags":["media","streaming"],"icon":"video"},
-    {"title":"Kapwing","desc":"Browser-based video editing tools.","url":"https://www.kapwing.com","tags":["media","video"],"icon":"film"},
-    {"title":"Audacity","desc":"Free audio editor for podcasts and clips.","url":"https://www.audacityteam.org","tags":["media","audio"],"icon":"mic"},
-    {"title":"Blender","desc":"3D creation suite (free).","url":"https://www.blender.org","tags":["media","3d"],"icon":"box"},
-    {"title":"FreeCodeCamp","desc":"Project-based web dev curriculum.","url":"https://www.freecodecamp.org","tags":["learning","coding"],"icon":"book-open"},
-    {"title":"MDN Web Docs","desc":"Authoritative web platform docs and examples.","url":"https://developer.mozilla.org","tags":["learning","web"],"icon":"book"},
-    {"title":"CS50","desc":"Intro to CS (Harvard) — free course materials.","url":"https://cs50.harvard.edu","tags":["learning","course"],"icon":"award"},
-    {"title":"MIT OCW","desc":"MIT OpenCourseWare — free university course materials.","url":"https://ocw.mit.edu","tags":["learning","course"],"icon":"book-open"},
-    {"title":"Coursera (audit)","desc":"Audit many university courses for free.","url":"https://www.coursera.org","tags":["learning"],"icon":"layers"},
-    {"title":"edX (audit)","desc":"Audit courses for free from universities.","url":"https://www.edx.org","tags":["learning"],"icon":"layers"},
-    {"title":"Project Euler","desc":"Math/programming challenges.","url":"https://projecteuler.net","tags":["coding","math"],"icon":"target"},
-    {"title":"LeetCode","desc":"DSA practice & interviews (many free problems).","url":"https://leetcode.com","tags":["coding","interview"],"icon":"cpu"},
-    {"title":"HackerRank","desc":"Practice algorithms & contests.","url":"https://www.hackerrank.com","tags":["coding","practice"],"icon":"zap"},
-    {"title":"Codeforces","desc":"Competitive programming contests.","url":"https://codeforces.com","tags":["coding","contests"],"icon":"activity"},
-    {"title":"Notion (Students)","desc":"Notion Personal Pro free for students.","url":"https://www.notion.so/education","tags":["productivity","students"],"icon":"clipboard"}
-  ],
-  coding:[
-    {"title":"LeetCode","desc":"DSA practice & interview prep.","url":"https://leetcode.com","tags":["dsa"]},
-    {"title":"HackerRank","desc":"Programming contests & practice.","url":"https://www.hackerrank.com","tags":["practice"]},
-    {"title":"Codeforces","desc":"Competitive programming contests.","url":"https://codeforces.com","tags":["contests"]},
-    {"title":"FreeCodeCamp Projects","desc":"Project-based learning for web dev.","url":"https://www.freecodecamp.org","tags":["projects"]},
-    {"title":"CS50","desc":"Intro CS course with problem sets.","url":"https://cs50.harvard.edu","tags":["course"]}
-  ],
-  editing:[
-    {"title":"Photopea","desc":"Photoshop-like editor in the browser.","url":"https://www.photopea.com","tags":["image"]},
-    {"title":"Kapwing","desc":"Browser video editor & meme maker.","url":"https://www.kapwing.com","tags":["video"]},
-    {"title":"Audacity","desc":"Audio editing for podcasts & clips.","url":"https://www.audacityteam.org","tags":["audio"]}
-  ],
-  packs:[
-    {"title":"GitHub Student Pack","desc":"Claim freebies & developer tools.","url":"https://education.github.com/pack","tags":["students"]},
-    {"title":"JetBrains Student","desc":"Free JetBrains IDE licenses.","url":"https://www.jetbrains.com/community/education/","tags":["students","ide"]},
-    {"title":"Azure for Students","desc":"Free Azure credits for verified students.","url":"https://azure.microsoft.com/en-us/free/students/","tags":["students","cloud"]}
-  ],
-  learning:[
-    {"title":"freeCodeCamp","desc":"Project-based web dev curriculum.","url":"https://www.freecodecamp.org","tags":["web"]},
-    {"title":"MDN Web Docs","desc":"Web platform documentation.","url":"https://developer.mozilla.org","tags":["web"]},
-    {"title":"MIT OCW","desc":"University-level course materials.","url":"https://ocw.mit.edu","tags":["courses"]}
-  ]
-};
-</script>
-
-<!-- ---------- APP SCRIPT / UI LOGIC (responsive + mobile friendly) ---------- -->
-<script>
-/* ---------- small helpers ---------- */
-function $(q, ctx=document) { return ctx.querySelector(q) }
-function $$(q, ctx=document) { return Array.from(ctx.querySelectorAll(q)) }
-function showToast(msg, ok=true) {
-  const t = $('#toast'); t.style.display='block'; t.textContent = msg;
-  t.style.background = ok ? 'linear-gradient(90deg,#0f9,#06a)' : 'linear-gradient(90deg,#f66,#a00)';
-  setTimeout(()=> t.style.display='none', 2600);
-}
-
-/* ---------- init feather icons ---------- */
-document.addEventListener('DOMContentLoaded', ()=> {
-  try{ feather.replace({ 'stroke-width': 1.6, width:16, height:16 }) }catch(e){}
-});
-
-/* ---------- NAV / ROUTING ---------- */
-const menuToggle = $('#menuToggle'), mobileMenu = $('#mobileMenu');
-if(menuToggle){
-  menuToggle.addEventListener('click', ()=> {
-    const open = mobileMenu.style.display === 'block';
-    mobileMenu.style.display = open ? 'none' : 'block';
-    mobileMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
-    menuToggle.innerHTML = open ? feather.icons['menu'].toSvg() : feather.icons['x'].toSvg();
-  });
-}
-// wire mobile links
-document.addEventListener('click', (e)=>{
-  const a = e.target.closest('[data-route]');
-  if(!a) return;
-  e.preventDefault();
-  const route = a.getAttribute('data-route');
-  navigateTo(route);
-  // close mobile menu if open
-  if(mobileMenu.style.display==='block'){ mobileMenu.style.display='none'; menuToggle.innerHTML = feather.icons['menu'].toSvg(); }
-});
-
-// desktop menu (if visible)
-$$('.menu-desktop .btn-ghost').forEach(b=> b.addEventListener('click', ()=> { const r = b.getAttribute('data-route'); navigateTo(r); }));
-
-function navigateTo(name){
-  // hide all sections, show selected
-  const sections = $$('main section');
-  sections.forEach(s=> s.style.display = (s.id===name ? '' : 'none'));
-  // toggle active classes in mobile menu
-  $$('#mobileMenu a').forEach(a=> a.classList.toggle('active', a.getAttribute('data-route')===name));
-  // desktop active
-  $$('.menu-desktop .btn-ghost').forEach(b=> b.classList.toggle('active', b.getAttribute('data-route')===name));
-  // boot page-specific
-  if(name==='tools') bootTools();
-  if(name==='coding') bootGrid('coding', DATA.coding, '#codingGrid');
-  if(name==='editing') bootGrid('editing', DATA.editing, '#editingGrid');
-  if(name==='packs') bootGrid('packs', DATA.packs, '#packsGrid');
-  if(name==='learning') bootGrid('learning', DATA.learning, '#learnGrid');
-  // update location hash
-  history.replaceState(null, '', '#'+name);
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-/* initial route */
-document.addEventListener('DOMContentLoaded', ()=>{
-  const start = location.hash ? location.hash.replace('#','') : 'home';
-  navigateTo(start);
-  $('#year').textContent = new Date().getFullYear();
-});
-
-/* keyboard helpers */
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='/' && document.activeElement.tagName!=='INPUT' && document.activeElement.tagName!=='TEXTAREA') {
-    e.preventDefault();
-    navigateTo('tools');
-    const s = $('#search'); if(s){ s.focus(); s.select(); }
-  }
-  if(e.key.toLowerCase()==='h'){ alert('Help:\\n- Press / to focus search\\n- Use menu to switch pages\\n- Contact form posts to your Google Sheet (configure Apps Script)'); }
-});
-
-/* ---------- THEME ---------- */
-const themeToggle = $('#themeToggle');
-const initialTheme = localStorage.getItem('prathi_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'dark');
-document.documentElement.setAttribute('data-theme', initialTheme);
-themeToggle.innerHTML = feather.icons[initialTheme==='dark'?'moon':'sun'].toSvg();
-themeToggle.addEventListener('click', ()=>{
-  const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('prathi_theme', next);
-  themeToggle.innerHTML = feather.icons[next==='dark'?'moon':'sun'].toSvg();
-});
-
-/* ---------- STARFIELD / PARTICLES (optimized) ---------- */
-(function starfield(){
-  const c = document.getElementById('bg'); if(!c) return;
-  const ctx = c.getContext('2d');
-  let W = c.width = innerWidth, H = c.height = innerHeight;
-  addEventListener('resize', ()=>{ W=c.width=innerWidth; H=c.height=innerHeight; init(); });
-  let pts = [];
-  function init(){ pts = []; const N = Math.min(240, Math.round(W*H/9000)); for(let i=0;i<N;i++) pts.push({x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.6+0.2, vx:(Math.random()-0.5)*0.25, vy:(Math.random()-0.5)*0.12, a:Math.random()*0.5+0.05}); }
-  function frame(){
-    ctx.clearRect(0,0,W,H);
-    const g = ctx.createLinearGradient(0,0,W,H);
-    g.addColorStop(0, 'rgba(123,97,255,0.02)'); g.addColorStop(1, 'rgba(0,230,168,0.01)');
-    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
-    for(const p of pts){
-      p.x += p.vx; p.y += p.vy;
-      if(p.x < -10) p.x = W+10; if(p.x > W+10) p.x = -10;
-      if(p.y < -10) p.y = H+10; if(p.y > H+10) p.y = -10;
-      ctx.beginPath(); ctx.fillStyle = `rgba(255,255,255,${p.a})`; ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill();
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prathi Tech - Student Free Tools Hub</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+    body{
+      background:#111;color:#fff;overflow-x:hidden;transition:background 0.4s,color 0.4s;
     }
-    requestAnimationFrame(frame);
-  }
-  init(); frame();
-})();
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:15px 40px;position:fixed;width:100%;top:0;left:0;z-index:999;
+      background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
+    }
+    nav .logo{font-size:22px;font-weight:bold;color:#00ffe7;}
+    nav ul{display:flex;list-style:none;gap:20px;}
+    nav ul li a{color:#fff;text-decoration:none;transition:0.3s;}
+    nav ul li a:hover{color:#00ffe7;}
+    .toggle-btn{background:#00ffe7;color:#000;padding:6px 12px;border:none;border-radius:5px;cursor:pointer;}
+    section{padding:100px 20px;min-height:100vh;}
+    .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+    .hero h1{font-size:2.5rem;color:#00ffe7;margin-bottom:15px;}
+    .search-box{margin-top:20px;max-width:500px;width:100%;display:flex;}
+    .search-box input{flex:1;padding:10px;border:none;border-radius:6px 0 0 6px;outline:none;}
+    .search-box button{padding:10px 20px;border:none;background:#00ffe7;color:#000;font-weight:bold;
+      border-radius:0 6px 6px 0;cursor:pointer;}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:40px;}
+    .card{background:rgba(255,255,255,0.05);padding:20px;border-radius:10px;text-align:center;
+      transition:transform 0.3s,box-shadow 0.3s;}
+    .card:hover{transform:translateY(-8px);box-shadow:0 0 15px rgba(0,255,231,0.4);}
+    .card h3{color:#00ffe7;margin-bottom:10px;}
+    .card a{display:inline-block;margin-top:10px;padding:8px 16px;background:#00ffe7;color:#000;
+      border-radius:6px;text-decoration:none;font-weight:bold;}
+    .form-container{max-width:500px;margin:auto;background:rgba(255,255,255,0.05);
+      padding:25px;border-radius:10px;}
+    .form-container input,.form-container textarea,.form-container button{
+      width:100%;margin:8px 0;padding:12px;border:none;border-radius:6px;
+    }
+    .form-container button{background:#00ffe7;color:#000;font-weight:bold;cursor:pointer;}
+    body.light{background:#f4f4f4;color:#000;}
+    body.light nav{background:rgba(255,255,255,0.8);}
+    body.light nav ul li a{color:#000;}
+    body.light .card{background:rgba(0,0,0,0.05);}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">FreeToolsHub</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#tools">Tools</a></li>
+      <li><a href="#request">Request</a></li>
+    </ul>
+    <button class="toggle-btn" onclick="toggleMode()">🌙</button>
+  </nav>
 
-/* ---------- REVEAL ON SCROLL ---------- */
-(function reveal(){
-  const io = new IntersectionObserver(entries => { entries.forEach(en => { if(en.isIntersecting) en.target.classList.add('show'); }); }, {threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-})();
+  <section class="hero" id="home">
+    <h1>🎓 Free Tools & Resources for Students</h1>
+    <p>All the best study, coding, editing & AI tools — in one place!</p>
+    <div class="search-box">
+      <input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()"/>
+      <button>🔍</button>
+    </div>
+  </section>
 
-/* ---------- TOOLS: SEARCH / FILTER / PAGINATION ---------- */
-let toolsAll = DATA.tools; // large dataset
-const PAGE_SIZE = 12; // mobile friendly
-let currentPage = 1;
+  <section id="tools">
+    <h2 style="text-align:center;color:#00ffe7;margin-bottom:20px;">Popular Tools</h2>
+    <div class="grid" id="tools-grid">
+      <div class="card"><h3>Canva</h3><p>Free Design & Editing Tool</p><a href="https://www.canva.com" target="_blank">Visit</a></div>
+      <div class="card"><h3>Overleaf</h3><p>LaTeX Document Writing Tool</p><a href="https://www.overleaf.com" target="_blank">Visit</a></div>
+      <div class="card"><h3>Geogebra</h3><p>Math Graphing & Geometry Tool</p><a href="https://www.geogebra.org" target="_blank">Visit</a></div>
+      <div class="card"><h3>Replit</h3><p>Online IDE & Coding Platform</p><a href="https://replit.com" target="_blank">Visit</a></div>
+    </div>
+  </section>
 
-function bootTools(){
-  if($('#cards').dataset.inited) return;
-  $('#cards').dataset.inited = '1';
-  const searchEl = $('#search'), catEl = $('#cat'), tagWrap = $('#tagWrap'), cards = $('#cards'), pager = $('#pager');
+  <section id="request">
+    <h2 style="text-align:center;color:#00ffe7;margin-bottom:20px;">Request a Tool</h2>
+    <div class="form-container">
+      <form id="request-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="tool" placeholder="Which tool do you want?" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+      <p id="response"></p>
+    </div>
+  </section>
 
-  function getTags(){
-    const set = new Set(['all']);
-    toolsAll.forEach(it => (it.tags||[]).forEach(t => set.add(t)));
-    return Array.from(set);
-  }
-  function drawTags(active='all'){
-    const tags = getTags();
-    tagWrap.innerHTML = tags.map(t => `<div class="tag ${t===active?'active':''}" data-tag="${t}">${t}</div>`).join('');
-    tagWrap.querySelectorAll('.tag').forEach(btn => btn.addEventListener('click', ()=>{
-      tagWrap.querySelectorAll('.tag').forEach(x=>x.classList.remove('active'));
-      btn.classList.add('active'); currentPage = 1; render();
-    }));
-  }
+  <script>
+    // Dark mode toggle
+    function toggleMode(){
+      document.body.classList.toggle("light");
+      localStorage.setItem("theme",document.body.classList.contains("light")?"light":"dark");
+    }
+    if(localStorage.getItem("theme")==="light"){document.body.classList.add("light");}
 
-  function render(){
-    const q = (searchEl.value||'').trim().toLowerCase();
-    const cat = catEl.value || 'all';
-    const activeTag = (tagWrap.querySelector('.tag.active') || {dataset:{tag:'all'}}).dataset.tag || 'all';
-    let res = toolsAll.filter(it=>{
-      if(cat !== 'all' && !(it.tags||[]).includes(cat)) return false;
-      if(activeTag !== 'all' && !(it.tags||[]).includes(activeTag)) return false;
-      if(!q) return true;
-      const txt = (it.title + ' ' + (it.desc||' ') + ' ' + (it.tags||[]).join(' ')).toLowerCase();
-      return txt.includes(q);
+    // Search filter
+    function searchTools(){
+      let input=document.getElementById("search").value.toLowerCase();
+      let cards=document.querySelectorAll(".card");
+      cards.forEach(card=>{
+        card.style.display=card.innerText.toLowerCase().includes(input)?"block":"none";
+      });
+    }
+
+    // Google Sheet form submission
+    const scriptURL="https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl6ymDJ0mzHDik8a6R5KMINMYP9yMJEi4PgjUuPtNgRNLu460/exec";
+    const form=document.getElementById("request-form");
+    const res=document.getElementById("response");
+    form.addEventListener("submit",e=>{
+      e.preventDefault();
+      fetch(scriptURL,{method:"POST",body:new FormData(form)})
+      .then(r=>{res.innerText="✅ Request Sent!";form.reset();})
+      .catch(e=>{res.innerText="❌ Error, try again!";});
     });
-
-    const total = res.length; const pages = Math.max(1, Math.ceil(total / PAGE_SIZE));
-    if(currentPage > pages) currentPage = 1;
-    const start = (currentPage-1)*PAGE_SIZE; const pageItems = res.slice(start, start+PAGE_SIZE);
-
-    cards.innerHTML = pageItems.map(it => `
-      <article class="card reveal" role="article" aria-label="${it.title}">
-        <div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start">
-          <div style="flex:1">
-            <h3>${it.title}</h3>
-            <p>${it.desc||''}</p>
-          </div>
-          <div style="text-align:right;min-width:110px">
-            ${(it.tags||[]).slice(0,3).map(t=>`<div class="tag" style="margin-bottom:6px">${t}</div>`).join('')}
-            <div class="actions" style="margin-top:8px"><a class="btn" target="_blank" rel="noopener" href="${it.url}">Open</a></div>
-          </div>
-        </div>
-      </article>
-    `).join('');
-
-    // pager
-    pager.innerHTML = Array.from({length:pages}).map((_,i)=>`<button class="${i+1===currentPage?'active':''}" data-page="${i+1}">${i+1}</button>`).join('');
-    pager.querySelectorAll('button').forEach(b=>b.addEventListener('click', ()=>{ currentPage = +b.dataset.page; render(); window.scrollTo({top:document.getElementById('cards').offsetTop-80,behavior:'smooth'}); }));
-    // reveal
-    document.querySelectorAll('.reveal').forEach(el=> el.classList.add('show'));
-  }
-
-  // events
-  searchEl.addEventListener('input', ()=>{ currentPage = 1; render(); });
-  catEl.addEventListener('change', ()=>{ currentPage = 1; render(); });
-
-  drawTags();
-  render();
-}
-
-/* ---------- generic grid renderer for other pages ---------- */
-function bootGrid(name, dataArray, mountSel){
-  const mount = document.querySelector(mountSel);
-  if(!mount) return;
-  if(mount.dataset.inited) return;
-  mount.dataset.inited = '1';
-  mount.innerHTML = dataArray.map(it => `
-    <article class="card reveal">
-      <h3>${it.title}</h3>
-      <p>${it.desc||''}</p>
-      <div style="margin-top:10px"><a class="btn" target="_blank" rel="noopener" href="${it.url}">Open</a></div>
-    </article>
-  `).join('');
-  document.querySelectorAll('.reveal').forEach(el=> el.classList.add('show'));
-}
-
-/* ---------- CONTACT FORM -> Google Sheets (Apps Script) ---------- */
-
-
-/* accessibility: close mobile menu on outside click */
-document.addEventListener('click', (e)=>{
-  if(!e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle') && mobileMenu.style.display==='block') {
-    mobileMenu.style.display='none';
-    menuToggle.innerHTML = feather.icons['menu'].toSvg();
-  }
-});
-</script>
-
+  </script>
 </body>
 </html>
-
-
-

@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Prathi Tech — Free Tools Hub</title>
+  <link rel="icon" href="files/pakistan.png" type="image/x-icon">
+  <meta name="description" content="Prathi Tech — curated free tools & student packs. Search, filter and request tools." />
+  <meta property="og:title" content="Prathi Tech — Free Tools Hub" />
+  <meta property="og:description" content="Curated, verified and student-friendly free tools. Search, filter and request new tools." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://prathi.tech/" />
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons" defer></script>
+  <style>
+    :root {
+      --accent1: #7b61ff;
+      --accent2: #06d6a0;
+      --bg-dark: #181a20;
+      --bg-light: #fff;
+      --text-dark: #222;
+      --text-light: #eee;
+      --card-bg-dark: #23243a;
+      --card-bg-light: #f7f7fa;
+      --header-height: 64px;
+    }
+    html, body {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+    [data-theme="dark"] {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+    [data-theme="light"] {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+    #bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+    .navbar {
+      background: rgba(24,26,32,0.95);
+      box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--header-height);
+      backdrop-filter: blur(8px);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.6em;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: var(--accent1);
+      text-decoration: none;
+      user-select: none;
+    }
+    .menu-desktop {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .btn-ghost {
+      background: none;
+      border: none;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: background 0.2s;
+      text-decoration: none;
+      outline: none;
+      font-weight: 500;
+      font-size: 1em;
+    }
+    .btn-ghost.active, .btn-ghost:focus, .btn-ghost:hover {
+      background: rgba(123,97,255,0.08);
+      color: var(--accent1);
+    }
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.08);
+      font-size: 1.08em;
+    }
+    .btn.primary:hover, .btn.primary:focus {
+      box-shadow: 0 4px 16px 0 rgba(123,97,255,0.16);
+      opacity: 0.95;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--card-bg-dark);
+      position: fixed;
+      top: var(--header-height); left: 0; right: 0;
+      padding: 24px 0 12px 0;
+      z-index: 120;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.18);
+      border-radius: 0 0 18px 18px;
+      gap: 8px;
+    }
+    .mobile-menu a {
+      color: inherit;
+      text-decoration: none;
+      padding: 12px 24px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+    .mobile-menu a.active, .mobile-menu a:focus, .mobile-menu a:hover {
+      background: rgba(123,97,255,0.12);
+      color: var(--accent1);
+    }
+    @media (max-width: 800px) {
+      .menu-desktop { display: none; }
+      #menuToggle { display: inline-block !important; }
+      .mobile-menu { display: flex; }
+      .container { flex-wrap: wrap; }
+    }
+    #menuToggle { display: none; }
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 18px 18px 0 18px;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      margin-top: 0;
+      letter-spacing: 0.01em;
+    }
+    h1 { font-size: 2.2em; margin-bottom: 0.2em; }
+    h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    h3 { font-size: 1.15em; }
+    .card {
+      background: var(--card-bg-dark);
+      border-radius: 14px;
+      padding: 22px 18px 18px 18px;
+      box-shadow: 0 2px 12px 0 rgba(123,97,255,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-height: 140px;
+      position: relative;
+    }
+    [data-theme="light"] .card {
+      background: var(--card-bg-light);
+    }
+    .card h3 {
+      margin: 0 0 6px 0;
+      font-size: 1.15em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card .actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+    }
+    .reveal { opacity: 0; transform: translateY(20px); transition: all 0.4s cubic-bezier(.2,.9,.3,1); }
+    .reveal.show { opacity: 1; transform: none; }
+    .tag {
+      background: rgba(123,97,255,0.08);
+      color: var(--accent1);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 0.98em;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .tag.active, .tag:hover {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+    }
+    .spinner {
+      display: none;
+      position: fixed;
+      z-index: 200;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 48px; height: 48px;
+      border: 5px solid #eee;
+      border-top: 5px solid var(--accent1);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+    .toast-animate {
+      animation: toastIn 0.4s cubic-bezier(.2,.9,.3,1);
+    }
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: none;}
+    }
+    input, select, textarea {
+      background: none;
+      border: 1px solid #444;
+      color: inherit;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 1em;
+      margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent1);
+      outline: none;
+    }
+    label {
+      font-size: 1em;
+      font-weight: 500;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .section-desc {
+      color: #aaa;
+      font-size: 1.08em;
+      margin-bottom: 1.5em;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin: 2em 0;
+    }
+    .feature {
+      background: var(--card-bg-dark);
+      border-radius: 10px;
+      padding: 18px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.04);
+    }
+    [data-theme="light"] .feature {
+      background: var(--card-bg-light);
+    }
+    .feature i {
+      color: var(--accent2);
+    }
+    .testimonial-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin: 2em 0;
+    }
+    .testimonial {
+      background: var(--card-bg-dark);
+      border-radius: 10px;
+      padding: 18px 14px;
+      color: #eee;
+      font-size: 1em;
+      font-style: italic;
+      box-shadow: 0 2px 8px 0 rgba(123,97,255,0.04);
+      position: relative;
+    }
+    [data-theme="light"] .testimonial {
+      background: var(--card-bg-light);
+      color: #333;
+    }
+    .testimonial .author {
+      font-weight: 600;
+      margin-top: 1em;
+      font-style: normal;
+      color: var(--accent1);
+      font-size: 0.98em;
+    }
+    .faq-list {
+      margin: 2em 0;
+      max-width: 700px;
+    }
+    .faq {
+      margin-bottom: 1.2em;
+    }
+    .faq-question {
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--accent1);
+      margin-bottom: 0.2em;
+    }
+    .faq-answer {
+      display: none;
+      color: #aaa;
+      font-size: 1em;
+      margin-left: 1em;
+    }
+    .faq.open .faq-answer {
+      display: block;
+    }
+    footer {
+      text-align: center;
+      margin: 2em 0 1em 0;
+      color: #888;
+      font-size: 1em;
+    }
+    ::selection {
+      background: var(--accent1);
+      color: #fff;
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+
+    /* New Hero Animation */
+    .hero-animated {
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    .hero-animated h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5em;
+      animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+    }
+
+    .hero-animated .subtitle {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-bottom: 2em;
+      display: inline-block;
+      border-right: .15em solid var(--accent2);
+      white-space: nowrap;
+      overflow: hidden;
+      letter-spacing: .1em;
+      animation: 
+        typing 3.5s steps(30, end),
+        blink-caret .75s step-end infinite;
+    }
+
+    /* Animation Keyframes */
+    @keyframes text-focus-in {
+      0% {
+        filter: blur(12px);
+        opacity: 0;
+      }
+      100% {
+        filter: blur(0px);
+        opacity: 1;
+      }
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--accent2); }
+    }
+  </style>
+</head>
+<body data-theme="dark" aria-busy="true"></body>
+
+<noscript>
+  <div style="background:#ffefc1;color:#222;padding:16px;text-align:center;font-weight:bold;">
+    JavaScript is required for the best experience on this site.
+  </div>
+</noscript>
+
+<div class="spinner" id="spinner" aria-label="Loading" role="status"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<!-- NAV BAR -->
+<header class="navbar" role="banner" aria-label="Main navigation">
+  <div class="container">
+    <a href="#" class="logo">
+      <i data-feather="box"></i> Prathi Tech
+    </a>
+    <nav class="menu-desktop" aria-label="Primary">
+      <a href="#home" class="btn-ghost" data-route="home">Home</a>
+      <a href="#tools" class="btn-ghost" data-route="tools">Tools</a>
+      <a href="#packs" class="btn-ghost" data-route="packs">Student Packs</a>
+      <a href="#learning" class="btn-ghost" data-route="learning">Learning</a>
+      <a href="#about" class="btn-ghost" data-route="about">About</a>
+      <a href="#faq" class="btn-ghost" data-route="faq">FAQ</a>
+      <a href="#contact" class="btn-ghost" data-route="contact">Request</a>
+    </nav>
+    <button id="menuToggle" class="btn-ghost" aria-label="Open menu" style="display:none;">
+      <i data-feather="menu"></i>
+    </button>
+    <button id="themeToggle" class="btn-ghost" aria-label="Toggle theme">
+      <i data-feather="moon"></i>
+    </button>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<nav id="mobileMenu" class="mobile-menu" role="menu" aria-hidden="true" style="display:none">
+  <a href="#home" data-route="home">Home</a>
+  <a href="#tools" data-route="tools">Tools</a>
+  <a href="#packs" data-route="packs">Student Packs</a>
+  <a href="#learning" data-route="learning">Learning</a>
+  <a href="#about" data-route="about">About</a>
+  <a href="#faq" data-route="faq">FAQ</a>
+  <a href="#contact" data-route="contact">Request</a>
+</nav>
+
+<main class="wrap" id="app" tabindex="-1">
+  <!-- HOME SECTION -->
+  <section id="home" style="display:block;">
+    <div class="hero-animated">
+      <h1>Prathi - Technologies</h1>
+      <div class="subtitle">Your Hub for Student Resources</div>
+    </div>
+    
+    <h1>Welcome to Prathi Tech</h1>
+    <p class="section-desc">Curated, verified and student-friendly free tools. Search, filter and request new tools. Empower your learning, productivity, and creativity with the best resources for students and professionals.</p>
+    <ul id="topPicks" style="margin:1em 0 2em 0;list-style:none;padding:0;"></ul>
+    <a href="#tools" class="btn primary" data-route="tools" style="margin-bottom:2em;"><i data-feather="search"></i>Browse Tools</a>
+    <div class="feature-list">
+      <div class="feature">
+        <i data-feather="zap"></i>
+        <div><strong>Lightning Fast Search</strong></div>
+        <div>Find the right tool instantly with smart search and filters.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="shield"></i>
+        <div><strong>Verified & Safe</strong></div>
+        <div>All tools are handpicked and checked for reliability and privacy.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="users"></i>
+        <div><strong>Student Packs</strong></div>
+        <div>Unlock exclusive offers and bundles for students and educators.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="book-open"></i>
+        <div><strong>Learning Resources</strong></div>
+        <div>Access free courses, guides, and tutorials to boost your skills.</div>
+      </div>
+      <div class="feature">
+        <i data-feather="gift"></i>
+        <div><strong>Request a Tool</strong></div>
+        <div>Missing something? Suggest a new tool and we’ll add it for you.</div>
+      </div>
+    </div>
+    <div style="margin:2em 0;">
+      <h2>What users say</h2>
+      <div class="testimonial-list">
+        <div class="testimonial">
+          “Prathi Tech helped me discover tools I never knew existed. The student packs are a game changer!”
+          <div class="author">— Aditi, Engineering Student</div>
+        </div>
+        <div class="testimonial">
+          “The curated list saves me hours of searching. I recommend it to all my classmates.”
+          <div class="author">— Rahul, Designer</div>
+        </div>
+        <div class="testimonial">
+          “I requested a tool and it was added within a week. Amazing community and support!”
+          <div class="author">— Priya, Developer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS SECTION -->
+  <section id="tools" style="display:none;">
+    <h2>All Tools</h2>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:1em;">
+      <input id="search" type="search" placeholder="Search tools...">
+      <select id="cat"></select>
+        <option value="all">All Categories</option>
+        <option value="dev">Development</option>
+        <option value="design">Design</option>
+        <option value="productivity">Productivity</option>
+        <option value="ai">AI</option>
+        <option value="cloud">Cloud</option>
+        <option value="security">Security</option>
+        <option value="writing">Writing</option>
+        <option value="video">Video</option>
+        <option value="audio">Audio</option>
+        <option value="other">Other</option>
+      </select>
+      <span id="itemsCount" style="margin-left:auto;font-size:0.95em;color:#aaa;">0</span>
+    </div>
+    <div id="tagWrap" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:1em;"></div>
+    <div id="cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
+    <div id="pager" style="margin:2em 0 0 0;display:flex;gap:8px;justify-content:center;"></div>
+  </section>
+
+  <!-- PACKS SECTION -->
+  <section id="packs" style="display:none;">
+    <h2>Student Packs</h2>
+    <div class="section-desc">Unlock premium tools and services for free or at a huge discount with these student packs. <br> <strong>Tip:</strong> Most require a valid student email or ID.</div>
+    <div id="packsGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
+  </section>
+
+  <!-- LEARNING SECTION -->
+  <section id="learning" style="display:none;">
+    <h2>Learning Resources</h2>
+    <div class="section-desc">Free courses, guides, and tutorials to help you learn coding, design, AI, and more. Curated for students and self-learners.</div>
+    <div id="learnGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about" style="display:none;">
+    <h2>About Prathi Tech</h2>
+    <div class="section-desc">
+      Prathi Tech is a community-driven hub for discovering the best free tools, student packs, and learning resources. Our mission is to empower students, educators, and professionals by making high-quality digital resources accessible to everyone.<br><br>
+      <strong>Why Prathi Tech?</strong>
+      <ul>
+        <li>Handpicked, regularly updated collection</li>
+        <li>No ads, no spam, just useful tools</li>
+        <li>Open to suggestions and community contributions</li>
+        <li>Built by students, for students</li>
+      </ul>
+      <br>
+      <strong>Contact:</strong> <a href="#contact" data-route="contact">Request a tool or send feedback</a>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section id="faq" style="display:none;">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq">
+        <div class="faq-question">Is Prathi Tech free to use?</div>
+        <div class="faq-answer">Yes! All features and resources are free to access. Some tools may have premium upgrades, but we only list free tiers.</div>
+      </div>
+      <div class="faq"></div>
+        <div class="faq-question">How often is the tool list updated?</div>
+        <div class="faq-answer">We update the list every week and add new tools based on user requests and community feedback.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">Can I suggest a tool or resource?</div>
+        <div class="faq-answer">Absolutely! Use the Request form to suggest new tools, packs, or learning resources.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">Are these tools safe?</div>
+        <div class="faq-answer">We review every tool before listing. However, always use your own judgment and never share sensitive information on untrusted sites.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">How can I contact the team?</div>
+        <div class="faq-answer">Use the Request/Contact form or email us at <a href="mailto:hello@prathi.tech">hello@prathi.tech</a>.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT/REQUEST SECTION -->
+  <section id="contact" style="display:none;">
+    <h2>Request a Tool / Contact</h2>
+    <form id="contactForm" style="max-width:400px;margin:0 auto;">
+      <label>Name*<br><input name="name" required></label>
+      <label>Email<br><input name="email" type="email"></label>
+      <label>Tool Name*<br><input name="tool" required></label>
+      <label>Message<br><textarea name="message" rows="3"></textarea></label>
+      <button type="submit" class="btn primary" style="width:100%;">Send Request</button>
+    </form>
+    <div style="margin-top:2em;color:#aaa;font-size:0.98em;text-align:center;">
+      We respect your privacy. Your email is only used for follow-up if needed.
+    </div>
+  </section>
+</main>
+
+<!-- toast -->
+<div id="toast" style="display:none;position:fixed;right:18px;bottom:18px;background:rgba(0,0,0,0.7);color:#fff;padding:10px 12px;border-radius:10px;z-index:150"></div>
+
+<footer>
+  &copy; <span id="year"></span> Prathi Tech. Made with <span aria-label="love">💜</span>.
+</footer>
+
+<script defer>
+'use strict';
+
+const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz6EoW4rw_tzmz6Ihnl6ymDJ0mzHDik8a6R5KMINMYP9yMJEi4PgjUuPtNgRNLu460/exec';
+const PAGE_SIZE = 12;
+const DATA_URL = './tools.json';
+
+let DATA = { tools: [], packs: [], learning: [] };
+let currentPage = 1;
+
+const $ = (q, ctx = document) => ctx.querySelector(q);
+const $$ = (q, ctx = document) => Array.from((ctx || document).querySelectorAll(q));
+
+function showSpinner(show = true) {
+  const s = $('#spinner');
+  if (!s) return;
+  s.style.display = show ? 'block' : 'none';
+}
+
+function toast(msg, ok = true) {
+  const t = $('#toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.style.display = 'block';
+  t.style.background = ok ? 'linear-gradient(90deg,#06d6a0,#00b3ff)' : 'linear-gradient(90deg,#ff6b6b,#d64545)';
+  t.classList.add('toast-animate');
+  clearTimeout(t._hid);
+  t._hid = setTimeout(() => {
+    t.style.display = 'none';
+    t.classList.remove('toast-animate');
+  }, 2800);
+}
+
+function renderIcons() {
+  try {
+    feather.replace({ 'stroke-width': 1.6, width: 18, height: 18 });
+  } catch (e) {
+    console.warn("Feather icons could not be rendered.", e);
+  }
+}
+
+function escapeHtml(s) {
+  if (!s) return '';
+  return s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
+}
+
+document.addEventListener('DOMContentLoaded', initApp);
+
+async function initApp() {
+  showSpinner(true);
+  document.body.setAttribute('aria-busy', 'true');
+  setupEventListeners();
+  handleTheme();
+  startAnimatedBg();
+
+  try {
+    const response = await fetch(DATA_URL);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    DATA = await response.json();
+
+    const startRoute = location.hash ? location.hash.substring(1) : 'home';
+    navigateTo(startRoute);
+    populateTopPicks();
+
+  } catch (error) {
+    console.error("Failed to load tool data:", error);
+    toast("Could not load tool data. Please try again later.", false);
+  } finally {
+    $('#year').textContent = new Date().getFullYear();
+    document.body.setAttribute('aria-busy', 'false');
+    showSpinner(false);
+    renderIcons();
+  }
+}
+
+function setupEventListeners() {
+  const menuToggle = $('#menuToggle');
+  const mobileMenu = $('#mobileMenu');
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu.style.display === 'block';
+    mobileMenu.style.display = isOpen ? 'none' : 'block';
+    mobileMenu.setAttribute('aria-hidden', String(isOpen));
+    menuToggle.innerHTML = isOpen ? '<i data-feather="menu"></i>' : '<i data-feather="x"></i>';
+    renderIcons();
+    if (!isOpen) mobileMenu.querySelector('a')?.focus();
+  });
+
+  document.addEventListener('click', (e) => {
+    const navLink = e.target.closest('[data-route]');
+    if (navLink) {
+      e.preventDefault();
+      const route = navLink.dataset.route;
+      navigateTo(route);
+      if (mobileMenu.style.display === 'block') {
+        mobileMenu.style.display = 'none';
+        menuToggle.innerHTML = '<i data-feather="menu"></i>';
+        renderIcons();
+      }
+      $('#app').focus();
+    }
+    if (mobileMenu.style.display === 'block' && !e.target.closest('.mobile-menu') && !e.target.closest('#menuToggle')) {
+      mobileMenu.style.display = 'none';
+      menuToggle.innerHTML = '<i data-feather="menu"></i>';
+      renderIcons();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === '/' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+      e.preventDefault();
+      navigateTo('tools');
+      const searchInput = $('#search');
+      if (searchInput) {
+        searchInput.focus();
+        searchInput.select();
+      }
+    }
+    if (e.key.toLowerCase() === 'h') {
+      alert('Help:\n- Press / to focus search\n- Use menu to switch pages\n- Use Request form to add new tools.');
+    }
+    if (e.key === 'Escape' && mobileMenu.style.display === 'block') {
+      mobileMenu.style.display = 'none';
+      menuToggle.innerHTML = '<i data-feather="menu"></i>';
+      renderIcons();
+      menuToggle.focus();
+    }
+  });
+
+  $('#contactForm')?.addEventListener('submit', handleContactFormSubmit);
+
+  // FAQ toggle
+  $$('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const faq = q.parentElement;
+      faq.classList.toggle('open');
+    });
+  });
+}
+
+function navigateTo(name) {
+  if (!name) name = 'home';
+  $$('main section').forEach(s => s.style.display = (s.id === name ? 'block' : 'none'));
+  $$('#mobileMenu a, .menu-desktop .btn-ghost').forEach(el => {
+    el.classList.toggle('active', el.dataset.route === name);
+  });
+
+  switch (name) {
+    case 'tools': bootTools(); break;
+    case 'packs': bootGrid('packs', DATA.packs, '#packsGrid'); break;
+    case 'learning': bootGrid('learning', DATA.learning, '#learnGrid'); break;
+  }
+
+  history.replaceState(null, '', '#' + name);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderIcons();
+}
+
+function populateTopPicks() {
+  const topPicksContainer = $('#topPicks');
+  if (!topPicksContainer) return;
+  const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva", "Notion", "Figma"];
+  topPicksContainer.innerHTML = DATA.tools
+    .filter(t => picks.includes(t.title))
+    .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> <strong>${escapeHtml(t.title)}</strong>: ${escapeHtml(t.desc)}</li>`)
+    .join('');
+}
+
+function bootTools() {
+  const container = $('#cards');
+  if (!container || container.dataset.inited) return;
+  container.dataset.inited = 'true';
+
+  const searchEl = $('#search'), catEl = $('#cat'), tagWrap = $('#tagWrap');
+
+  const getTags = () => Array.from(new Set(['all', ...DATA.tools.flatMap(t => t.tags || [])]));
+
+  function drawTags(active = 'all') {
+    tagWrap.innerHTML = getTags().map(t => `<div class="tag ${t === active ? 'active' : ''}" data-tag="${t}">${escapeHtml(t)}</div>`).join('');
+    tagWrap.querySelectorAll('.tag').forEach(btn => btn.addEventListener('click', () => {
+      tagWrap.querySelector('.tag.active')?.classList.remove('active');
+      btn.classList.add('active');
+      currentPage = 1;
+      render();
+    }));
+  }
+
+  function render() {
+    const q = (searchEl.value || '').trim().toLowerCase();
+    const cat = catEl.value || 'all';
+    const activeTag = tagWrap.querySelector('.tag.active')?.dataset.tag || 'all';
+
+    const filtered = DATA.tools.filter(it => {
+      if (cat !== 'all' && !(it.tags || []).includes(cat)) return false;
+      if (activeTag !== 'all' && !(it.tags || []).includes(activeTag)) return false;
+      if (!q) return true;
+      const txt = `${it.title} ${it.desc || ''} ${(it.tags || []).join(' ')}`.toLowerCase();
+      return txt.includes(q);
+    });
+
+    $('#itemsCount').textContent = filtered.length.toLocaleString();
+    const pages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+    if (currentPage > pages) currentPage = 1;
+
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const pageItems = filtered.slice(start, start + PAGE_SIZE);
+
+    container.innerHTML = pageItems.map(it => `
+      <article class="card reveal" role="article" aria-label="${escapeHtml(it.title)}">
+        <h3><i data-feather="${it.icon || 'box'}"></i>${escapeHtml(it.title)}</h3>
+        <p>${escapeHtml(it.desc || '')}</p>
+        <div class="actions">
+          <a class="btn primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
+        </div>
+      </article>
+    `).join('');
+
+    const pager = $('#pager');
+    pager.innerHTML = Array.from({ length: pages }, (_, i) => `<button class="${i + 1 === currentPage ? 'active' : ''}" data-page="${i + 1}">${i + 1}</button>`).join('');
+    pager.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+      currentPage = +b.dataset.page;
+      render();
+      container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
+
+    container.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
+    renderIcons();
+  }
+
+  searchEl.addEventListener('input', () => { currentPage = 1; render(); });
+  catEl.addEventListener('change', () => { currentPage = 1; render(); });
+
+  drawTags();
+  render();
+}
+
+function bootGrid(name, dataArray, mountSel) {
+  const mount = $(mountSel);
+  if (!mount || mount.dataset.inited) return;
+  mount.dataset.inited = 'true';
+  mount.innerHTML = dataArray.map(it => `
+    <article class="card reveal">
+      <h3><i data-feather="${it.icon || 'box'}"></i>${escapeHtml(it.title)}</h3>
+      <p>${escapeHtml(it.desc || '')}</p>
+      <div class="actions">
+        <a class="btn primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
+      </div>
+    </article>
+  `).join('');
+  mount.querySelectorAll('.reveal').forEach((el, i) => setTimeout(() => el.classList.add('show'), i * 50));
+  renderIcons();
+}
+
+function handleTheme() {
+  const themeToggle = $('#themeToggle');
+  const savedTheme = localStorage.getItem('prathi_theme') || (window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+
+  const applyTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('prathi_theme', theme);
+    themeToggle.innerHTML = `<i data-feather="${theme === 'dark' ? 'moon' : 'sun'}"></i>`;
+    renderIcons();
+  };
+
+  applyTheme(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(newTheme);
+  });
+}
+
+async function handleContactFormSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const payload = {
+    name: form.name.value.trim(),
+    email: form.email.value.trim(),
+    tool: form.tool.value.trim(),
+    message: form.message ? form.message.value.trim() : ''
+  };
+
+  if (!payload.name || !payload.tool) {
+    toast('Please include name and tool', false);
+    return;
+  }
+  if (!WEB_APP_URL) {
+    toast('Contact form is not configured.', false);
+    return;
+  }
+
+  try {
+    const res = await fetch(WEB_APP_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    toast('Request sent ✅');
+    form.reset();
+  } catch (err) {
+    console.error("Form submission error:", err);
+    toast('Submit failed — check console for details', false);
+  }
+}
+
+function startAnimatedBg() {
+  const c = $('#bg');
+  if (!c) return;
+  const ctx = c.getContext('2d');
+  let W = c.width = innerWidth, H = c.height = innerHeight;
+  let pts = [];
+
+  const init = () => {
+    pts = [];
+    const N = Math.min(260, Math.round(W * H / 9000));
+    for (let i = 0; i < N; i++) {
+      pts.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.6 + 0.2, vx: (Math.random() - 0.5) * 0.22, vy: (Math.random() - 0.5) * 0.1, a: Math.random() * 0.6 + 0.03 });
+    }
+  };
+
+  const frame = () => {
+    ctx.clearRect(0, 0, W, H);
+    const theme = document.documentElement.getAttribute('data-theme');
+    const c1 = theme === 'light' ? 'rgba(85,48,214,0.03)' : 'rgba(123,97,255,0.02)';
+    const c2 = theme === 'light' ? 'rgba(17,150,136,0.02)' : 'rgba(0,230,168,0.01)';
+    const g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, c1);
+    g.addColorStop(1, c2);
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, W, H);
+
+    for (const p of pts) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -10) p.x = W + 10; if (p.x > W + 10) p.x = -10;
+      if (p.y < -10) p.y = H + 10; if (p.y > H + 10) p.y = -10;
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  };
+
+  window.addEventListener('resize', () => { W = c.width = innerWidth; H = c.height = innerHeight; init(); });
+  init();
+  frame();
+}
+</script>
+</body>
+</html>
+
+
+

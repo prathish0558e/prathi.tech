@@ -673,6 +673,7 @@
       <a href="#tools" class="btn-ghost" data-route="tools">Tools</a>
       <a href="#packs" class="btn-ghost" data-route="packs">Student Packs</a>
       <a href="#learning" class="btn-ghost" data-route="learning">Learning</a>
+      <a href="#hacking" class="btn-ghost" data-route="hacking">Hacking</a>
       <a href="#about" class="btn-ghost" data-route="about">About</a>
       <a href="#projects" class="btn-ghost" data-route="projects">Projects</a>
       <a href="#faq" class="btn-ghost" data-route="faq">FAQ</a>
@@ -693,6 +694,7 @@
   <a href="#tools" data-route="tools">Tools</a>
   <a href="#packs" data-route="packs">Student Packs</a>
   <a href="#learning" data-route="learning">Learning</a>
+  <a href="#hacking" data-route="hacking">Hacking</a>
   <a href="#about" data-route="about">About</a>
   <a href="#projects" data-route="projects">Projects</a>
   <a href="#faq" data-route="faq">FAQ</a>
@@ -781,6 +783,13 @@
     <h2>Learning Resources</h2>
     <div class="section-desc">Free courses, guides, and tutorials to help you learn coding, design, AI, and more. Curated for students and self-learners.</div>
     <div id="learnGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
+  </section>
+
+  <!-- HACKING SECTION -->
+  <section id="hacking" style="display:none;">
+    <h2>Ethical Hacking Tools</h2>
+    <div class="section-desc">A collection of free, legal tools for learning and practicing ethical hacking, penetration testing, and cybersecurity. For educational purposes only.</div>
+    <div id="hackingGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;"></div>
   </section>
 
   <!-- ABOUT SECTION -->
@@ -912,6 +921,7 @@ const DOM = {
   topPicks: $('#topPicks'),
   packsGrid: $('#packsGrid'),
   learnGrid: $('#learnGrid'),
+  hackingGrid: $('#hackingGrid'),
   bgCanvas: $('#bg')
 };
 
@@ -930,7 +940,14 @@ async function initApp() {
   try {
     const response = await fetch(DATA_URL);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    DATA = await response.json();
+    const rawData = await response.json();
+    
+    // Process data into categories
+    DATA.tools = rawData.tools.filter(t => t.category === 'tool' && !(t.tags || []).includes('ethical-hacking'));
+    DATA.packs = rawData.tools.filter(t => t.category === 'pack');
+    DATA.learning = rawData.tools.filter(t => t.category === 'learning');
+    DATA.hacking = rawData.tools.filter(t => (t.tags || []).includes('ethical-hacking'));
+    DATA.all = rawData.tools; // Keep a copy of all tools for top picks
 
     const startRoute = location.hash ? location.hash.substring(1) : 'home';
     navigateTo(startRoute);
@@ -1021,6 +1038,7 @@ function navigateTo(name) {
     case 'tools': bootTools(); break;
     case 'packs': bootGrid('packs', DATA.packs, DOM.packsGrid); break;
     case 'learning': bootGrid('learning', DATA.learning, DOM.learnGrid); break;
+    case 'hacking': bootGrid('hacking', DATA.hacking, DOM.hackingGrid); break;
   }
 
   history.replaceState(null, '', '#' + name);
@@ -1100,7 +1118,7 @@ function bootGrid(name, dataArray, mountEl) {
 function populateTopPicks() {
   if (!DOM.topPicks) return;
   const picks = ["GitHub Student Developer Pack", "Google Colab", "Photopea", "Canva", "Notion", "Figma"];
-  DOM.topPicks.innerHTML = DATA.tools
+  DOM.topPicks.innerHTML = (DATA.all || [])
     .filter(t => picks.includes(t.title))
     .map(t => `<li style="display:flex;align-items:center;gap:8px"><i data-feather="${t.icon || 'box'}"></i> <strong>${escapeHtml(t.title)}</strong>: ${escapeHtml(t.desc)}</li>`)
     .join('');

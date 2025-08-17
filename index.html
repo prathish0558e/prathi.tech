@@ -131,6 +131,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: #64748B;
+      pointer-events: none;
     }
     .search-bar input {
       width: 100%;
@@ -412,8 +413,8 @@
         <i data-feather="menu"></i>
       </button>
       <div class="search-bar">
+         <i data-feather="search"></i>
           <input id="search" type="search" placeholder="Search for tools...">
-      <i data-feather="search"></i>
       </div>
       <div class="header-actions">
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -852,6 +853,7 @@ function escapeHtml(s) {
 </script>
 </body>
 </html>
+
 
 
 

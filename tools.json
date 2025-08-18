@@ -86,7 +86,8 @@
       "url": "https://www.adobe.com/creativecloud/buy/students.html",
       "tags": ["design", "students", "video-editing", "photo-editing"],
       "icon": "pen-tool",
-      "category": "pack"
+      "category": "pack",
+      "price": "1598"
     },
     {
       "title": "Spotify Premium for Students",
@@ -94,7 +95,8 @@
       "url": "https://www.spotify.com/us/student/",
       "tags": ["music", "students", "entertainment"],
       "icon": "music",
-      "category": "pack"
+      "category": "pack",
+      "price": "59"
     },
     {
       "title": "Tableau for Students",
@@ -110,7 +112,8 @@
       "url": "https://evernote.com/students",
       "tags": ["productivity", "students", "notes"],
       "icon": "book",
-      "category": "pack"
+      "category": "pack",
+      "price": "1499"
     },
     {
       "title": "Framer for Students",
@@ -999,6 +1002,246 @@
       "tags": ["security", "ethical-hacking", "reverse-engineering", "tool", "nsa"],
       "icon": "cpu",
       "category": "tool"
+    },
+    {
+      "title": "Google Summer of Code",
+      "desc": "A global program focused on bringing student developers into open source software development.",
+      "url": "https://summerofcode.withgoogle.com/",
+      "tags": ["open-source", "development", "paid"],
+      "icon": "code",
+      "category": "internship",
+      "stipend": "Varies by country (e.g., ~$3000 USD)",
+      "eligibility": "18+ years old, enrolled in or recently graduated from a post-secondary program."
+    },
+    {
+      "title": "MLH Fellowship",
+      "desc": "A remote internship alternative for aspiring software engineers. Gain hands-on experience by contributing to open source projects.",
+      "url": "https://fellowship.mlh.io/",
+      "tags": ["dev", "open-source", "fellowship", "remote", "paid"],
+      "icon": "award",
+      "category": "internship",
+      "stipend": "Need-based stipend up to $5,000",
+      "eligibility": "Open to students and recent graduates over 18. No prior experience required for some tracks."
+    },
+    {
+      "title": "Outreachy",
+      "desc": "Provides paid, remote internships in open source and open science to people subject to systemic bias and underrepresentation in the technical industry.",
+      "url": "https://www.outreachy.org/",
+      "tags": ["open-source", "diversity", "paid", "remote", "mentorship"],
+      "icon": "users",
+      "category": "internship",
+      "stipend": "$7,000 USD total stipend for the 3-month internship.",
+      "eligibility": "Applicants must be 18+ and available for a full-time, 3-month internship. Not open to residents of countries with US trade sanctions."
+    },
+    {
+      "title": "LFX Mentorship Program",
+      "desc": "Paid remote mentorships from the Linux Foundation. Work with experienced open-source developers on real projects.",
+      "url": "https://mentorship.lfx.linuxfoundation.org/",
+      "tags": ["open-source", "linux", "mentorship", "paid", "remote"],
+      "icon": "code",
+      "category": "internship",
+      "stipend": "Stipend provided, amount varies by program.",
+      "eligibility": "Varies by project. Generally open to all, no student status required for many."
+    },
+    {
+      "title": "Google Season of Docs",
+      "desc": "Provides paid opportunities for technical writers to contribute to open source projects and improve their documentation.",
+      "url": "https://developers.google.com/season-of-docs",
+      "tags": ["technical-writing", "open-source", "docs", "paid", "remote"],
+      "icon": "file-text",
+      "category": "internship",
+      "stipend": "Stipends vary by project and location, typically around $3,000 - $6,600 USD.",
+      "eligibility": "Must be 18+ and eligible to work in their country of residence."
+    },
+    {
+      "title": "Microsoft Learn Student Ambassador",
+      "desc": "A program for students to build their technical skills, create community, and and share their knowledge with peers.",
+      "url": "https://studentambassadors.microsoft.com/",
+      "tags": ["community", "learning", "microsoft", "leadership", "students"],
+      "icon": "user-plus",
+      "category": "internship",
+      "stipend": "Unpaid, but provides access to Microsoft resources, tools, and networking opportunities.",
+      "eligibility": "Must be 16+ and enrolled full-time in an accredited academic institution."
+    },
+    {
+      "title": "NASA Internships",
+      "desc": "Offers paid internships for students to work on exciting NASA projects and contribute to space exploration and research.",
+      "url": "https://intern.nasa.gov/",
+      "tags": ["science", "engineering", "stem", "research", "paid"],
+      "icon": "globe",
+      "category": "internship",
+      "stipend": "Stipends are provided and vary based on academic level and session duration.",
+      "eligibility": "U.S. citizen, full-time student (high school to graduate), minimum 3.0 GPA."
+    },
+    {
+      "title": "Red Hat Internships",
+      "desc": "Gain real-world experience in a leading open-source company. Internships available in software engineering, IT, marketing, and more.",
+      "url": "https://www.redhat.com/en/jobs/internships",
+      "tags": ["open-source", "dev", "corporate", "paid", "linux"],
+      "icon": "code",
+      "category": "internship",
+      "stipend": "Competitive paid internships.",
+      "eligibility": "Varies by role. Typically for students pursuing a Bachelor's, Master's, or PhD."
+    },
+    {
+      "title": "Intel Internships",
+      "desc": "Work on challenging projects in hardware and software engineering, AI, manufacturing, and more at a global tech leader.",
+      "url": "https://www.intel.com/content/www/us/en/jobs/student-center/internships.html",
+      "tags": ["hardware", "dev", "engineering", "corporate", "paid"],
+      "icon": "cpu",
+      "category": "internship",
+      "stipend": "Competitive salary and benefits.",
+      "eligibility": "Enrolled in a relevant Bachelor's, Master's, or PhD program."
+    },
+    {
+      "title": "Palantir Path",
+      "desc": "A unique internship experience for students from underrepresented backgrounds in tech, providing mentorship and real-world projects.",
+      "url": "https://www.palantir.com/students/internships/path/",
+      "tags": ["dev", "diversity", "mentorship", "paid", "corporate"],
+      "icon": "award",
+      "category": "internship",
+      "stipend": "Highly competitive salary, housing, and travel covered.",
+      "eligibility": "Open to first and second-year undergraduate students."
+    },
+    {
+      "title": "Twitter Academy",
+      "desc": "A 12-week paid summer internship program for second-year students designed to build technical skills and provide a pathway to a career in tech.",
+      "url": "https://careers.twitter.com/en/early-career.html",
+      "tags": ["dev", "mentorship", "paid", "corporate", "students"],
+      "icon": "twitter",
+      "category": "internship",
+      "stipend": "Competitive salary and perks.",
+      "eligibility": "Enrolled in a four-year degree program with an expected graduation date within two years."
+    },
+    {
+      "title": "Facebook University",
+      "desc": "A hands-on, immersive internship program for first and second-year college students from underrepresented communities.",
+      "url": "https://www.facebookcareers.com/facebook-university/",
+      "tags": ["dev", "learning", "paid", "diversity", "mentorship"],
+      "icon": "facebook",
+      "category": "internship",
+      "stipend": "Competitive salary, housing, and other benefits.",
+      "eligibility": "First or second-year student currently enrolled in a four-year bachelor's program."
+    },
+    {
+      "title": "Amazon Future Engineer",
+      "desc": "A paid internship and scholarship program for high school and undergraduate students from underserved communities to explore careers in computer science.",
+      "url": "https://www.amazonfutureengineer.com/",
+      "tags": ["dev", "scholarship", "paid", "students", "community"],
+      "icon": "code",
+      "category": "internship",
+      "stipend": "Competitive salary, housing stipend, and other benefits.",
+      "eligibility": "Varies by program, but generally for high school seniors and college freshmen."
+    },
+    {
+      "title": "Adobe Digital Academy",
+      "desc": "Offers career-switchers from non-traditional backgrounds the education and experience needed to launch successful careers in tech.",
+      "url": "https://www.adobe.com/diversity/digital-academy.html",
+      "tags": ["career-switcher", "training", "paid", "diversity", "design"],
+      "icon": "pen-tool",
+      "category": "internship",
+      "stipend": "Covers tuition for a web development bootcamp and provides a paid internship.",
+      "eligibility": "Open to individuals with non-traditional, non-technical backgrounds."
+    },
+    {
+      "title": "Dropbox Launch",
+      "desc": "A summer internship program for rising college sophomores and juniors from underrepresented groups in tech.",
+      "url": "https://www.dropbox.com/jobs/university/internships",
+      "tags": ["dev", "mentorship", "paid", "diversity", "corporate"],
+      "icon": "folder",
+      "category": "internship",
+      "stipend": "Competitive salary, housing, and travel.",
+      "eligibility": "Current sophomore or junior pursuing a degree in CS or a related field."
+    },
+    {
+      "title": "LinkedIn REACH",
+      "desc": "A multi-year, rotational program designed to help individuals from non-traditional backgrounds build a career in software engineering.",
+      "url": "https://careers.linkedin.com/reach",
+      "tags": ["career-switcher", "dev", "paid", "mentorship", "training"],
+      "icon": "linkedin",
+      "category": "internship",
+      "stipend": "Competitive salary and benefits.",
+      "eligibility": "Aimed at individuals with a passion for coding who do not have a CS degree."
+    },
+    {
+      "title": "UberSTAR",
+      "desc": "A paid internship program for first and second-year students, providing hands-on experience and mentorship.",
+      "url": "https://www.uber.com/us/en/careers/university/",
+      "tags": ["dev", "mentorship", "paid", "students", "corporate"],
+      "icon": "navigation",
+      "category": "internship",
+      "stipend": "Competitive salary and perks.",
+      "eligibility": "First or second-year students in a four-year degree program."
+    },
+    {
+      "title": "Pinterest Engage",
+      "desc": "An 8-week summer program for first-year college students to gain exposure to the tech industry and build their technical skills.",
+      "url": "https://www.pinterestcareers.com/early-career/",
+      "tags": ["learning", "students", "paid", "mentorship", "dev"],
+      "icon": "pen-tool",
+      "category": "internship",
+      "stipend": "Competitive salary and benefits.",
+      "eligibility": "First-year student pursuing a bachelor's degree."
+    },
+    {
+      "title": "Goldman Sachs Engineering Possibilities",
+      "desc": "A one-day summit for first and second-year students to learn about software engineering careers in finance.",
+      "url": "https://www.goldmansachs.com/careers/students/programs/americas/engineering-possibilities-summit.html",
+      "tags": ["finance", "fintech", "learning", "students", "networking"],
+      "icon": "dollar-sign",
+      "category": "internship",
+      "stipend": "Unpaid (one-day event), but travel and accommodation may be covered.",
+      "eligibility": "First or second-year undergraduate students."
+    },
+    {
+      "title": "Morgan Stanley Early Insights",
+      "desc": "Various insight programs for students in their early years of university to explore careers in the financial services industry.",
+      "url": "https://www.morganstanley.com/people-opportunities/students-graduates",
+      "tags": ["finance", "fintech", "learning", "networking", "students"],
+      "icon": "bar-chart-2",
+      "category": "internship",
+      "stipend": "Generally unpaid (insight programs), but can lead to paid internships.",
+      "eligibility": "Varies by program, typically for first and second-year students."
+    },
+    {
+      "title": "JPMorgan Chase Code for Good",
+      "desc": "A hackathon where students work with non-profits to solve real-world problems, with opportunities for internships.",
+      "url": "https://careers.jpmorgan.com/us/en/students/programs/code-for-good",
+      "tags": ["hackathon", "social-good", "fintech", "networking", "students"],
+      "icon": "code",
+      "category": "internship",
+      "stipend": "Event-based, but top participants are often fast-tracked for paid internships.",
+      "eligibility": "Current students pursuing a degree in a STEM field."
+    },
+    {
+      "title": "Capital One Software Engineering Summit",
+      "desc": "An immersive multi-day program for freshmen and sophomores to explore software engineering at Capital One.",
+      "url": "https://www.capitalonecareers.com/students-and-grads",
+      "tags": ["fintech", "learning", "networking", "students", "dev"],
+      "icon": "credit-card",
+      "category": "internship",
+      "stipend": "Unpaid (summit), but all expenses are covered. Can lead to paid internships.",
+      "eligibility": "Freshman or sophomore standing in a four-year institution."
+    },
+    {
+      "title": "Two Sigma Freshman Internship",
+      "desc": "A quantitative finance firm offering a paid summer internship for first-year undergraduate students to work on real projects.",
+      "url": "https://www.twosigma.com/careers/early-careers/",
+      "tags": ["quant", "finance", "fintech", "paid", "students"],
+      "icon": "trending-up",
+      "category": "internship",
+      "stipend": "Extremely competitive salary and benefits.",
+      "eligibility": "First-year undergraduate students in a technical field."
+    },
+    {
+      "title": "Jane Street Freshman & Sophomore Programs",
+      "desc": "Offers various programs for early-career students to learn about quantitative trading, research, and software engineering.",
+      "url": "https://www.janestreet.com/join-jane-street/internships/",
+      "tags": ["quant", "finance", "fintech", "paid", "learning"],
+      "icon": "activity",
+      "category": "internship",
+      "stipend": "Highly competitive pay, housing, and other perks.",
+      "eligibility": "Open to freshmen and sophomores in technical or quantitative fields."
     }
   ]
 }

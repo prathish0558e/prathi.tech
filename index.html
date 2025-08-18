@@ -986,9 +986,12 @@ function createCardHTML(it) {
     </div>
   ` : '';
 
+  const isPaid = (it.tags || []).includes('paid');
   let priceHTML = '<span class="price-badge">Free</span>';
   if (it.price) {
     priceHTML = `<span class="price-badge">₹${escapeHtml(it.price)}</span>`;
+  } else if (isPaid) {
+    priceHTML = `<span class="price-badge">Paid</span>`;
   }
 
   return `

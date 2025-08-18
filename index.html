@@ -227,6 +227,23 @@
     }
     .card-title { font-size: 1.125rem; font-weight: 600; }
     .card-desc { color: #94A3B8; font-size: 0.95rem; flex-grow: 1; margin-bottom: 1rem; }
+    .card-details {
+      font-size: 0.9rem;
+      color: #94A3B8;
+      margin-bottom: 1.5rem;
+      border-left: 3px solid var(--accent1);
+      padding-left: 1rem;
+    }
+    .card-details p {
+      margin: 0.5rem 0;
+    }
+    .card-details strong {
+      color: var(--text-light);
+      font-weight: 600;
+    }
+    [data-theme="light"] .card-details strong {
+      color: var(--text-dark);
+    }
     .card-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
     .card-tag {
       background-color: rgba(138, 120, 255, 0.1);
@@ -236,7 +253,19 @@
       font-size: 0.8rem;
       font-weight: 500;
     }
-    .card-footer { margin-top: auto; }
+    .card-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .price-badge {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent2);
+      white-space: nowrap;
+    }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -386,6 +415,128 @@
       [data-theme="light"] .header { background-color: var(--bg-light); }
       #menuToggle { display: block !important; }
     }
+    .creator-spotlight {
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-top: 3rem;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+    [data-theme="light"] .creator-spotlight {
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+    }
+    .creator-card {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .creator-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent1);
+      box-shadow: 0 4px 20px rgba(138, 120, 255, 0.25);
+      flex-shrink: 0;
+    }
+    .creator-info h2 {
+      font-size: 1.75rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+    [data-theme="light"] .creator-info h2 { color: var(--text-dark); }
+    .creator-info p {
+      color: #94A3B8;
+      max-width: 500px;
+      margin-bottom: 1.5rem;
+    }
+    .creator-socials {
+      display: flex;
+      gap: 1rem;
+    }
+    .creator-socials a {
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border-dark);
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+    .creator-socials a:hover {
+      color: var(--accent1);
+      border-color: var(--accent1);
+      transform: translateY(-2px);
+    }
+    .section-subheader {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        margin-top: 2rem;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+    }
+    @media (max-width: 768px) {
+      .creator-card {
+        flex-direction: column;
+        text-align: center;
+      }
+      .creator-socials {
+        justify-content: center;
+      }
+    }
+    .about-content {
+      display: grid;
+      gap: 2rem;
+    }
+    .about-card {
+      background-color: var(--card-bg-dark);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    [data-theme="light"] .about-card {
+      background-color: var(--card-bg-light);
+      border-color: var(--border-light);
+    }
+    .about-photo-wrapper { flex-shrink: 0; }
+    .about-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent1);
+      box-shadow: 0 8px 30px rgba(138, 120, 255, 0.3);
+    }
+    .about-info h2 { font-size: 2rem; color: var(--text-light); }
+    [data-theme="light"] .about-info h2 { color: var(--text-dark); }
+    .about-subtitle {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--accent2);
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+    }
+    .about-info p { color: #94A3B8; margin-bottom: 1rem; line-height: 1.7; }
+    .about-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .about-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body data-theme="dark">
@@ -401,7 +552,7 @@
         <a href="#home" data-route="home" class="active"><i data-feather="home"></i>Home</a>
         <a href="#tools" data-route="tools"><i data-feather="tool"></i>Tools</a>
         <a href="#packs" data-route="packs"><i data-feather="package"></i>Student Packs</a>
-        <a href="#learning" data-route="learning"><i data-feather="book-open"></i>Learning</a>
+        <a href="#learning" data-route="learning"><i data-feather="book-open"></i>Learning & Internships</a>
         <a href="#hacking" data-route="hacking"><i data-feather="shield"></i>Hacking</a>
         <a href="#projects" data-route="projects"><i data-feather="code"></i>Projects</a>
         <a href="#contact" data-route="contact"><i data-feather="send"></i>Request</a>
@@ -435,7 +586,60 @@
           <h1>Welcome to Prathi Tech Hub</h1>
           <p>Your new dashboard for discovering the best free tools, student packs, and learning resources. Everything you need, all in one place.</p>
         </div>
+        
+        <h2 class="section-subheader">Top Picks</h2>
         <div id="topPicks" class="card-grid"></div>
+
+        <h2 class="section-subheader" style="margin-top: 3rem;">About Me</h2>
+        <div class="about-content">
+          <div class="about-card">
+              <div class="about-photo-wrapper">
+                  <img src="files/pakistan.png" alt="Prathishkumar S" class="about-photo">
+              </div>
+              <div class="about-info">
+                  <h2>Prathishkumar S</h2>
+                  <p class="about-subtitle">Final Year B.Tech IT Student | Aspiring Ethical Hacker</p>
+                  <p>I am a passionate and driven Information Technology undergraduate from PSN Engineering College, with a deep-seated interest in cybersecurity and ethical hacking. My journey in tech is fueled by a desire to build secure, efficient, and impactful solutions. This platform, Prathi Tech, is a manifestation of my commitment to sharing knowledge and resources with the student community.</p>
+                  <p>Beyond the code, I'm constantly exploring the latest trends in cybersecurity, participating in CTF challenges, and contributing to open-source projects. I believe in the power of continuous learning and community collaboration to drive innovation.</p>
+                  <div class="creator-socials">
+                      <a href="https://github.com/prathish0558e" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i data-feather="github"></i></a>
+                      <a href="https://www.linkedin.com/in/prathish-kumar-1989932a2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i data-feather="linkedin"></i></a>
+                      <a href="https://www.facebook.com/prathish.prathish.12382/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i data-feather="facebook"></i></a>
+                      <a href="https://www.instagram.com/prathi_hades/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i data-feather="instagram"></i></a>
+                      <a href="tel:+916383129892" aria-label="Call"><i data-feather="phone"></i></a>
+                  </div>
+              </div>
+          </div>
+          <div class="about-details">
+              <div class="card">
+                  <div class="card-header">
+                      <div class="card-icon"><i data-feather="award"></i></div>
+                      <h3 class="card-title">Skills</h3>
+                  </div>
+                  <div class="card-tags">
+                      <span class="card-tag">Ethical Hacking</span>
+                      <span class="card-tag">Web Security</span>
+                      <span class="card-tag">Network Pentesting</span>
+                      <span class="card-tag">JavaScript</span>
+                      <span class="card-tag">Python</span>
+                      <span class="card-tag">Linux</span>
+                      <span class="card-tag">SQL</span>
+                      <span class="card-tag">Docker</span>
+                  </div>
+              </div>
+              <div class="card">
+                  <div class="card-header">
+                      <div class="card-icon"><i data-feather="book"></i></div>
+                      <h3 class="card-title">Education</h3>
+                  </div>
+                  <p class="card-desc" style="margin-bottom: 0;">
+                      <strong>B.Tech, Information Technology</strong><br>
+                      PSN Engineering College<br>
+                      Final Year Student
+                  </p>
+              </div>
+          </div>
+        </div>
       </section>
 
       <!-- TOOLS -->
@@ -465,6 +669,10 @@
           <p>Free courses, guides, and tutorials to help you learn coding, design, AI, and more.</p>
         </div>
         <div id="learnGrid" class="card-grid"></div>
+
+        <h2 class="section-subheader" style="margin-top: 3rem;">Internship Opportunities</h2>
+        <p style="color: #94A3B8; margin-top: -1rem; margin-bottom: 2rem;">Find free internship opportunities and programs to gain real-world experience.</p>
+        <div id="internshipsGrid" class="card-grid"></div>
       </section>
 
       <!-- HACKING -->
@@ -580,6 +788,7 @@ const DOM = {
   packsGrid: $('#packsGrid'),
   learnGrid: $('#learnGrid'),
   hackingGrid: $('#hackingGrid'),
+  internshipsGrid: $('#internshipsGrid'),
 };
 
 // --- Core App Logic ---
@@ -600,7 +809,8 @@ async function initApp() {
     DATA.all = rawData.tools;
     DATA.tools = rawData.tools.filter(t => t.category === 'tool' && !(t.tags || []).includes('ethical-hacking'));
     DATA.packs = rawData.tools.filter(t => t.category === 'pack');
-    DATA.learning = rawData.tools.filter(t => t.category === 'learning');
+    const learningAndInternships = rawData.tools.filter(t => t.category === 'learning' || t.category === 'internship');
+    DATA.learning = learningAndInternships;
     DATA.hacking = rawData.tools.filter(t => (t.tags || []).includes('ethical-hacking'));
 
     const startRoute = location.hash ? location.hash.substring(1) : 'home';
@@ -676,7 +886,7 @@ function navigateTo(name) {
   switch (name) {
     case 'tools': bootTools(); break;
     case 'packs': bootGrid(DATA.packs, DOM.packsGrid); break;
-    case 'learning': bootGrid(DATA.learning, DOM.learnGrid); break;
+    case 'learning': bootLearning(); break;
     case 'hacking': bootGrid(DATA.hacking, DOM.hackingGrid); break;
   }
 
@@ -747,8 +957,16 @@ function bootGrid(dataArray, mountEl) {
   renderIcons();
 }
 
+function bootLearning() {
+  const learningItems = DATA.learning.filter(item => item.category === 'learning');
+  const internshipItems = DATA.learning.filter(item => item.category === 'internship');
+  
+  bootGrid(learningItems, DOM.learnGrid);
+  bootGrid(internshipItems, DOM.internshipsGrid);
+}
+
 function populateTopPicks() {
-  const picks = ["GitHub Student Developer Pack", "Figma for Education", "Visual Studio Code", "freeCodeCamp", "TryHackMe", "Canva for Education", "Notion for Students", "Postman", "Obsidian"];
+  const picks = ["GitHub Student Developer Pack", "Figma for Education", "Visual Studio Code", "freeCodeCamp", "TryHackMe", "Canva for Education"];
   const topPicksData = DATA.all
     .filter(t => picks.includes(t.title))
     .sort((a, b) => picks.indexOf(a.title) - picks.indexOf(b.title));
@@ -760,6 +978,19 @@ function populateTopPicks() {
 
 function createCardHTML(it) {
   const tagsHTML = (it.tags || []).slice(0, 3).map(tag => `<span class="card-tag">${escapeHtml(tag)}</span>`).join('');
+  
+  const detailsHTML = it.category === 'internship' ? `
+    <div class="card-details">
+      ${it.stipend ? `<p><strong>Stipend:</strong> ${escapeHtml(it.stipend)}</p>` : ''}
+      ${it.eligibility ? `<p><strong>Eligibility:</strong> ${escapeHtml(it.eligibility)}</p>` : ''}
+    </div>
+  ` : '';
+
+  let priceHTML = '<span class="price-badge">Free</span>';
+  if (it.price) {
+    priceHTML = `<span class="price-badge">₹${escapeHtml(it.price)}</span>`;
+  }
+
   return `
     <article class="card" role="article" aria-label="${escapeHtml(it.title)}">
       <div class="card-header">
@@ -767,8 +998,10 @@ function createCardHTML(it) {
         <h3 class="card-title">${escapeHtml(it.title)}</h3>
       </div>
       <p class="card-desc">${escapeHtml(it.desc || '')}</p>
+      ${detailsHTML}
       <div class="card-tags">${tagsHTML}</div>
       <div class="card-footer">
+        ${priceHTML}
         <a class="btn btn-primary" target="_blank" rel="noopener noreferrer" href="${it.url}"><i data-feather="external-link"></i>Open</a>
       </div>
     </article>
